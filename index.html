@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Angular Pharmaceuticals</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">AP</div>
+        <div class="brand-text">
+          <h1>Angular Pharmaceuticals</h1>
+          <p class="tag">Trusted healthcare products</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#products">Products</a>
+        <a href="#verify">Verify</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h2>Quality medicines for every family</h2>
+        <p>We follow GMP and strict quality control to deliver safe and effective pharmaceuticals.</p>
+        <div class="cta">
+          <a class="btn primary" href="#products">View Products</a>
+          <a class="btn outline" href="#verify">Verify Product</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="mockup">Product Image</div>
+      </div>
+    </section>
+
+    <section id="products" class="products">
+      <h3>Our Products</h3>
+      <div class="grid">
+        <article class="card">
+          <div class="card-img">Image</div>
+          <h4>Rebglar DSR</h4>
+          <p class="meta">Code: RG-001 • 10x10</p>
+        </article>
+        <article class="card">
+          <div class="card-img">Image</div>
+          <h4>Axonguard</h4>
+          <p class="meta">Code: AX-002 • 10x10</p>
+        </article>
+        <article class="card">
+          <div class="card-img">Image</div>
+          <h4>Montglar</h4>
+          <p class="meta">Code: MT-003 • 10x10</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="verify" class="verify">
+      <h3>Verify Product</h3>
+      <p>Scan the QR on the blister or enter the product code to check authenticity.</p>
+      <div class="verify-box">
+        <div class="qr">QR</div>
+        <div class="verify-form">
+          <input id="code" placeholder="Enter product code e.g. RG-001-AB12">
+          <button id="check">Check</button>
+          <p id="result" class="result"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h3>Contact & Distributors</h3>
+      <div class="contact-grid">
+        <div>
+          <p><strong>Phone:</strong> +91 98765 43210</p>
+          <p><strong>Email:</strong> hello@angularpharma.in</p>
+          <p><strong>Address:</strong> Hyderabad, India</p>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <input placeholder="Your name" required>
+          <input placeholder="Phone or email" required>
+          <textarea placeholder="Message" rows="4"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> Angular Pharmaceuticals</div>
+      <div>Designed for Dinu</div>
+    </div>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
