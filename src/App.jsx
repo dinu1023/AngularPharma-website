@@ -75,12 +75,11 @@ export default function App() {
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'Rebglar DSR', code: 'RG-001', pack: '10x10' },
-              { name: 'Axonguard', code: 'AX-002', pack: '10x10' },
-              { name: 'Montglar', code: 'MT-003', pack: '10x10' },
-              { name: 'Shalgrow', code: 'SG-004', pack: '10x10' },
-              { name: 'CardioPlus', code: 'CP-005', pack: '10x10' },
-            ].map((p, i) => (
+              { name: 'REBGLAR DSR', code: 'RG-001', pack: '10x10' },
+              { name: 'ANGULAR - SP', code: 'SP-002', pack: '10x10' }
+                { name: 'MONTGLAR-LC', code: 'MT-003', pack: '10x10' },
+              { name: 'Shalgrow', code: 'SG-004', pack: '10x10' }
+                    ].map((p, i) => (
               <article key={i} className="bg-white rounded-lg shadow p-4">
                 <div className="h-40 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">Product Image</div>
                 <h3 className="mt-3 font-semibold">{p.name}</h3>
