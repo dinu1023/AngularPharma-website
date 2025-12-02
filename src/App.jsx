@@ -207,6 +207,7 @@ function App() {
 {/* Hero Section */}
 {/* Hero Section */}
 {/* Hero Section */}
+{/* Hero Section */}
 <section
   id="home"
   className="relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden"
@@ -225,7 +226,7 @@ function App() {
   <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center text-white">
     <div className="space-y-6">
       <p className="text-xs md:text-sm tracking-[0.18em] uppercase font-semibold text-sky-100">
-        Angular Pharmaceuticals
+        ANGULAR PHARMACEUTICALS
       </p>
 
       <h2 className="text-3xl md:text-4xl font-bold leading-tight">
