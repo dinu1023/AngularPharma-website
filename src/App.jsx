@@ -158,7 +158,12 @@ function App() {
           {/* Contact card */}
           <div
             id="contact"
-            className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
+          {/* Contact card */}
+<div
+  id="contact-summary"
+  className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
+>
+
           >
             <h3 className="text-sm font-semibold text-gray-800">
               Contact & Distribution
