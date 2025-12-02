@@ -125,7 +125,7 @@ function App() {
 
         {/* Mobile full-screen overlay menu */}
         {menuOpen && (
-          <div className="fixed inset-0 z-30 bg-slate-900/85 text-white">
+          <div className="fixed inset-0 z-30 bg-slate-900/90 text-white">
             <div className="flex justify-between items-center px-4 py-3">
               <div className="flex items-center gap-2">
                 <img
