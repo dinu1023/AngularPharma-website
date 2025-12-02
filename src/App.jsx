@@ -80,7 +80,11 @@ export default function App() {
                 { name: 'MONTGLAR-LC', code: 'MT-003', pack: '10x10' },
               { name: 'Shalgrow', code: 'SG-004', pack: '10x10' }
                     ].map((p, i) => (
-              <article key={i} className="bg-white rounded-lg shadow p-4">
+            <article
+  key={i}
+  className="bg-white rounded-2xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:-rotate-1"
+>
+
                 <div className="h-40 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">Product Image</div>
                 <h3 className="mt-3 font-semibold">{p.name}</h3>
                 <div className="text-sm text-gray-500">Code: {p.code} • {p.pack}</div>
