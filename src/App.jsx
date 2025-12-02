@@ -76,7 +76,7 @@ export default function App() {
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { name: 'REBGLAR DSR', code: 'RG-001', pack: '10x10' },
-              { name: 'ANGULAR - SP', code: 'SP-002', pack: '10x10' }
+              { name: 'ANGULAR - SP', code: 'SP-002', pack: '10x10' },
                 { name: 'MONTGLAR-LC', code: 'MT-003', pack: '10x10' },
               { name: 'Shalgrow', code: 'SG-004', pack: '10x10' }
                     ].map((p, i) => (
