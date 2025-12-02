@@ -194,24 +194,16 @@ function App() {
           {/* Left side text */}
           <div className="space-y-4">
             <h2 className="text-3xl font-bold text-sky-900">Get in Touch</h2>
-            <p className="text-sm text-gray-600 leading-6">
-              We work closely with hospitals, pharmacies, distributors and
-              medical institutions to ensure timely access to essential
-              formulations. Share your requirement and our team will connect
-              with you shortly.
-            </p>
-
-            <div className="text-sm text-gray-700 space-y-2">
-              <p>
-                <span className="font-semibold">Email:</span>{" "}
-                angularpharma@gmail.com
-              </p>
-              <p>
-                <span className="font-semibold">Location:</span> Telangana,
-                India
-              </p>
-            </div>
-
+                <div className="text-sm text-gray-700 space-y-2">
+        <p>
+          <span className="font-semibold">Email:</span>{" "}
+          angularpharmaceuticals@gmail.com
+        </p>
+        <p>
+          <span className="font-semibold">Location:</span>{" "}
+          Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA
+        </p>
+      </div>
             <p className="text-xs text-gray-500">
               Kindly mention your speciality / area (Ortho, Gastro, Respiratory,
               etc.) and location so that we can route your enquiry to the right
