@@ -202,16 +202,21 @@ function App() {
       <main className="flex-1">
         {/* Hero Section */}
   {/* Hero Section */}
+{/* Hero Section */}
 <section
   id="home"
-  className="relative min-h-[550px] md:min-h-[700px] flex items-center bg-cover bg-center bg-no-repeat"
-  style={{ backgroundImage: "url('/family-hero.jpg')" }}
+  className="relative min-h-[600px] md:min-h-[700px] flex items-center bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: "url('/family-hero.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  }}
 >
   {/* Dark overlay */}
   <div className="absolute inset-0 bg-sky-900/60"></div>
 
   {/* Content */}
-  <div className="relative max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center text-white">
+  <div className="relative max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8 items-center text-white">
     <div className="space-y-4">
       <h2 className="text-3xl md:text-5xl font-bold leading-tight">
         Trusted formulations for everyday clinical practice.
@@ -226,22 +231,23 @@ function App() {
       <div className="flex flex-wrap gap-3">
         <a
           href="#products"
-          className="px-5 py-2.5 rounded-full bg-white text-sky-800 text-sm font-semibold hover:bg-gray-200"
+          className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg text-sm font-semibold"
         >
           View Products
         </a>
+
         <a
           href="#verify"
-          className="px-5 py-2.5 rounded-full border border-white text-white text-sm font-semibold hover:bg-white hover:text-sky-800"
+          className="border border-white text-white px-6 py-3 rounded-lg text-sm font-semibold"
         >
           Verify Product
         </a>
       </div>
 
-      <div className="flex flex-wrap gap-4 text-[11px] text-gray-300 pt-3">
-        <span>Hyderabad-based • Telangana, INDIA</span>
-        <span>Focused therapy: Ortho · Gastro · Respiratory</span>
-      </div>
+      <p className="text-xs mt-4 text-gray-200">
+        Hyderabad-based • Telangana, INDIA <br />
+        Focused therapy: Ortho • Gastro • Respiratory
+      </p>
     </div>
   </div>
 </section>
