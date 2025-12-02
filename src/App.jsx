@@ -201,47 +201,46 @@ function App() {
       </header>
       <main className="flex-1">
         {/* Hero Section */}
-    <section
+  {/* Hero Section */}
+<section
   id="home"
-  className="relative w-full min-h-[80vh] flex items-center bg-gradient-to-r from-white via-[#E8F4FF] to-[#D9ECFF] overflow-hidden"
+  className="relative min-h-[550px] md:min-h-[700px] flex items-center bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: "url('/family-hero.jpg')" }}
 >
-  {/* Right side full image background */}
-  <div
-    className="absolute right-0 top-0 w-1/2 h-full bg-cover bg-center rounded-l-3xl"
-    style={{
-      backgroundImage: "url('/A_website_homepage_banner_for_Angular_Pharmaceutic.png')"
-    }}
-  ></div>
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-sky-900/60"></div>
 
-  {/* Left content */}
-  <div className="relative z-10 max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10">
+  {/* Content */}
+  <div className="relative max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center text-white">
     <div className="space-y-4">
-      <h2 className="text-3xl md:text-5xl font-bold text-sky-900 leading-tight">
-        Trusted formulations for <br /> everyday clinical practice.
+      <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+        Trusted formulations for everyday clinical practice.
       </h2>
-      <p className="text-sm md:text-lg text-gray-600 leading-7">
+
+      <p className="text-sm md:text-base leading-6 text-gray-200">
         Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
-        segments with reliable and affordable formulations designed for Indian
-        patients and clinicians.
+        segments with reliable and affordable formulations designed for
+        Indian patients and clinicians.
       </p>
 
       <div className="flex flex-wrap gap-3">
         <a
           href="#products"
-          className="px-5 py-2 rounded-full bg-sky-700 text-white text-sm font-medium hover:bg-sky-800"
+          className="px-5 py-2.5 rounded-full bg-white text-sky-800 text-sm font-semibold hover:bg-gray-200"
         >
           View Products
         </a>
         <a
           href="#verify"
-          className="px-5 py-2 rounded-full border border-sky-700 text-sky-700 text-sm font-medium hover:bg-sky-50"
+          className="px-5 py-2.5 rounded-full border border-white text-white text-sm font-semibold hover:bg-white hover:text-sky-800"
         >
           Verify Product
         </a>
       </div>
 
-      <div className="text-[12px] text-gray-500 pt-2">
-        Hyderabad-based • Telangana, INDIA
+      <div className="flex flex-wrap gap-4 text-[11px] text-gray-300 pt-3">
+        <span>Hyderabad-based • Telangana, INDIA</span>
+        <span>Focused therapy: Ortho · Gastro · Respiratory</span>
       </div>
     </div>
   </div>
