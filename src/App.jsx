@@ -176,7 +176,8 @@ function App() {
             <div className="text-xs text-gray-600 space-y-1">
               <p>
                 <span className="font-medium">Email:</span>{" "}
-                angularpharma@gmail.com
+              angularpharmaceuticals@gmail.com
+
               </p>
               <p>
                 <span className="font-medium">Location:</span> Telangana, India
