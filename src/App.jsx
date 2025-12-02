@@ -71,24 +71,27 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       {/* Header / Navbar */}
+            {/* Header / Navbar */}
       <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-  <img
-    src="/logo.png"
-    alt="Angular Pharma Logo"
-    className="h-10 w-auto object-contain"
-  />
-  <div>
-    <h1 className="text-lg md:text-xl font-bold text-sky-800">
-      Angular Pharmaceuticals
-    </h1>
-    <p className="text-[11px] text-gray-500">
-      Evidence-based formulations from Hyderabad, Telangana
-    </p>
-  </div>
-</div>
+          {/* Logo + name */}
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="Angular Pharma Logo"
+              className="h-10 w-auto object-contain"
+            />
+            <div>
+              <h1 className="text-lg md:text-xl font-bold text-sky-800">
+                Angular Pharmaceuticals
+              </h1>
+              <p className="text-[11px] text-gray-500">
+                Evidence-based formulations from Hyderabad, Telangana
+              </p>
+            </div>
+          </div>
 
+          {/* Desktop menu */}
           <nav className="hidden md:flex gap-5 text-sm text-gray-600">
             <a href="#home" className="hover:text-sky-700">
               Home
@@ -109,9 +112,87 @@ function App() {
               Contact
             </a>
           </nav>
-        </div>
-      </header>
 
+          {/* Mobile hamburger button */}
+          <button
+            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-sky-800 text-2xl"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+
+        {/* Mobile full-screen overlay menu */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-30 bg-slate-900/85 text-white">
+            <div className="flex justify-between items-center px-4 py-3">
+              <div className="flex items-center gap-2">
+                <img
+                  src="/logo.png"
+                  alt="Angular Pharma Logo"
+                  className="h-8 w-auto object-contain"
+                />
+                <span className="text-sm font-semibold">
+                  Angular Pharmaceuticals
+                </span>
+              </div>
+              <button
+                className="text-3xl"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+
+            <nav className="mt-6 px-6 space-y-4 text-lg font-medium">
+              <a
+                href="#home"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Home
+              </a>
+              <a
+                href="#about"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                About
+              </a>
+              <a
+                href="#divisions"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Divisions
+              </a>
+              <a
+                href="#products"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Products
+              </a>
+              <a
+                href="#trust"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Doctors Trust Us
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Contact
+              </a>
+            </nav>
+          </div>
+        )}
+      </header>
       <main className="flex-1">
         {/* Hero Section */}
         <section
