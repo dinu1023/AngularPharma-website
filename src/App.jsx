@@ -73,14 +73,15 @@ function App() {
       {/* Header / Navbar */}
             {/* Header / Navbar */}
            {/* Header / Navbar */}
-           <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-20">
+             {/* Header / Navbar */}
+      <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            {/* Logo */}
+            {/* Logo image */}
             <img
-              src="/logo.png"
+              src="/angular-logo.jpg"
               alt="Angular Pharma Logo"
-              className="h-10 w-auto object-contain"
+              className="h-10 w-10 rounded-full object-contain bg-white shadow-sm border"
             />
             <div>
               <h1 className="text-lg md:text-xl font-bold text-sky-800">
@@ -92,7 +93,7 @@ function App() {
             </div>
           </div>
 
-          {/* Desktop nav */}
+          {/* Desktop navigation */}
           <nav className="hidden md:flex gap-5 text-sm text-gray-600">
             <a href="#home" className="hover:text-sky-700">
               Home
@@ -114,9 +115,9 @@ function App() {
             </a>
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Mobile hamburger button */}
           <button
-            className="md:hidden text-2xl text-sky-800"
+            className="md:hidden text-sky-800 text-3xl"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -124,97 +125,66 @@ function App() {
           </button>
         </div>
 
-        {/* Mobile full-screen menu overlay */}
-       {menuOpen && (
-  <div className="fixed inset-0 z-30 bg-sky-900/95 backdrop-blur-xl">
-    <div className="flex justify-between items-center px-6 py-4 border-b border-white/20">
-      <h2 className="text-white text-xl font-bold">Menu</h2>
-      <button
-        className="text-white text-3xl"
-        onClick={() => setMenuOpen(false)}
-      >
-        ✕
-      </button>
-    </div>
-
-    <nav className="flex-1 px-6 pt-8 space-y-6 text-xl font-semibold text-white">
-      <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-      <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-      <a href="#divisions" onClick={() => setMenuOpen(false)}>Divisions</a>
-      <a href="#products" onClick={() => setMenuOpen(false)}>Products</a>
-      <a href="#trust" onClick={() => setMenuOpen(false)}>Doctors Trust Us</a>
-      <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-    </nav>
-  </div>
-)}
-            <div className="flex flex-col h-full">
-              {/* Top bar with logo and close button */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/logo.png"
-                    alt="Angular Pharma Logo"
-                    className="h-8 w-auto object-contain"
-                  />
-                  <span className="text-sm font-semibold">
-                    Angular Pharmaceuticals
-                  </span>
-                </div>
-                <button
-                  className="text-3xl font-bold"
-                  onClick={() => setMenuOpen(false)}
-                  aria-label="Close menu"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Menu items */}
-              <nav className="flex-1 px-6 pt-8 space-y-6 text-xl font-semibold">
-                <a
-                  href="#home"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
-                  Home
-                </a>
-                <a
-                  href="#about"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
-                  About
-                </a>
-                <a
-                  href="#divisions"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
-                  Divisions
-                </a>
-                <a
-                  href="#products"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
-                  Products
-                </a>
-                <a
-                  href="#trust"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
-                  Doctors Trust Us
-                </a>
-                <a
-                  href="#contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
-                  Contact
-                </a>
-              </nav>
+        {/* Mobile full-screen menu */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-30 bg-sky-900/95 backdrop-blur-xl">
+            {/* Top bar inside menu */}
+            <div className="flex justify-between items-center px-6 py-4 border-b border-white/20">
+              <h2 className="text-white text-xl font-bold">Menu</h2>
+              <button
+                className="text-white text-3xl"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
             </div>
+
+            {/* Menu links */}
+            <nav className="px-6 pt-8 space-y-6 text-xl font-semibold text-white">
+              <a
+                href="#home"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Home
+              </a>
+              <a
+                href="#about"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                About
+              </a>
+              <a
+                href="#divisions"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Divisions
+              </a>
+              <a
+                href="#products"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Products
+              </a>
+              <a
+                href="#trust"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Doctors Trust Us
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Contact
+              </a>
+            </nav>
           </div>
         )}
       </header>
