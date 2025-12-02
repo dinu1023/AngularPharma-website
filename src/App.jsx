@@ -206,19 +206,20 @@ function App() {
 {/* Hero Section */}
 {/* Hero Section */}
 {/* Hero Section */}
+{/* Hero Section */}
 <section
   id="home"
   className="relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden"
 >
-  {/* Background photo (now imported) */}
+  {/* Background photo */}
   <img
     src={familyHero}
     alt="Family receiving healthcare support"
     className="absolute inset-0 w-full h-full object-cover object-center"
   />
 
-  {/* Blue overlay on top of image */}
-  <div className="absolute inset-0 bg-sky-900/40"></div>
+  {/* Blue overlay on top of the photo */}
+  <div className="absolute inset-0 bg-sky-900/45" />
 
   {/* Content */}
   <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center text-white">
@@ -258,7 +259,7 @@ function App() {
       </div>
     </div>
 
-    {/* Right-side card, like Orven */}
+    {/* Right-side info card */}
     <div className="hidden md:flex justify-end">
       <div className="bg-white/95 text-slate-800 rounded-3xl shadow-lg border border-white/60 p-5 max-w-sm space-y-2">
         <p className="text-xs font-semibold text-sky-700">
