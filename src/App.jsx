@@ -127,8 +127,7 @@ export default function App() {
           <aside id="contact" className="bg-white p-6 rounded-lg shadow">
             <h4 className="text-lg font-semibold">Contact</h4>
             <div className="mt-3 text-sm text-gray-700">
-              <div><strong>Phone:</strong> +91 98765 43210</div>
-              <div><strong>Email:</strong> hello@angularpharma.in</div>
+                           <div><strong>Email:</strong> hello@angularpharma.in</div>
               <div className="mt-3"><strong>Address:</strong> Hyderabad, India</div>
             </div>
 
