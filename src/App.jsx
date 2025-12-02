@@ -72,47 +72,60 @@ export default function App() {
               <input placeholder="Search by name or code" className="px-4 py-2 border rounded-md w-80" />
             </div>
           </div>
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {[
+    {
+      name: "Rebglar DSR",
+      code: "RG-001",
+      pack: "10x10",
+      image: "/rebglar.jpg",
+    },
+    {
+      name: "ANGULAR - SP",
+      code: "SP-002",
+      pack: "10x10",
+      image: "/angularsp.jpg",
+    },
+    {
+      name: "MONTGLAR-LC",
+      code: "MT-003",
+      pack: "10x10",
+      image: "/montglar.jpg",
+    },
+    { name: "Shalgrow", code: "SG-004", pack: "10x10" },
+    { name: "CardioPlus", code: "CP-005", pack: "10x10" },
+  ].map((p, i) => (
+    <article
+      key={i}
+      className="bg-white rounded-2xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:-rotate-1"
+    >
+      <div className="h-40 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3">
+        {p.image ? (
+          <img
+            src={p.image}
+            alt={p.name}
+            className="h-full w-full object-contain"
+          />
+        ) : (
+          <span className="text-gray-400 text-sm">Product Image</span>
+        )}
+      </div>
 
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { name: 'REBGLAR DSR', code: 'RG-001', pack: '10x10' },
-              { name: 'ANGULAR - SP', code: 'SP-002', pack: '10x10' },
-                { name: 'MONTGLAR-LC', code: 'MT-003', pack: '10x10' },
-              { name: 'Shalgrow', code: 'SG-004', pack: '10x10' }
-                    ].map((p, i) => (
-            <article
-  key={i}
-  className="bg-white rounded-2xl shadow-lg p-4 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:-rotate-1"
->
+      <h3 className="mt-1 font-semibold text-lg">{p.name}</h3>
+      <div className="text-sm text-gray-500">
+        Code: {p.code} • Pack: {p.pack}
+      </div>
 
-                <div className="h-40 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">Product Image</div>
-                <h3 className="mt-3 font-semibold">{p.name}</h3>
-                <div className="text-sm text-gray-500">Code: {p.code} • {p.pack}</div>
-
-                <div className="mt-4 flex gap-3">
-                  <button className="px-3 py-2 border rounded-md">Details</button>
-                  <button className="px-3 py-2 bg-red-600 text-white rounded-md">Verify</button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="verify" className="mt-12 bg-white p-6 rounded-lg shadow">
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="w-48 h-48 bg-gray-100 rounded-md flex items-center justify-center">QR</div>
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold">Verify Product</h3>
-              <p className="text-gray-500">Scan the QR on the blister or enter the code to check authenticity.</p>
-
-              <div className="mt-4 flex gap-3">
-                <input placeholder="Enter product code e.g. RG-001-AB12" className="px-4 py-2 border rounded-md flex-1" />
-                <button className="px-4 py-2 bg-red-600 text-white rounded-md">Check</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
+      <div className="mt-4 flex gap-3">
+        <button className="px-3 py-2 border rounded-md text-sm">Details</button>
+        <button className="px-3 py-2 bg-red-600 text-white rounded-md text-sm">
+          Verify
+        </button>
+      </div>
+    </article>
+  ))}
+</div>
+     
         <section id="about" className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2 bg-white p-6 rounded-lg shadow">
             <h3 className="text-xl font-semibold">About Angular Pharmaceuticals</h3>
