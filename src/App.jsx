@@ -29,14 +29,20 @@ function App() {
       {/* Header */}
       <header className="bg-white border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-bold text-sky-800">
-              Angular Pharmaceuticals
-            </h1>
-            <p className="text-xs text-gray-500">
-              Quality medicines for every family
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-full bg-sky-700 text-white flex items-center justify-center text-sm font-bold">
+              A
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-sky-800">
+                Angular Pharmaceuticals
+              </h1>
+              <p className="text-xs text-gray-500">
+                Quality medicines for every family
+              </p>
+            </div>
           </div>
+
           <nav className="hidden md:flex gap-4 text-sm text-gray-600">
             <a href="#products" className="hover:text-sky-700">
               Products
@@ -133,7 +139,7 @@ function App() {
           </div>
         </section>
 
-               {/* Right side: verify + contact */}
+        {/* Right side: verify + small contact summary */}
         <aside className="space-y-4">
           {/* Verify card */}
           <div
@@ -154,14 +160,18 @@ function App() {
               Verify Now
             </button>
           </div>
-      
+
+          {/* Contact summary card */}
+          <div
+            id="contact-summary"
+            className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
           >
             <h3 className="text-sm font-semibold text-gray-800">
               Contact & Distribution
             </h3>
             <p className="text-xs text-gray-500">
               For hospital supply, distribution or business enquiries, please
-              reach out via email or contact form on the website.
+              reach out via email or contact form below.
             </p>
             <div className="text-xs text-gray-600 space-y-1">
               <p>
@@ -174,97 +184,68 @@ function App() {
             </div>
           </div>
         </aside>
+      </main>
 
-          {/* Verify card */}
-          <div
-            id="verify"
-            className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
-          >
-            <h3 className="text-sm font-semibold text-gray-800">
-              Verify Product
-            </h3>
-            <p className="text-xs text-gray-500">
-              Enter the product code printed near the QR to check authenticity.
+      {/* Full Contact Section (like Orven) */}
+      <section id="contact" className="bg-white border-t py-12">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
+          {/* Left side text */}
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold text-sky-900">Get in Touch</h2>
+            <p className="text-sm text-gray-600 leading-6">
+              We work closely with hospitals, pharmacies, distributors and
+              medical institutions to ensure timely access to essential
+              formulations. Share your requirement and our team will connect
+              with you shortly.
             </p>
-            <input
-              placeholder="Enter product code (e.g. RG-001)"
-              className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-            <button className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800">
-              Verify Now
-            </button>
-          </div>
 
-          {/* Contact card */}
-          <div
-            id="contact"
-          {/* Contact card */}
-<div
-  id="contact-summary"
-  className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
->
-
-          >
-            <h3 className="text-sm font-semibold text-gray-800">
-              Contact & Distribution
-            </h3>
-            <p className="text-xs text-gray-500">
-              For hospital supply, distribution or business enquiries, please
-              reach out via email or contact form on the website.
-            </p>
-            <div className="text-xs text-gray-600 space-y-1">
+            <div className="text-sm text-gray-700 space-y-2">
               <p>
-                <span className="font-medium">Email:</span>{" "}
+                <span className="font-semibold">Email:</span>{" "}
                 angularpharma@gmail.com
               </p>
               <p>
-                <span className="font-medium">Location:</span> Telangana, India
+                <span className="font-semibold">Location:</span> Telangana,
+                India
               </p>
             </div>
+
+            <p className="text-xs text-gray-500">
+              Kindly mention your speciality / area (Ortho, Gastro, Respiratory,
+              etc.) and location so that we can route your enquiry to the right
+              team member.
+            </p>
           </div>
-        </aside>      {/* WHY CHOOSE US SECTION */}
-      <section className="bg-white rounded-2xl shadow-sm p-6 space-y-4 mt-10">
-        <h2 className="text-xl font-bold text-sky-900">
-          Why doctors choose Angular Pharma
-        </h2>
-        <p className="text-sm text-gray-600">
-          We are committed to delivering clinically effective formulations that
-          improve patient outcomes and enhance treatment experience.
-        </p>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
-          <li className="flex items-start gap-2">
-            <span className="text-sky-700 text-lg">✔</span>
-            WHO-GMP approved manufacturing partners with strict process control
-          </li>
-
-          <li className="flex items-start gap-2">
-            <span className="text-sky-700 text-lg">✔</span>
-            Scientifically formulated combinations designed for rapid and
-            lasting relief
-          </li>
-
-          <li className="flex items-start gap-2">
-            <span className="text-sky-700 text-lg">✔</span>
-            Trusted by doctors across Telangana for consistent therapeutic
-            performance
-          </li>
-
-          <li className="flex items-start gap-2">
-            <span className="text-sky-700 text-lg">✔</span>
-            Transparent verification system to ensure product authenticity and
-            safety
-          </li>
-
-          <li className="flex items-start gap-2">
-            <span className="text-sky-700 text-lg">✔</span>
-            Strong distribution network ensuring timely availability and
-            support
-          </li>
-        </ul>
+          {/* Right side form */}
+          <form className="bg-slate-50 rounded-2xl shadow p-6 space-y-4">
+            <input
+              className="w-full px-3 py-2 border rounded-md text-sm"
+              placeholder="Your Name"
+            />
+            <input
+              className="w-full px-3 py-2 border rounded-md text-sm"
+              placeholder="Your Email"
+            />
+            <input
+              className="w-full px-3 py-2 border rounded-md text-sm"
+              placeholder="Subject"
+            />
+            <textarea
+              rows="4"
+              className="w-full px-3 py-2 border rounded-md text-sm resize-none"
+              placeholder="Message"
+            ></textarea>
+            <button className="bg-sky-700 hover:bg-sky-800 text-white w-full py-2 rounded-md text-sm font-medium">
+              Send Message
+            </button>
+            <p className="text-[11px] text-gray-400 text-center">
+              (Form is for display only – email / WhatsApp integration can be
+              added later.)
+            </p>
+          </form>
+        </div>
       </section>
-
-      </main>
 
       {/* Footer */}
       <footer className="bg-white border-t">
