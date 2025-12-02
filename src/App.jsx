@@ -201,64 +201,47 @@ function App() {
       </header>
       <main className="flex-1">
         {/* Hero Section */}
-     <section
+    <section
   id="home"
-  className="bg-sky-50 border-b"
+  className="relative w-full min-h-[80vh] flex items-center bg-gradient-to-r from-white via-[#E8F4FF] to-[#D9ECFF] overflow-hidden"
 >
-  <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10 items-center">
-    {/* LEFT: Text */}
+  {/* Right side full image background */}
+  <div
+    className="absolute right-0 top-0 w-1/2 h-full bg-cover bg-center rounded-l-3xl"
+    style={{
+      backgroundImage: "url('/A_website_homepage_banner_for_Angular_Pharmaceutic.png')"
+    }}
+  ></div>
+
+  {/* Left content */}
+  <div className="relative z-10 max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10">
     <div className="space-y-4">
-      <p className="text-xs font-semibold tracking-wide text-sky-700 uppercase">
-        Angular Pharmaceuticals
-      </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-sky-900 leading-tight">
-        Trusted formulations for everyday clinical practice.
+      <h2 className="text-3xl md:text-5xl font-bold text-sky-900 leading-tight">
+        Trusted formulations for <br /> everyday clinical practice.
       </h2>
-      <p className="text-sm md:text-base text-gray-600 leading-6">
-        Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory segments
-        with reliable and affordable formulations designed for Indian patients
-        and clinicians.
+      <p className="text-sm md:text-lg text-gray-600 leading-7">
+        Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
+        segments with reliable and affordable formulations designed for Indian
+        patients and clinicians.
       </p>
 
       <div className="flex flex-wrap gap-3">
         <a
           href="#products"
-          className="px-4 py-2 rounded-full bg-sky-700 text-white text-sm font-medium hover:bg-sky-800"
+          className="px-5 py-2 rounded-full bg-sky-700 text-white text-sm font-medium hover:bg-sky-800"
         >
           View Products
         </a>
         <a
           href="#verify"
-          className="px-4 py-2 rounded-full border border-sky-700 text-sky-700 text-sm font-medium hover:bg-sky-50"
+          className="px-5 py-2 rounded-full border border-sky-700 text-sky-700 text-sm font-medium hover:bg-sky-50"
         >
           Verify Product
         </a>
       </div>
 
-      <div className="flex flex-wrap gap-4 text-[11px] text-gray-500 pt-2">
-        <span>Hyderabad-based • Telangana, INDIA</span>
-        <span>Focused therapy: Ortho · Gastro · Respiratory</span>
-      </div>
-    </div>
-
-    {/* RIGHT: Family Image card */}
-    <div className="flex justify-center md:justify-end">
-      <div className="relative w-full max-w-md">
-        <div className="rounded-3xl overflow-hidden shadow-xl border bg-white">
-          <img
-            src="/family-hero.jpg"   // 👈 use your exact file name here
-            alt="Family receiving healthcare support"
-            className="w-full h-64 md:h-80 object-cover"
-          />
-        </div>
-
-        {/* Small trust badge */}
-        <div className="absolute -bottom-4 -left-4 bg-sky-700 text-white rounded-2xl px-4 py-3 text-xs shadow-lg max-w-[200px]">
-          <p className="font-semibold">Care • Commitment • Quality</p>
-          <p className="text-[10px] text-sky-100 mt-1">
-            WHO-GMP aligned partners with a focus on real-world clinical needs.
-          </p>
-        </div>
+      <div className="text-[12px] text-gray-500 pt-2">
+        Hyderabad-based • Telangana, INDIA
       </div>
     </div>
   </div>
