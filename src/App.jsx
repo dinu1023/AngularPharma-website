@@ -213,7 +213,7 @@ function App() {
   }}
 >
   {/* Dark overlay */}
-  <div className="absolute inset-0 bg-sky-900/60"></div>
+  <div className="absolute inset-0 bg-sky-900/30"></div>
 
   {/* Content */}
   <div className="relative max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8 items-center text-white">
