@@ -133,8 +133,52 @@ function App() {
           </div>
         </section>
 
-        {/* Right side: verify + contact */}
+               {/* Right side: verify + contact */}
         <aside className="space-y-4">
+          {/* Verify card */}
+          <div
+            id="verify"
+            className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
+          >
+            <h3 className="text-sm font-semibold text-gray-800">
+              Verify Product
+            </h3>
+            <p className="text-xs text-gray-500">
+              Enter the product code printed near the QR to check authenticity.
+            </p>
+            <input
+              placeholder="Enter product code (e.g. RG-001)"
+              className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+            />
+            <button className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800">
+              Verify Now
+            </button>
+          </div>
+
+          {/* Contact card */}
+          <div
+            id="contact-summary"
+            className="bg-white rounded-2xl shadow-sm p-5 space-y-3"
+          >
+            <h3 className="text-sm font-semibold text-gray-800">
+              Contact & Distribution
+            </h3>
+            <p className="text-xs text-gray-500">
+              For hospital supply, distribution or business enquiries, please
+              reach out via email or contact form on the website.
+            </p>
+            <div className="text-xs text-gray-600 space-y-1">
+              <p>
+                <span className="font-medium">Email:</span>{" "}
+                angularpharma@gmail.com
+              </p>
+              <p>
+                <span className="font-medium">Location:</span> Telangana, India
+              </p>
+            </div>
+          </div>
+        </aside>
+
           {/* Verify card */}
           <div
             id="verify"
