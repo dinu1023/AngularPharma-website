@@ -177,7 +177,48 @@ function App() {
               </p>
             </div>
           </div>
-        </aside>
+        </aside>      {/* WHY CHOOSE US SECTION */}
+      <section className="bg-white rounded-2xl shadow-sm p-6 space-y-4 mt-10">
+        <h2 className="text-xl font-bold text-sky-900">
+          Why doctors choose Angular Pharma
+        </h2>
+        <p className="text-sm text-gray-600">
+          We are committed to delivering clinically effective formulations that
+          improve patient outcomes and enhance treatment experience.
+        </p>
+
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
+          <li className="flex items-start gap-2">
+            <span className="text-sky-700 text-lg">✔</span>
+            WHO-GMP approved manufacturing partners with strict process control
+          </li>
+
+          <li className="flex items-start gap-2">
+            <span className="text-sky-700 text-lg">✔</span>
+            Scientifically formulated combinations designed for rapid and
+            lasting relief
+          </li>
+
+          <li className="flex items-start gap-2">
+            <span className="text-sky-700 text-lg">✔</span>
+            Trusted by doctors across Telangana for consistent therapeutic
+            performance
+          </li>
+
+          <li className="flex items-start gap-2">
+            <span className="text-sky-700 text-lg">✔</span>
+            Transparent verification system to ensure product authenticity and
+            safety
+          </li>
+
+          <li className="flex items-start gap-2">
+            <span className="text-sky-700 text-lg">✔</span>
+            Strong distribution network ensuring timely availability and
+            support
+          </li>
+        </ul>
+      </section>
+
       </main>
 
       {/* Footer */}
