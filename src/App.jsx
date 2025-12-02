@@ -201,28 +201,22 @@ function App() {
         )}
       </header>
       <main className="flex-1">
-        {/* Hero Section */}
-  {/* Hero Section */}
-{/* Hero Section */}
-{/* Hero Section */}
-{/* Hero Section */}
-{/* Hero Section */}
-{/* Hero Section */}
+     {/* Hero Section */}
 <section
   id="home"
-  className="relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden"
+  className="relative min-h-[600px] md:min-h-[700px] overflow-hidden"
 >
-  {/* Background photo */}
+  {/* Full-width background image */}
   <img
-    src={familyHero}
+    src="/family-hero.jpg"
     alt="Family receiving healthcare support"
     className="absolute inset-0 w-full h-full object-cover object-center"
   />
 
-  {/* Blue overlay on top of the photo */}
+  {/* Blue overlay on top of image */}
   <div className="absolute inset-0 bg-sky-900/45" />
 
-  {/* Content */}
+  {/* Content on top */}
   <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center text-white">
     <div className="space-y-6">
       <p className="text-xs md:text-sm tracking-[0.18em] uppercase font-semibold text-sky-100">
