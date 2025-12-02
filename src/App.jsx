@@ -145,8 +145,7 @@ function App() {
                 ✕
               </button>
             </div>
-
-            <nav className="mt-6 px-6 space-y-4 text-lg font-medium">
+           <nav className="mt-6 px-6 py-6 space-y-5 text-lg font-medium bg-white text-slate-900 rounded-t-2xl">
               <a
                 href="#home"
                 onClick={() => setMenuOpen(false)}
