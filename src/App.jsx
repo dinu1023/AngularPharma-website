@@ -125,8 +125,28 @@ function App() {
         </div>
 
         {/* Mobile full-screen menu overlay */}
-        {menuOpen && (
-          <div className="fixed inset-0 z-30 bg-slate-900/90 text-white">
+       {menuOpen && (
+  <div className="fixed inset-0 z-30 bg-sky-900/95 backdrop-blur-xl">
+    <div className="flex justify-between items-center px-6 py-4 border-b border-white/20">
+      <h2 className="text-white text-xl font-bold">Menu</h2>
+      <button
+        className="text-white text-3xl"
+        onClick={() => setMenuOpen(false)}
+      >
+        ✕
+      </button>
+    </div>
+
+    <nav className="flex-1 px-6 pt-8 space-y-6 text-xl font-semibold text-white">
+      <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+      <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+      <a href="#divisions" onClick={() => setMenuOpen(false)}>Divisions</a>
+      <a href="#products" onClick={() => setMenuOpen(false)}>Products</a>
+      <a href="#trust" onClick={() => setMenuOpen(false)}>Doctors Trust Us</a>
+      <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+    </nav>
+  </div>
+)}
             <div className="flex flex-col h-full">
               {/* Top bar with logo and close button */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
