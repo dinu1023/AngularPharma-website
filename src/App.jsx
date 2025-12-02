@@ -201,10 +201,10 @@ function App() {
       </header>
       <main className="flex-1">
         {/* Hero Section */}
-        <section
-          id="home"
-          className="bg-gradient-to-br from-sky-50 via-sky-100/60 to-slate-50 border-b"
-        >
+       <section
+  id="home"
+  className="bg-[url('/molecule3d.png')] bg-cover bg-center bg-no-repeat border-b"
+>
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold text-sky-900 leading-tight">
