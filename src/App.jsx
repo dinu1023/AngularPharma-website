@@ -124,8 +124,9 @@ function App() {
         </div>
 
         {/* Mobile full-screen overlay menu */}
+               {/* Mobile full-screen overlay menu */}
         {menuOpen && (
-         <div className="fixed inset-0 z-30 bg-sky-900/95 text-white md:hidden">
+          <div className="fixed inset-0 z-30 bg-sky-900/95 text-white md:hidden">
             <div className="flex justify-between items-center px-4 py-3">
               <div className="flex items-center gap-2">
                 <img
@@ -137,6 +138,61 @@ function App() {
                   Angular Pharmaceuticals
                 </span>
               </div>
+              <button
+                className="text-white text-3xl font-bold"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+
+            <nav className="mt-10 px-6 space-y-6 text-xl font-semibold">
+              <a
+                href="#home"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Home
+              </a>
+              <a
+                href="#about"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                About
+              </a>
+              <a
+                href="#divisions"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Divisions
+              </a>
+              <a
+                href="#products"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Products
+              </a>
+              <a
+                href="#trust"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Doctors Trust Us
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="block"
+              >
+                Contact
+              </a>
+            </nav>
+          </div>
+        )}
               <button
                 className="text-3xl"
                 onClick={() => setMenuOpen(false)}
