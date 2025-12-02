@@ -125,19 +125,78 @@ function App() {
         </div>
 
         {/* Mobile full-screen overlay menu */}
-        {menuOpen && (
-          <div className="fixed inset-0 z-30 bg-sky-900/95 text-white md:hidden">
-            <div className="flex justify-between items-center px-4 py-3">
-              <div className="flex items-center gap-2">
-                <img
-                  src="/logo.png"
-                  alt="Angular Pharma Logo"
-                  className="h-8 w-auto object-contain"
-                />
-                <span className="text-sm font-semibold">
-                  Angular Pharmaceuticals
-                </span>
-              </div>
+       {menuOpen && (
+  <div className="fixed inset-0 z-30 bg-slate-900 text-white">
+    <div className="flex flex-col h-full">
+      {/* Top bar with logo and close button */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logo.png"
+            alt="Angular Pharma Logo"
+            className="h-8 w-auto object-contain"
+          />
+          <span className="text-sm font-semibold">
+            Angular Pharmaceuticals
+          </span>
+        </div>
+        <button
+          className="text-3xl font-bold"
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          ×
+        </button>
+      </div>
+
+      {/* Menu items */}
+      <nav className="flex-1 px-6 pt-8 space-y-6 text-lg font-semibold">
+        <a
+          href="#home"
+          onClick={() => setMenuOpen(false)}
+          className="block hover:text-sky-400"
+        >
+          Home
+        </a>
+        <a
+          href="#about"
+          onClick={() => setMenuOpen(false)}
+          className="block hover:text-sky-400"
+        >
+          About
+        </a>
+        <a
+          href="#divisions"
+          onClick={() => setMenuOpen(false)}
+          className="block hover:text-sky-400"
+        >
+          Divisions
+        </a>
+        <a
+          href="#products"
+          onClick={() => setMenuOpen(false)}
+          className="block hover:text-sky-400"
+        >
+          Products
+        </a>
+        <a
+          href="#trust"
+          onClick={() => setMenuOpen(false)}
+          className="block hover:text-sky-400"
+        >
+          Doctors Trust Us
+        </a>
+        <a
+          href="#contact"
+          onClick={() => setMenuOpen(false)}
+          className="block hover:text-sky-400"
+        >
+          Contact
+        </a>
+      </nav>
+    </div>
+  </div>
+)}
               <button
                 className="text-white text-3xl font-bold"
                 onClick={() => setMenuOpen(false)}
