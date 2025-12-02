@@ -72,20 +72,21 @@ function App() {
       {/* Header / Navbar */}
       <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            {/* Simple circle logo - replace with <img src="/logo.png" ... /> later */}
-            <div className="h-10 w-10 rounded-full bg-sky-700 text-white flex items-center justify-center text-sm font-bold">
-              A
-            </div>
-            <div>
-              <h1 className="text-lg md:text-xl font-bold text-sky-800">
-                Angular Pharmaceuticals
-              </h1>
-              <p className="text-[11px] text-gray-500">
-                Evidence-based formulations from Hyderabad, Telangana
-              </p>
-            </div>
-          </div>
+        <div className="flex items-center gap-3">
+  <img
+    src="/logo.png"
+    alt="Angular Pharma Logo"
+    className="h-10 w-auto object-contain"
+  />
+  <div>
+    <h1 className="text-lg md:text-xl font-bold text-sky-800">
+      Angular Pharmaceuticals
+    </h1>
+    <p className="text-[11px] text-gray-500">
+      Evidence-based formulations from Hyderabad, Telangana
+    </p>
+  </div>
+</div>
 
           <nav className="hidden md:flex gap-5 text-sm text-gray-600">
             <a href="#home" className="hover:text-sky-700">
