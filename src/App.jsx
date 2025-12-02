@@ -180,7 +180,8 @@ function App() {
 
               </p>
               <p>
-                <span className="font-medium">Location:</span> Telangana, India
+                <span className="font-medium">Location:</span> Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA
+
               </p>
             </div>
           </div>
