@@ -208,7 +208,7 @@ function App() {
 >
   {/* Full-width background image */}
   <img
-    src="/family-hero.jpg"
+    src="/hero-bg.jpg"
     alt="Family receiving healthcare support"
     className="absolute inset-0 w-full h-full object-cover object-center"
   />
