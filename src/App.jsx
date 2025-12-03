@@ -72,7 +72,7 @@ function App() {
   const closeMobile = () => setMobileOpen(false);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
+    <div className="min-h-screen bg-sky-100 text-slate-900 flex flex-col">
       {/* Header / Navbar */}
       <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
