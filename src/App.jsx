@@ -28,12 +28,12 @@ const products = [
     pack: "10x10",
     division: "Nutrition & Support",
   },
-  {
-    name: "CardioPlus",
-    code: "CP-005",
-    pack: "10x10",
-    division: "Cardio-metabolic Care",
-  },
+ {
+  name: "AXONGUARD-PLUS",
+  code: "AP-005",
+  pack: "10x10",
+  division: "Neuro & Cardio Care",
+},
 ];
 
 const divisions = [
