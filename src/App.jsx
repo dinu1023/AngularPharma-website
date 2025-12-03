@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import familyHero from "/family-hero.jpg";
 
 const products = [
   {
@@ -68,21 +67,21 @@ const trustPoints = [
 ];
 
 function App() {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeMobile = () => setMobileOpen(false);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       {/* Header / Navbar */}
-            {/* Header / Navbar */}
-           {/* Header / Navbar */}
-             {/* Header / Navbar */}
-          <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-20">
+      <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          {/* Logo + brand */}
           <div className="flex items-center gap-3">
-            {/* Logo */}
             <img
               src="/logo.png"
-              alt="Angular Pharma Logo"
-              className="h-10 w-auto object-contain"
+              alt="Angular Pharma logo"
+              className="h-9 w-auto"
             />
             <div>
               <h1 className="text-lg md:text-xl font-bold text-sky-800">
@@ -118,81 +117,56 @@ function App() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-2xl text-sky-800"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
+            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md border border-slate-200 text-slate-700"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation"
           >
-            ☰
+            <span className="block w-4 h-[2px] bg-slate-700 mb-[3px]" />
+            <span className="block w-4 h-[2px] bg-slate-700 mb-[3px]" />
+            <span className="block w-4 h-[2px] bg-slate-700" />
           </button>
         </div>
 
-        {/* Mobile full-screen menu overlay */}
-        {menuOpen && (
-          <div className="fixed inset-0 z-30 bg-slate-900/90 text-white">
-            <div className="flex flex-col h-full">
-              {/* Top bar with logo and close button */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/logo.png"
-                    alt="Angular Pharma Logo"
-                    className="h-8 w-auto object-contain"
-                  />
-                  <span className="text-sm font-semibold">
-                    Angular Pharmaceuticals
-                  </span>
-                </div>
+        {/* Mobile nav overlay */}
+        {mobileOpen && (
+          <div className="fixed inset-0 z-40 md:hidden">
+            {/* dark background */}
+            <div
+              className="absolute inset-0 bg-sky-950/70"
+              onClick={closeMobile}
+            />
+            {/* slide-out panel */}
+            <div className="relative ml-auto h-full w-64 bg-sky-900 text-white shadow-xl flex flex-col">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-sky-800">
+                <span className="text-sm font-semibold">
+                  Angular Pharmaceuticals
+                </span>
                 <button
-                  className="text-3xl font-bold"
-                  onClick={() => setMenuOpen(false)}
-                  aria-label="Close menu"
+                  onClick={closeMobile}
+                  className="h-8 w-8 inline-flex items-center justify-center rounded-full border border-sky-700"
+                  aria-label="Close navigation"
                 >
-                  ×
+                  ✕
                 </button>
               </div>
 
-              {/* Menu items */}
-              <nav className="flex-1 px-6 pt-8 space-y-6 text-xl font-semibold">
-                <a
-                  href="#home"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
+              <nav className="mt-4 px-4 space-y-4 text-base font-medium">
+                <a href="#home" onClick={closeMobile} className="block">
                   Home
                 </a>
-                <a
-                  href="#about"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
+                <a href="#about" onClick={closeMobile} className="block">
                   About
                 </a>
-                <a
-                  href="#divisions"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
+                <a href="#divisions" onClick={closeMobile} className="block">
                   Divisions
                 </a>
-                <a
-                  href="#products"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
+                <a href="#products" onClick={closeMobile} className="block">
                   Products
                 </a>
-                <a
-                  href="#trust"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
+                <a href="#trust" onClick={closeMobile} className="block">
                   Doctors Trust Us
                 </a>
-                <a
-                  href="#contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="block hover:text-sky-400"
-                >
+                <a href="#contact" onClick={closeMobile} className="block">
                   Contact
                 </a>
               </nav>
@@ -200,77 +174,80 @@ function App() {
           </div>
         )}
       </header>
+
       <main className="flex-1">
-     {/* Hero Section */}
-{/* Hero Section */}
-<section
-  id="home"
-  className="relative min-h-[560px] md:min-h-[640px] flex items-center overflow-hidden bg-sky-900"
->
-  {/* Background image */}
-  <div
-    className="absolute inset-0 bg-cover bg-center"
-    style={{ backgroundImage: "url('/family-hero.jpg')" }}
-  />
-
-  {/* Dark blue gradient overlay for readable text */}
-  <div className="absolute inset-0 bg-gradient-to-r from-sky-950/85 via-sky-900/70 to-sky-900/20" />
-
-  {/* Content */}
-  <div className="relative z-10 max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-[1.6fr,1fr] gap-10 items-center text-white">
-    {/* Left side text */}
-    <div className="space-y-4">
-      <p className="text-[11px] tracking-[0.25em] uppercase text-sky-200">
-        Angular Pharmaceuticals
-      </p>
-
-      <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-        Trusted formulations for{" "}
-        <span className="text-sky-100">everyday clinical practice.</span>
-      </h2>
-
-      <p className="text-sm md:text-base text-sky-100/90 leading-6 max-w-xl">
-        Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
-        segments with reliable and affordable formulations designed for
-        Indian patients and clinicians.
-      </p>
-
-      <div className="flex flex-wrap gap-3 pt-2">
-        <a
-          href="#products"
-          className="px-5 py-2.5 rounded-full bg-sky-400 text-sky-950 text-sm font-semibold shadow-md shadow-sky-900/40 hover:bg-sky-300 transition"
+        {/* Hero Section */}
+        <section
+          id="home"
+          className="relative min-h-[560px] md:min-h-[640px] flex items-center overflow-hidden bg-sky-900"
         >
-          View Products
-        </a>
-        <a
-          href="#verify"
-          className="px-5 py-2.5 rounded-full border border-sky-200/70 text-sky-50 text-sm font-semibold hover:bg-sky-50/10 transition"
-        >
-          Verify Product
-        </a>
-      </div>
+          {/* Background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/family-hero.jpg')" }}
+          />
 
-      <div className="flex flex-wrap gap-4 text-[11px] text-sky-100/80 pt-2">
-        <span>Hyderabad-based • Telangana, INDIA</span>
-        <span>Focused therapy: Ortho • Gastro • Respiratory</span>
-      </div>
-    </div>
+          {/* Dark blue gradient overlay for readable text */}
+          <div className="absolute inset-0 bg-gradient-to-r from-sky-950/85 via-sky-900/70 to-sky-900/20" />
 
-    {/* Right side white card */}
-    <div className="flex justify-end">
-      <div className="bg-white/95 rounded-3xl shadow-xl shadow-sky-950/40 px-5 py-4 md:px-6 md:py-5 max-w-sm text-slate-800 backdrop-blur">
-        <p className="text-xs font-semibold text-sky-700 mb-1">
-          Care • Commitment • Quality
-        </p>
-        <p className="text-xs text-slate-600 leading-5">
-          WHO-GMP aligned partners with a focus on Ortho, Gastro and
-          Respiratory care for everyday clinical practice, ensuring
-          consistent quality and trust.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+          {/* Content */}
+          <div className="relative z-10 max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-[1.6fr,1fr] gap-10 items-center text-white">
+            {/* Left side text */}
+            <div className="space-y-4">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-sky-200">
+                Angular Pharmaceuticals
+              </p>
+
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+                Trusted formulations for{" "}
+                <span className="text-sky-100">everyday clinical practice.</span>
+              </h2>
+
+              <p className="text-sm md:text-base text-sky-100/90 leading-6 max-w-xl">
+                Angular Pharmaceuticals focuses on Ortho, Gastro and
+                Respiratory segments with reliable and affordable formulations
+                designed for Indian patients and clinicians.
+              </p>
+
+              <div className="flex flex-wrap gap-3 pt-2">
+                <a
+                  href="#products"
+                  className="px-5 py-2.5 rounded-full bg-sky-400 text-sky-950 text-sm font-semibold shadow-md shadow-sky-950/40 hover:bg-sky-300 transition"
+                >
+                  View Products
+                </a>
+                <a
+                  href="#verify"
+                  className="px-5 py-2.5 rounded-full border border-sky-200/70 text-sky-50 text-sm font-semibold hover:bg-sky-50/10 transition"
+                >
+                  Verify Product
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-4 text-[11px] text-sky-100/80 pt-2">
+                <span>Hyderabad-based • Telangana, INDIA</span>
+                <span>Focused therapy: Ortho • Gastro • Respiratory</span>
+              </div>
+            </div>
+
+            {/* Right side white card */}
+            <div className="flex justify-end">
+              <div className="bg-white/95 rounded-3xl shadow-xl shadow-sky-950/40 px-5 py-4 md:px-6 md:py-5 max-w-sm text-slate-800 backdrop-blur">
+                <p className="text-xs font-semibold text-sky-700 mb-1">
+                  Care • Commitment • Quality
+                </p>
+                <p className="text-xs text-slate-600 leading-5">
+                  WHO-GMP aligned partners with a focus on Ortho, Gastro and
+                  Respiratory care for everyday clinical practice, ensuring
+                  consistent quality and trust.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="border-b bg-white">
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2 space-y-3">
               <h2 className="text-xl font-bold text-sky-900">
