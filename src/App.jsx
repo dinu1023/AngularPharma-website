@@ -265,13 +265,7 @@ function App() {
                 clinicians and the realities of Indian patients.
               </p>
             </div>
-
-            <div className="space-y-3">
-              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
-                <div className="text-xs text-gray-500">Year of launch</div>
-                <div className="font-semibold text-sky-800">2025</div>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
+                         <div className="bg-slate-50 rounded-xl p-3 border text-sm">
                 <div className="text-xs text-gray-500">Core therapy areas</div>
                 <div className="font-semibold text-sky-800">
                   Ortho • Gastro • Respiratory
