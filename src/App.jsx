@@ -72,16 +72,16 @@ function App() {
   const closeMobile = () => setMobileOpen(false);
 
   return (
-    <div className="min-h-screen bg-sky-100 text-slate-900 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       {/* Header / Navbar */}
-      <header className="bg-white/90 backdrop-blur border-b sticky top-0 z-30">
+      <header className="bg-white/95 backdrop-blur border-b sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          {/* Logo + brand */}
           <div className="flex items-center gap-3">
+            {/* Logo */}
             <img
               src="/logo.png"
               alt="Angular Pharma logo"
-              className="h-9 w-auto"
+              className="h-10 w-auto"
             />
             <div>
               <h1 className="text-lg md:text-xl font-bold text-sky-800">
@@ -114,27 +114,30 @@ function App() {
               Contact
             </a>
           </nav>
-          {/* Mobile menu button */}
-     <button
-  className="md:hidden flex flex-col items-center justify-center h-10 w-10 rounded-lg bg-sky-900/95 border border-sky-900 shadow-md gap-[4px]"
-  onClick={() => setMobileOpen(true)}
-  aria-label="Open navigation"
->
-  <span className="block w-6 h-[3px] bg-white rounded"></span>
-  <span className="block w-6 h-[3px] bg-white rounded"></span>
-  <span className="block w-6 h-[3px] bg-white rounded"></span>
-</button>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md border border-slate-200 bg-sky-900 text-white"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation"
+          >
+            <span className="space-y-[3px] flex flex-col">
+              <span className="block w-5 h-[2px] bg-white" />
+              <span className="block w-5 h-[2px] bg-white" />
+              <span className="block w-5 h-[2px] bg-white" />
+            </span>
+          </button>
         </div>
 
         {/* Mobile nav overlay */}
         {mobileOpen && (
           <div className="fixed inset-0 z-40 md:hidden">
-            {/* dark background */}
+            {/* Dark background */}
             <div
               className="absolute inset-0 bg-sky-950/70"
               onClick={closeMobile}
             />
-            {/* slide-out panel */}
+            {/* Slide panel */}
             <div className="relative ml-auto h-full w-64 bg-sky-900 text-white shadow-xl flex flex-col">
               <div className="flex items-center justify-between px-4 py-3 border-b border-sky-800">
                 <span className="text-sm font-semibold">
@@ -142,30 +145,53 @@ function App() {
                 </span>
                 <button
                   onClick={closeMobile}
-                  className="h-8 w-8 inline-flex items-center justify-center rounded-full border border-sky-700"
                   aria-label="Close navigation"
+                  className="h-8 w-8 inline-flex items-center justify-center rounded-md border border-sky-700"
                 >
                   ✕
                 </button>
               </div>
-
-              <nav className="mt-4 px-4 space-y-4 text-base font-medium">
-                <a href="#home" onClick={closeMobile} className="block">
+              <nav className="mt-6 px-4 space-y-4 text-base font-medium">
+                <a
+                  href="#home"
+                  onClick={closeMobile}
+                  className="block hover:text-sky-200"
+                >
                   Home
                 </a>
-                <a href="#about" onClick={closeMobile} className="block">
+                <a
+                  href="#about"
+                  onClick={closeMobile}
+                  className="block hover:text-sky-200"
+                >
                   About
                 </a>
-                <a href="#divisions" onClick={closeMobile} className="block">
+                <a
+                  href="#divisions"
+                  onClick={closeMobile}
+                  className="block hover:text-sky-200"
+                >
                   Divisions
                 </a>
-                <a href="#products" onClick={closeMobile} className="block">
+                <a
+                  href="#products"
+                  onClick={closeMobile}
+                  className="block hover:text-sky-200"
+                >
                   Products
                 </a>
-                <a href="#trust" onClick={closeMobile} className="block">
+                <a
+                  href="#trust"
+                  onClick={closeMobile}
+                  className="block hover:text-sky-200"
+                >
                   Doctors Trust Us
                 </a>
-                <a href="#contact" onClick={closeMobile} className="block">
+                <a
+                  href="#contact"
+                  onClick={closeMobile}
+                  className="block hover:text-sky-200"
+                >
                   Contact
                 </a>
               </nav>
@@ -178,64 +204,57 @@ function App() {
         {/* Hero Section */}
         <section
           id="home"
-          className="relative min-h-[560px] md:min-h-[640px] flex items-center overflow-hidden bg-sky-900"
+          className="relative min-h-[560px] md:min-h-[700px] flex items-center bg-slate-900 text-white"
+          style={{
+            backgroundImage: "url('/family-hero.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          {/* Background image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/family-hero.jpg')" }}
-          />
-
-          {/* Dark blue gradient overlay for readable text */}
-          <div className="absolute inset-0 bg-gradient-to-r from-sky-950/85 via-sky-900/70 to-sky-900/20" />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-sky-900/70" />
 
           {/* Content */}
-          <div className="relative z-10 max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-[1.6fr,1fr] gap-10 items-center text-white">
-            {/* Left side text */}
+          <div className="relative max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
-              <p className="text-[11px] tracking-[0.25em] uppercase text-sky-200">
+              <p className="tracking-[0.25em] text-xs font-semibold text-sky-200 uppercase">
                 Angular Pharmaceuticals
               </p>
-
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-                Trusted formulations for{" "}
-                <span className="text-sky-100">everyday clinical practice.</span>
+                Trusted formulations for everyday clinical practice.
               </h2>
-
-              <p className="text-sm md:text-base text-sky-100/90 leading-6 max-w-xl">
-                Angular Pharmaceuticals focuses on Ortho, Gastro and
-                Respiratory segments with reliable and affordable formulations
-                designed for Indian patients and clinicians.
+              <p className="text-sm md:text-base text-sky-100 leading-6">
+                Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
+                segments with reliable and affordable formulations designed for
+                Indian patients and clinicians.
               </p>
-
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="#products"
-                  className="px-5 py-2.5 rounded-full bg-sky-400 text-sky-950 text-sm font-semibold shadow-md shadow-sky-950/40 hover:bg-sky-300 transition"
+                  className="px-5 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-400"
                 >
                   View Products
                 </a>
                 <a
                   href="#verify"
-                  className="px-5 py-2.5 rounded-full border border-sky-200/70 text-sky-50 text-sm font-semibold hover:bg-sky-50/10 transition"
+                  className="px-5 py-2 rounded-full border border-sky-300 text-sky-100 text-sm font-medium hover:bg-sky-800/40"
                 >
                   Verify Product
                 </a>
               </div>
-
-              <div className="flex flex-wrap gap-4 text-[11px] text-sky-100/80 pt-2">
+              <div className="flex flex-wrap gap-4 text-[11px] text-sky-100 pt-2">
                 <span>Hyderabad-based • Telangana, INDIA</span>
-                <span>Focused therapy: Ortho • Gastro • Respiratory</span>
+                <span>Focused therapy: Ortho · Gastro · Respiratory</span>
               </div>
             </div>
 
-            {/* Right side white card */}
-            <div className="flex justify-end">
-              <div className="bg-white/95 rounded-3xl shadow-xl shadow-sky-950/40 px-5 py-4 md:px-6 md:py-5 max-w-sm text-slate-800 backdrop-blur">
-                <p className="text-xs font-semibold text-sky-700 mb-1">
+            {/* Right side small info card */}
+            <div className="hidden md:flex justify-end">
+              <div className="bg-white/95 text-slate-900 rounded-3xl shadow-xl border border-sky-100 p-5 max-w-sm">
+                <h3 className="text-sm font-semibold text-sky-900 mb-1">
                   Care • Commitment • Quality
-                </p>
-                <p className="text-xs text-slate-600 leading-5">
+                </h3>
+                <p className="text-xs text-gray-600">
                   WHO-GMP aligned partners with a focus on Ortho, Gastro and
                   Respiratory care for everyday clinical practice, ensuring
                   consistent quality and trust.
@@ -265,7 +284,10 @@ function App() {
                 clinicians and the realities of Indian patients.
               </p>
             </div>
-                         <div className="bg-slate-50 rounded-xl p-3 border text-sm">
+
+            {/* Small info cards – year removed */}
+            <div className="space-y-3">
+              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
                 <div className="text-xs text-gray-500">Core therapy areas</div>
                 <div className="font-semibold text-sky-800">
                   Ortho • Gastro • Respiratory
