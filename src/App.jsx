@@ -293,12 +293,12 @@ function App() {
                   Ortho • Gastro • Respiratory
                 </div>
               </div>
-              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
-                <div className="text-xs text-gray-500">Operations hub</div>
-                <div className="font-semibold text-sky-800">
-                  Hyderabad, Telangana, INDIA
-                </div>
-              </div>
+             <div className="bg-slate-50 rounded-xl p-3 border text-sm">
+  <div className="text-xs text-gray-500">Operations hub</div>
+  <div className="font-semibold text-sky-800">
+    Hyderabad • Bengaluru • Mumbai, INDIA
+  </div>
+</div>
             </div>
           </div>
         </section>
