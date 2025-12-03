@@ -121,9 +121,9 @@ function App() {
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation"
           >
-            <span className="block w-4 h-[2px] bg-slate-700 mb-[3px]" />
-            <span className="block w-4 h-[2px] bg-slate-700 mb-[3px]" />
-            <span className="block w-4 h-[2px] bg-slate-700" />
+          <span className="block w-4 h-[2px] bg-sky-900 mb-[3px]" />
+<span className="block w-4 h-[2px] bg-sky-900 mb-[3px]" />
+<span className="block w-4 h-[2px] bg-sky-900" />
           </button>
         </div>
 
