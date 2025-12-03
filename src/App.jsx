@@ -115,14 +115,14 @@ function App() {
             </a>
           </nav>
           {/* Mobile menu button */}
-        <button
-  className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg bg-sky-900/95 border border-sky-900 shadow-md"
+     <button
+  className="md:hidden flex flex-col items-center justify-center h-10 w-10 rounded-lg bg-sky-900/95 border border-sky-900 shadow-md gap-[4px]"
   onClick={() => setMobileOpen(true)}
   aria-label="Open navigation"
 >
-  <span className="block w-6 h-[3px] bg-white mb-[4px] rounded" />
-  <span className="block w-6 h-[3px] bg-white mb-[4px] rounded" />
-  <span className="block w-6 h-[3px] bg-white rounded" />
+  <span className="block w-6 h-[3px] bg-white rounded"></span>
+  <span className="block w-6 h-[3px] bg-white rounded"></span>
+  <span className="block w-6 h-[3px] bg-white rounded"></span>
 </button>
         </div>
 
