@@ -202,47 +202,49 @@ function App() {
       </header>
       <main className="flex-1">
      {/* Hero Section */}
+{/* Hero Section */}
 <section
   id="home"
-  className="relative min-h-[600px] md:min-h-[700px] overflow-hidden"
+  className="relative min-h-[560px] md:min-h-[640px] flex items-center overflow-hidden bg-sky-900"
 >
-  {/* Full-width background image */}
-  <img
-    src="/hero-bg.jpg"
-    alt="Family receiving healthcare support"
-    className="absolute inset-0 w-full h-full object-cover object-center"
+  {/* Background image */}
+  <div
+    className="absolute inset-0 bg-cover bg-center"
+    style={{ backgroundImage: "url('/family-hero.jpg')" }}
   />
 
-  {/* Blue overlay on top of image */}
-  <div className="absolute inset-0 bg-sky-900/45" />
+  {/* Dark blue gradient overlay for readable text */}
+  <div className="absolute inset-0 bg-gradient-to-r from-sky-950/85 via-sky-900/70 to-sky-900/20" />
 
-  {/* Content on top */}
-  <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center text-white">
-    <div className="space-y-6">
-      <p className="text-xs md:text-sm tracking-[0.18em] uppercase font-semibold text-sky-100">
-        ANGULAR PHARMACEUTICALS
+  {/* Content */}
+  <div className="relative z-10 max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-[1.6fr,1fr] gap-10 items-center text-white">
+    {/* Left side text */}
+    <div className="space-y-4">
+      <p className="text-[11px] tracking-[0.25em] uppercase text-sky-200">
+        Angular Pharmaceuticals
       </p>
 
       <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-        Trusted formulations for everyday clinical practice.
+        Trusted formulations for{" "}
+        <span className="text-sky-100">everyday clinical practice.</span>
       </h2>
 
-      <p className="text-sm md:text-base text-sky-100/90 leading-6">
+      <p className="text-sm md:text-base text-sky-100/90 leading-6 max-w-xl">
         Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
         segments with reliable and affordable formulations designed for
         Indian patients and clinicians.
       </p>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 pt-2">
         <a
           href="#products"
-          className="px-4 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-400"
+          className="px-5 py-2.5 rounded-full bg-sky-400 text-sky-950 text-sm font-semibold shadow-md shadow-sky-900/40 hover:bg-sky-300 transition"
         >
           View Products
         </a>
         <a
           href="#verify"
-          className="px-4 py-2 rounded-full border border-sky-200 text-sky-50 text-sm font-medium bg-white/5 hover:bg-white/10"
+          className="px-5 py-2.5 rounded-full border border-sky-200/70 text-sky-50 text-sm font-semibold hover:bg-sky-50/10 transition"
         >
           Verify Product
         </a>
@@ -250,26 +252,25 @@ function App() {
 
       <div className="flex flex-wrap gap-4 text-[11px] text-sky-100/80 pt-2">
         <span>Hyderabad-based • Telangana, INDIA</span>
-        <span>Focused therapy: Ortho · Gastro · Respiratory</span>
+        <span>Focused therapy: Ortho • Gastro • Respiratory</span>
       </div>
     </div>
 
-    {/* Right-side info card */}
-    <div className="hidden md:flex justify-end">
-      <div className="bg-white/95 text-slate-800 rounded-3xl shadow-lg border border-white/60 p-5 max-w-sm space-y-2">
-        <p className="text-xs font-semibold text-sky-700">
+    {/* Right side white card */}
+    <div className="flex justify-end">
+      <div className="bg-white/95 rounded-3xl shadow-xl shadow-sky-950/40 px-5 py-4 md:px-6 md:py-5 max-w-sm text-slate-800 backdrop-blur">
+        <p className="text-xs font-semibold text-sky-700 mb-1">
           Care • Commitment • Quality
         </p>
         <p className="text-xs text-slate-600 leading-5">
           WHO-GMP aligned partners with a focus on Ortho, Gastro and
-          Respiratory care for everyday clinical practice.
+          Respiratory care for everyday clinical practice, ensuring
+          consistent quality and trust.
         </p>
       </div>
     </div>
   </div>
 </section>
-        {/* About Section */}
-        <section id="about" className="border-b bg-white">
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2 space-y-3">
               <h2 className="text-xl font-bold text-sky-900">
