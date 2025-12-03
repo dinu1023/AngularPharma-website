@@ -114,17 +114,16 @@ function App() {
               Contact
             </a>
           </nav>
-
           {/* Mobile menu button */}
-          <button
-            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md border border-slate-200 text-slate-700"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open navigation"
-          >
-          <span className="block w-4 h-[2px] bg-sky-900 mb-[3px]" />
-<span className="block w-4 h-[2px] bg-sky-900 mb-[3px]" />
-<span className="block w-4 h-[2px] bg-sky-900" />
-          </button>
+         <button
+  className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md bg-sky-900/95 border border-sky-900 text-white shadow-md"
+  onClick={() => setMobileOpen(true)}
+  aria-label="Open navigation"
+>
+  <span className="block w-4 h-[2px] bg-white mb-[3px]" />
+  <span className="block w-4 h-[2px] bg-white mb-[3px]" />
+  <span className="block w-4 h-[2px] bg-white" />
+</button>
         </div>
 
         {/* Mobile nav overlay */}
