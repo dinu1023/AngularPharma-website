@@ -75,7 +75,7 @@ function App() {
 
   const closeMobile = () => setMobileOpen(false);
 
-  // hero parallax
+  // hero parallax effect
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
@@ -84,7 +84,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // simple scroll reveal (Orven-like) using IntersectionObserver
+  // simple scroll reveal effect for sections
   useEffect(() => {
     const elements = document.querySelectorAll(".js-animate");
     const observer = new IntersectionObserver(
@@ -214,38 +214,56 @@ function App() {
             </button>
           </div>
 
+          {/* MOBILE MENU */}
           {mobileOpen && (
             <div
               className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm"
               onClick={closeMobile}
-           <div
-  className="ml-auto h-full w-72 bg-white/10 backdrop-blur-xl text-white border-l border-white/20 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.4)]"
-  style={{ animation: "slideIn 0.25s ease-out" }}
-  onClick={(e) => e.stopPropagation()}
->
-                <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200">
+            >
+              <div
+                className="ml-auto h-full w-72 bg-white/10 backdrop-blur-xl text-white border-l border-white/20 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.4)]"
+                style={{ animation: "slideIn 0.25s ease-out" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-center justify-between px-4 py-3 border-b border-white/20">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
                   </span>
                   <button
                     onClick={closeMobile}
-                    className="h-8 w-8 rounded-full border border-slate-300 flex items-center justify-center text-lg leading-none"
+                    className="h-8 w-8 rounded-full border border-white/40 flex items-center justify-center text-lg leading-none"
                     aria-label="Close navigation"
                   >
                     ✕
                   </button>
                 </div>
                 <nav className="mt-6 px-6 space-y-5 text-base font-medium">
-                  <a href="#hero" onClick={closeMobile} className="block">
+                  <a
+                    href="#hero"
+                    onClick={closeMobile}
+                    className="block text-white text-lg font-medium"
+                  >
                     Home
                   </a>
-                  <a href="#about" onClick={closeMobile} className="block">
+                  <a
+                    href="#about"
+                    onClick={closeMobile}
+                    className="block text-white text-lg font-medium"
+                  >
                     About Us
                   </a>
-                  <a href="#divisions" onClick={closeMobile} className="block">
+                  <a
+                    href="#divisions"
+                    onClick={closeMobile}
+                    className="block text-white text-lg font-medium"
+                  >
                     Products / Divisions
                   </a>
-                  <a href="#contact" onClick={closeMobile} className="block">
+                  <a
+                    href="#contact"
+                    onClick={closeMobile}
+                    className="block text-white text-lg font-medium"
+                  >
                     Contact Us
                   </a>
                 </nav>
@@ -255,7 +273,7 @@ function App() {
         </header>
 
         <main className="flex-1">
-          {/* HERO – full family image like Orven */}
+          {/* HERO – full background like Orven */}
           <section
             id="hero"
             className="relative border-b bg-slate-900 text-white overflow-hidden"
