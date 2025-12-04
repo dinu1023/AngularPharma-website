@@ -103,9 +103,11 @@ return (
             <a href="#divisions" className="hover:text-sky-700">
               Divisions
             </a>
-            <a href="#products" className="hover:text-sky-700">
-              Products
-            </a>
+          <a href="#products"
+  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 text-white text-sm font-semibold shadow-[0_14px_30px_rgba(37,99,235,0.5)] hover:from-sky-700 hover:to-cyan-600 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(30,64,175,0.65)] active:translate-y-0 transition-all duration-200"
+>
+  View Products
+</a>
             <a href="#trust" className="hover:text-sky-700">
               Doctors Trust Us
             </a>
