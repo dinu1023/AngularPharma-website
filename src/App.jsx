@@ -180,6 +180,7 @@ function App() {
               </div>
             </div>
 
+            {/* DESKTOP NAV */}
             <nav className="hidden md:flex gap-6 text-sm text-gray-600 font-medium">
               <a href="#hero" className="hover:text-sky-700 transition-colors">
                 Home
@@ -188,10 +189,10 @@ function App() {
                 About Us
               </a>
               <a
-                href="#divisions"
+                href="#products"
                 className="hover:text-sky-700 transition-colors"
               >
-                Products / Divisions
+                Products
               </a>
               <a
                 href="#contact"
@@ -201,6 +202,7 @@ function App() {
               </a>
             </nav>
 
+            {/* HAMBURGER */}
             <button
               className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white active:scale-[0.97] transition-transform"
               onClick={() => setMobileOpen(true)}
@@ -253,11 +255,11 @@ function App() {
                     About Us
                   </a>
                   <a
-                    href="#divisions"
+                    href="#products"
                     onClick={closeMobile}
                     className="block text-white text-lg font-medium"
                   >
-                    Products / Divisions
+                    Products
                   </a>
                   <a
                     href="#contact"
