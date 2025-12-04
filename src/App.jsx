@@ -115,15 +115,15 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#f5fbff] text-slate-900 flex flex-col">
-      {/* HEADER – white like Orven */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+      {/* HEADER – clean, no shadow */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           {/* Logo + name */}
           <div className="flex items-center gap-3">
             <img
               src="/logo.png"
               alt="Angular Pharma logo"
-              className="h-10 w-10 rounded-full shadow-[0_8px_18px_rgba(59,130,246,0.6)] border border-sky-200 object-contain bg-white"
+              className="h-10 w-10 rounded-full border border-sky-200 object-contain bg-white"
             />
             <div>
               <h1 className="text-lg md:text-xl font-extrabold text-sky-800 tracking-tight">
@@ -153,7 +153,7 @@ function App() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white shadow-[0_10px_25px_rgba(15,23,42,0.4)] active:scale-[0.97] transition-transform"
+            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white active:scale-[0.97] transition-transform"
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation"
           >
@@ -172,7 +172,7 @@ function App() {
             onClick={closeMobile}
           >
             <div
-              className="ml-auto h-full w-72 bg-white text-slate-900 shadow-[0_0_40px_rgba(0,0,0,0.7)] flex flex-col"
+              className="ml-auto h-full w-72 bg-white text-slate-900 border-l border-slate-200 flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200">
@@ -207,31 +207,28 @@ function App() {
       </header>
 
       <main className="flex-1">
-        {/* HERO – FULL BACKGROUND IMAGE LIKE YOUR SCREENSHOT */}
+        {/* HERO – full background family image with gradient only (no shadows) */}
         <section
           id="hero"
           className="relative border-b bg-slate-900 text-white overflow-hidden"
         >
-          {/* Background family image filling whole hero */}
+          {/* Background image */}
           <div className="absolute inset-0">
             <img
               src="/hero-main.png.png"
               alt="Family healthcare background"
               className="w-full h-full object-cover"
             />
-            {/* Blue gradient from left to right, like your screenshot */}
             <div className="absolute inset-0 bg-gradient-to-r from-sky-900/95 via-sky-900/80 to-sky-900/20" />
           </div>
 
           {/* Foreground content */}
           <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
-            {/* Small pill label */}
             <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-[11px] font-semibold tracking-[0.18em] uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               Angular Pharmaceuticals
             </p>
 
-            {/* Heading + subtitle */}
             <div className="mt-5 max-w-xl space-y-4">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                 Trusted formulations
@@ -245,23 +242,21 @@ function App() {
                 clinicians.
               </p>
 
-              {/* Buttons */}
               <div className="flex flex-wrap gap-3 pt-2">
                 <a
                   href="#products"
-                  className="px-5 py-2.5 rounded-full bg-white text-sky-900 text-sm font-semibold shadow-[0_16px_40px_rgba(15,23,42,0.6)] hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                  className="px-5 py-2.5 rounded-full bg-white text-sky-900 text-sm font-semibold hover:bg-slate-100 transition-colors"
                 >
                   View Products
                 </a>
                 <a
                   href="#contact"
-                  className="px-5 py-2.5 rounded-full border border-white/60 text-white text-sm font-semibold bg-white/5 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                  className="px-5 py-2.5 rounded-full border border-white/70 text-white text-sm font-semibold bg-transparent hover:bg-white/10 transition-colors"
                 >
                   Contact Us
                 </a>
               </div>
 
-              {/* Ortho / Gastro / Respiratory row like your earlier dark hero */}
               <div className="grid grid-cols-3 gap-4 pt-6 text-xs text-slate-100/90">
                 <div>
                   <div className="font-semibold">Ortho</div>
@@ -280,15 +275,15 @@ function App() {
           </div>
         </section>
 
-        {/* ABOUT – same as before */}
+        {/* ABOUT */}
         <section
           id="about"
           className="bg-white border-b border-slate-200 py-12 md:py-16"
         >
           <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-            {/* Left image card */}
+            {/* Left image card – border only */}
             <div className="flex justify-center md:justify-start">
-              <div className="rounded-[32px] bg-white shadow-[0_22px_55px_rgba(148,163,184,0.6)] border border-slate-200 overflow-hidden max-w-md w-full">
+              <div className="rounded-[32px] bg-white border border-slate-200 overflow-hidden max-w-md w-full">
                 <img
                   src="/about-banner.jpg"
                   alt="Scientific healthcare visual"
@@ -324,7 +319,7 @@ function App() {
           </div>
         </section>
 
-        {/* DIVISIONS */}
+        {/* DIVISIONS – border-only cards */}
         <section
           id="divisions"
           className="border-b border-slate-200 bg-[#f5fbff]"
@@ -337,7 +332,7 @@ function App() {
               {divisions.map((d) => (
                 <div
                   key={d.title}
-                  className="bg-white rounded-xl shadow-[0_12px_30px_rgba(148,163,184,0.35)] border border-slate-200 p-4 space-y-1"
+                  className="bg-white rounded-xl border border-slate-200 p-4 space-y-1"
                 >
                   <h3 className="text-sm font-semibold text-sky-800">
                     {d.title}
@@ -388,11 +383,9 @@ function App() {
                   filteredProducts.map((p, i) => (
                     <article
                       key={i}
-                      className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 shadow-[0_18px_45px_rgba(15,23,42,0.15)] px-4 py-5 flex flex-col h-full overflow-hidden transition-transform duration-300 ease-out hover:-translate-y-3 hover:shadow-[0_28px_70px_rgba(15,23,42,0.35)] hover:bg-white"
+                      className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white transition-colors"
                     >
-                      <div className="pointer-events-none absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-sky-300/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                      <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3">
+                      <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80">
                         {p.image ? (
                           <img
                             src={p.image}
@@ -442,7 +435,7 @@ function App() {
 
             {/* Verify + contact summary */}
             <div className="space-y-4" id="verify">
-              <div className="bg-slate-50 rounded-2xl shadow-[0_16px_40px_rgba(148,163,184,0.55)] border border-slate-200 p-4 space-y-2">
+              <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
                 <h3 className="text-sm font-semibold text-sky-900">
                   Verify Product
                 </h3>
@@ -475,7 +468,7 @@ function App() {
                 )}
               </div>
 
-              <div className="bg-slate-50 rounded-2xl shadow-[0_12px_32px_rgba(148,163,184,0.55)] border border-slate-200 p-4 space-y-2">
+              <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
                 <h3 className="text-sm font-semibold text-sky-900">
                   Contact & Distribution
                 </h3>
@@ -516,7 +509,7 @@ function App() {
               {trustPoints.map((point) => (
                 <div
                   key={point}
-                  className="flex items-start gap-2 bg-white rounded-xl border shadow-[0_12px_36px_rgba(148,163,184,0.55)] p-3"
+                  className="flex items-start gap-2 bg-white rounded-xl border border-slate-200 p-3"
                 >
                   <span className="text-sky-700 text-lg mt-[2px]">✔</span>
                   <p className="text-xs leading-5">{point}</p>
@@ -526,8 +519,11 @@ function App() {
           </div>
         </section>
 
-        {/* CONTACT – clean, light */}
-        <section id="contact" className="bg-white py-12 border-t border-slate-200">
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="bg-white py-12 border-t border-slate-200"
+        >
           <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
@@ -557,7 +553,7 @@ function App() {
               </p>
             </div>
 
-            <form className="bg-slate-50 rounded-2xl shadow-[0_16px_40px_rgba(148,163,184,0.55)] border border-slate-200 p-6 space-y-4">
+            <form className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4">
               <input
                 className="w-full px-3 py-2 border rounded-md text-sm"
                 placeholder="Your Name"
