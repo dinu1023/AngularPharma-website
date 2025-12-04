@@ -75,7 +75,7 @@ function App() {
 
   const closeMobile = () => setMobileOpen(false);
 
-  // hero parallax effect
+  // hero parallax
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
@@ -84,7 +84,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // simple scroll reveal effect for sections
+  // scroll reveal for sections
   useEffect(() => {
     const elements = document.querySelectorAll(".js-animate");
     const observer = new IntersectionObserver(
@@ -217,7 +217,7 @@ function App() {
           {/* MOBILE MENU */}
           {mobileOpen && (
             <div
-              className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/20"
               onClick={closeMobile}
             >
               <div
@@ -563,7 +563,7 @@ function App() {
             id="trust"
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
-            <div className="max-w-6xl mx-auto px-4 py-10 space-y-4 js-animate">
+            <div className="max-w-6xl mx_auto px-4 py-10 space-y-4 js-animate">
               <h2 className="text-xl font-bold text-sky-900">
                 Why doctors trust Angular Pharma
               </h2>
