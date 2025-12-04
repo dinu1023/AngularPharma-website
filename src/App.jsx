@@ -218,12 +218,11 @@ function App() {
             <div
               className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm"
               onClick={closeMobile}
-            >
-              <div
-                className="ml-auto h-full w-72 bg-white text-slate-900 border-l border-slate-200 flex flex-col"
-                style={{ animation: "slideIn 0.25s ease-out" }}
-                onClick={(e) => e.stopPropagation()}
-              >
+           <div
+  className="ml-auto h-full w-72 bg-white/10 backdrop-blur-xl text-white border-l border-white/20 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.4)]"
+  style={{ animation: "slideIn 0.25s ease-out" }}
+  onClick={(e) => e.stopPropagation()}
+>
                 <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
