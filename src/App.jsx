@@ -217,21 +217,21 @@ function App() {
           {/* MOBILE MENU */}
           {mobileOpen && (
             <div
-              className="fixed inset-0 z-40 bg-black/20"
+              className="fixed inset-0 z-40 bg-black/10"
               onClick={closeMobile}
             >
               <div
-                className="ml-auto h-full w-72 bg-white/10 backdrop-blur-xl text-white border-l border-white/20 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.4)]"
+                className="ml-auto h-full w-72 bg-white/5 backdrop-blur-lg text-white border-l border-white/25 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.3)]"
                 style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex items-center justify-between px-4 py-3 border-b border-white/20">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-white/25">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
                   </span>
                   <button
                     onClick={closeMobile}
-                    className="h-8 w-8 rounded-full border border-white/40 flex items-center justify-center text-lg leading-none"
+                    className="h-8 w-8 rounded-full border border-white/50 flex items-center justify-center text-lg leading-none"
                     aria-label="Close navigation"
                   >
                     ✕
@@ -563,7 +563,7 @@ function App() {
             id="trust"
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
-            <div className="max-w-6xl mx_auto px-4 py-10 space-y-4 js-animate">
+            <div className="max-w-6xl mx-auto px-4 py-10 space-y-4 js-animate">
               <h2 className="text-xl font-bold text-sky-900">
                 Why doctors trust Angular Pharma
               </h2>
