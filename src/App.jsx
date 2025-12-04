@@ -185,7 +185,7 @@ function App() {
           {/* Background image */}
           <div className="absolute inset-0">
             <img
-              src="/family-hero.jpg"
+               src="/hero-main.jpg"  
               alt="Family receiving healthcare support"
               className="w-full h-full object-cover"
             />
