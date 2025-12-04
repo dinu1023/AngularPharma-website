@@ -326,7 +326,7 @@ return (
           </div>
         </section>
 
-        {/* Products + Verify Section */}
+               {/* Products + Verify Section */}
         <section id="products" className="border-b bg-white">
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
             {/* Products */}
@@ -340,50 +340,33 @@ return (
                   className="hidden md:block px-3 py-2 border rounded-md w-64 text-xs focus:outline-none focus:ring-1 focus:ring-sky-500"
                 />
               </div>
-<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-  {products.map((p, i) => (
-    <article
-      key={i}
-      className="group bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col h-full
-                 transform transition-all duration-300
-                 hover:-translate-y-2 hover:-rotate-1 hover:shadow-xl hover:border-sky-200/80 hover:bg-sky-50/80"
-    >
-      <div
-        className="h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3
-                   transform transition-transform duration-300 group-hover:scale-105"
-      >
-        {p.image ? (
-          <img
-            src={p.image}
-            alt={p.name}
-            className="h-full w-full object-contain"
-          />
-        ) : (
-          <span className="text-gray-400 text-xs">Product Image</span>
-        )}
-      </div>
 
-      <h3 className="font-semibold text-sm text-sky-900">{p.name}</h3>
-      <div className="text-xs text-gray-600 mt-1">
-        Code: {p.code} • Pack: {p.pack}
-      </div>
-      <div className="text-[11px] text-gray-500 mt-1">
-        Division: {p.division}
-      </div>
+              {/* 3D product cards */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {products.map((p, i) => (
+                  <article
+                    key={i}
+                    className="group bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col h-full
+                               transform transition-all duration-300
+                               hover:-translate-y-2 hover:-rotate-1 hover:shadow-xl hover:border-sky-200/80 hover:bg-sky-50/80"
+                  >
+                    <div
+                      className="h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3
+                                 transform transition-transform duration-300 group-hover:scale-105"
+                    >
+                      {p.image ? (
+                        <img
+                          src={p.image}
+                          alt={p.name}
+                          className="h-full w-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-gray-400 text-xs">
+                          Product Image
+                        </span>
+                      )}
+                    </div>
 
-      <div className="mt-3 flex gap-2 text-[11px]">
-        <button className="px-3 py-1 border rounded-md bg-white/80 hover:bg-slate-50/80 transition">
-          Details
-        </button>
-        <button className="px-3 py-1 rounded-md bg-sky-700 text-white shadow-sm shadow-sky-500/40
-                           hover:bg-sky-800 transition">
-          Verify
-        </button>
-      </div>
-    </article>
-  ))}
-</div>
-            
                     <h3 className="font-semibold text-sm text-sky-900">
                       {p.name}
                     </h3>
@@ -393,11 +376,12 @@ return (
                     <div className="text-[11px] text-gray-500 mt-1">
                       Division: {p.division}
                     </div>
+
                     <div className="mt-3 flex gap-2 text-[11px]">
-                      <button className="px-3 py-1 border rounded-md">
+                      <button className="px-3 py-1 border rounded-md bg-white/80 hover:bg-slate-50/80 transition">
                         Details
                       </button>
-                      <button className="px-3 py-1 bg-sky-700 text-white rounded-md">
+                      <button className="px-3 py-1 rounded-md bg-sky-700 text-white shadow-sm shadow-sky-500/40 hover:bg-sky-800 transition">
                         Verify
                       </button>
                     </div>
@@ -443,8 +427,8 @@ return (
                   </p>
                   <p>
                     <span className="font-medium">Location:</span>{" "}
-                    Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana,
-                    INDIA
+                    Pl. No 59, Boduppal, Medipally, Hyderabad 500076,
+                    Telangana, INDIA
                   </p>
                 </div>
               </div>
