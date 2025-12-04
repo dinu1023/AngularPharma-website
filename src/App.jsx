@@ -68,9 +68,11 @@ const trustPoints = [
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // 👉 NEW: scroll position for 3D / parallax effect
   const [scrollY, setScrollY] = useState(0);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [verifyCode, setVerifyCode] = useState("");
+  const [verifyResult, setVerifyResult] = useState(null); // {status: "success" | "error", message: string}
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,9 +84,45 @@ function App() {
   }, []);
 
   const closeMobile = () => setMobileOpen(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const closeMobile = () => setMobileOpen(false);
+  // Filter products by search term (name or code)
+  const filteredProducts = products.filter((p) => {
+    if (!searchTerm.trim()) return true;
+    const t = searchTerm.toLowerCase();
+    return (
+      p.name.toLowerCase().includes(t) ||
+      p.code.toLowerCase().includes(t) ||
+      (p.division && p.division.toLowerCase().includes(t))
+    );
+  });
+
+  const handleVerify = () => {
+    const code = verifyCode.trim().toUpperCase();
+    if (!code) {
+      setVerifyResult({
+        status: "error",
+        message: "Please enter a product code.",
+      });
+      return;
+    }
+
+    const found = products.find(
+      (p) => p.code.toUpperCase() === code || p.name.toUpperCase() === code
+    );
+
+    if (found) {
+      setVerifyResult({
+        status: "success",
+        message: `✔ ${found.name} (${found.code}) appears to be a valid Angular Pharmaceuticals brand.`,
+      });
+    } else {
+      setVerifyResult({
+        status: "error",
+        message:
+          "✖ Code not found in our current flagship list. Please re-check the printed code or contact support.",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
@@ -192,19 +230,21 @@ function App() {
       </header>
 
       <main className="flex-1">
-        {/* HERO – full background image like Orven */}
-        <section
-          id="home"
-          className="relative border-b bg-slate-900 text-white"
-        >
+        {/* HERO */}
+        <section id="home" className="relative border-b bg-slate-900 text-white overflow-hidden">
           {/* Background image */}
-          <div className="absolute inset-0">
-           <img
-  src="/hero-main.png.png"
-  alt="Family receiving healthcare support"
-  className="w-full h-full object-cover"
-/>
-            {/* Gradient overlay similar style to Orven */}
+          <div
+            className="absolute inset-0 will-change-transform"
+            style={{
+              transform: `translateY(${scrollY * 0.05}px)`,
+              transition: "transform 0.1s linear",
+            }}
+          >
+            <img
+              src="/hero-main.png.png"
+              alt="Family receiving healthcare support"
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-sky-900/85 via-sky-900/65 to-sky-900/10" />
           </div>
 
@@ -261,7 +301,7 @@ function App() {
           </div>
         </section>
 
-        {/* Banner before About – keep this image card */}
+        {/* Banner before About */}
         <section className="border-b bg-transparent">
           <div className="max-w-6xl mx-auto px-4 py-8">
             <div className="rounded-2xl overflow-hidden shadow-[0_22px_55px_rgba(148,163,184,0.6)] border border-slate-200 bg-slate-200">
@@ -346,51 +386,82 @@ function App() {
                   Flagship Brands
                 </h2>
                 <input
-                  placeholder="Search by name or code"
+                  placeholder="Search by name, code or division"
                   className="hidden md:block px-3 py-2 border rounded-md w-64 text-xs focus:outline-none focus:ring-1 focus:ring-sky-500"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+
+              {/* Mobile search */}
+              <div className="md:hidden mb-2">
+                <input
+                  placeholder="Search brands..."
+                  className="w-full px-3 py-2 border rounded-md text-xs focus:outline-none focus:ring-1 focus:ring-sky-500"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {products.map((p, i) => (
-                  <article
-                    key={i}
-                    className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 shadow-[0_18px_45px_rgba(15,23,42,0.15)] px-4 py-5 flex flex-col h-full overflow-hidden transition-transform duration-300 ease-out hover:-translate-y-3 hover:shadow-[0_28px_70px_rgba(15,23,42,0.35)] hover:bg-white"
-                  >
-                    <div className="pointer-events-none absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-sky-300/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {filteredProducts.length === 0 ? (
+                  <p className="text-xs text-gray-500 col-span-full">
+                    No products match “{searchTerm}”. Try a different name or
+                    code.
+                  </p>
+                ) : (
+                  filteredProducts.map((p, i) => (
+                    <article
+                      key={i}
+                      className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 shadow-[0_18px_45px_rgba(15,23,42,0.15)] px-4 py-5 flex flex-col h-full overflow-hidden transition-transform duration-300 ease-out hover:-translate-y-3 hover:shadow-[0_28px_70px_rgba(15,23,42,0.35)] hover:bg-white"
+                    >
+                      <div className="pointer-events-none absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-sky-300/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                    <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3">
-                      {p.image ? (
-                        <img
-                          src={p.image}
-                          alt={p.name}
-                          className="h-full w-full object-contain"
-                        />
-                      ) : (
-                        <span className="text-gray-400 text-xs">
-                          Product Image
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="font-semibold text-sm text-sky-900">
-                      {p.name}
-                    </h3>
-                    <div className="text-xs text-gray-600 mt-1">
-                      Code: {p.code} • Pack: {p.pack}
-                    </div>
-                    <div className="text-[11px] text-gray-500 mt-1">
-                      Division: {p.division}
-                    </div>
-                    <div className="mt-3 flex gap-2 text-[11px]">
-                      <button className="px-3 py-1 border rounded-md hover:bg-slate-50">
-                        Details
-                      </button>
-                      <button className="px-3 py-1 bg-sky-700 text-white rounded-md hover:bg-sky-800">
-                        Verify
-                      </button>
-                    </div>
-                  </article>
-                ))}
+                      <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3">
+                        {p.image ? (
+                          <img
+                            src={p.image}
+                            alt={p.name}
+                            className="h-full w-full object-contain"
+                          />
+                        ) : (
+                          <span className="text-gray-400 text-xs">
+                            Product Image
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-semibold text-sm text-sky-900">
+                        {p.name}
+                      </h3>
+                      <div className="text-xs text-gray-600 mt-1">
+                        Code: {p.code} • Pack: {p.pack}
+                      </div>
+                      <div className="text-[11px] text-gray-500 mt-1">
+                        Division: {p.division}
+                      </div>
+                      <div className="mt-3 flex gap-2 text-[11px]">
+                        <button className="px-3 py-1 border rounded-md hover:bg-slate-50">
+                          Details
+                        </button>
+                        <button
+                          className="px-3 py-1 bg-sky-700 text-white rounded-md hover:bg-sky-800"
+                          onClick={() => {
+                            setVerifyCode(p.code);
+                            setVerifyResult({
+                              status: "success",
+                              message: `✔ ${p.name} (${p.code}) appears to be a valid Angular Pharmaceuticals brand.`,
+                            });
+                            document
+                              .getElementById("verify")
+                              ?.scrollIntoView({ behavior: "smooth" });
+                          }}
+                        >
+                          Verify
+                        </button>
+                      </div>
+                    </article>
+                  ))
+                )}
               </div>
             </div>
 
@@ -407,10 +478,26 @@ function App() {
                 <input
                   placeholder="Enter product code (e.g. RG-001)"
                   className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+                  value={verifyCode}
+                  onChange={(e) => setVerifyCode(e.target.value)}
                 />
-                <button className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800">
+                <button
+                  className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800"
+                  onClick={handleVerify}
+                >
                   Verify Now
                 </button>
+                {verifyResult && (
+                  <p
+                    className={`mt-2 text-[11px] ${
+                      verifyResult.status === "success"
+                        ? "text-emerald-600"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {verifyResult.message}
+                  </p>
+                )}
               </div>
 
               <div
@@ -510,7 +597,7 @@ function App() {
                 placeholder="Subject (Distribution / Product enquiry / Other)"
               />
               <textarea
-                rows="4"
+                rows={4}
                 className="w-full px-3 py-2 border rounded-md text-sm resize-none"
                 placeholder="Write your requirement or query here..."
               ></textarea>
