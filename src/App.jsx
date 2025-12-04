@@ -249,13 +249,13 @@ function App() {
               </div>
             </div>
 
-            {/* Right image card like Orven */}
+            {/* Right image card like Orven – CHANGED TO FULL COVER */}
             <div className="flex justify-center md:justify-end">
-              <div className="relative rounded-[32px] bg-white shadow-[0_24px_60px_rgba(148,163,184,0.55)] border border-slate-200 overflow-hidden max-w-md w-full">
+              <div className="relative rounded-[32px] bg-white shadow-[0_24px_60px_rgba(148,163,184,0.55)] border border-slate-200 overflow-hidden max-w-md w-full h-[320px] md:h-[360px]">
                 <img
                   src="/hero-main.png.png"
                   alt="Molecules and healthcare illustration"
-                  className="w-full h-[260px] md:h-[320px] object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -338,7 +338,7 @@ function App() {
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
             {/* Products */}
             <div className="md:col-span-3 space-y-4">
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center justify_between gap-3">
                 <h2 className="text-xl font-bold text-sky-900">
                   Flagship Brands
                 </h2>
