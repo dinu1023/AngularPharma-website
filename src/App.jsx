@@ -69,6 +69,21 @@ const trustPoints = [
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // 👉 NEW: scroll position for 3D / parallax effect
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY || window.pageYOffset);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const closeMobile = () => setMobileOpen(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const closeMobile = () => setMobileOpen(false);
 
   return (
