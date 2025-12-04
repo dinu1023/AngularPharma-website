@@ -28,12 +28,12 @@ const products = [
     pack: "10x10",
     division: "Nutrition & Support",
   },
- {
-  name: "AXONGUARD-PLUS",
-  code: "AP-005",
-  pack: "10x10",
-  division: "Neuro & Cardio Care",
-},
+  {
+    name: "AXONGUARD-PLUS",
+    code: "AP-005",
+    pack: "10x10",
+    division: "Neuro & Pain Modulation",
+  },
 ];
 
 const divisions = [
@@ -70,20 +70,21 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const closeMobile = () => setMobileOpen(false);
-return (
- <div className="min-h-screen bg-gradient-to-b from-sky-100 via-slate-50 to-sky-200 text-slate-900 flex flex-col">
-        {/* Header / Navbar */}
-     <header className="bg-white/90 backdrop-blur-md border-b border-slate-200/70 sticky top-0 z-30 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-900 flex flex-col">
+      {/* Header / Navbar */}
+      <header className="bg-white/90 backdrop-blur-md border-b border-slate-200/70 sticky top-0 z-30 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          {/* Logo + company name */}
           <div className="flex items-center gap-3">
-            {/* Logo */}
             <img
               src="/logo.png"
               alt="Angular Pharma logo"
-              className="h-10 w-auto"
+              className="h-10 w-10 rounded-full shadow-[0_8px_18px_rgba(59,130,246,0.6)] border border-sky-200 object-contain bg-white"
             />
             <div>
-              <h1 className="text-lg md:text-xl font-bold text-sky-800">
+              <h1 className="text-lg md:text-xl font-extrabold text-sky-800 tracking-tight">
                 Angular Pharmaceuticals
               </h1>
               <p className="text-[11px] text-gray-500">
@@ -103,11 +104,9 @@ return (
             <a href="#divisions" className="hover:text-sky-700">
               Divisions
             </a>
-          <a href="#products"
-  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 text-white text-sm font-semibold shadow-[0_14px_30px_rgba(37,99,235,0.5)] hover:from-sky-700 hover:to-cyan-600 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(30,64,175,0.65)] active:translate-y-0 transition-all duration-200"
->
-  View Products
-</a>
+            <a href="#products" className="hover:text-sky-700">
+              Products
+            </a>
             <a href="#trust" className="hover:text-sky-700">
               Doctors Trust Us
             </a>
@@ -118,81 +117,57 @@ return (
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md border border-slate-200 bg-sky-900 text-white"
+            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white shadow-[0_10px_25px_rgba(15,23,42,0.4)] active:scale-[0.97] transition-transform"
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation"
           >
-            <span className="space-y-[3px] flex flex-col">
-              <span className="block w-5 h-[2px] bg-white" />
-              <span className="block w-5 h-[2px] bg-white" />
-              <span className="block w-5 h-[2px] bg-white" />
+            <span className="space-y-[3px] flex flex-col items-center">
+              <span className="block w-5 h-[2px] bg-white rounded-full" />
+              <span className="block w-5 h-[2px] bg-white rounded-full" />
+              <span className="block w-5 h-[2px] bg-white rounded-full" />
             </span>
           </button>
         </div>
 
-        {/* Mobile nav overlay */}
+        {/* Mobile nav overlay + slide menu */}
         {mobileOpen && (
-          <div className="fixed inset-0 z-40 md:hidden">
-            {/* Dark background */}
+          <div
+            className="fixed inset-0 z-40 bg-slate-900/70 backdrop-blur-sm"
+            onClick={closeMobile}
+          >
             <div
-              className="absolute inset-0 bg-sky-950/70"
-              onClick={closeMobile}
-            />
-            {/* Slide panel */}
-            <div className="relative ml-auto h-full w-64 bg-sky-900 text-white shadow-xl flex flex-col">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-sky-800">
-                <span className="text-sm font-semibold">
+              className="ml-auto h-full w-72 bg-slate-900 text-white shadow-[0_0_40px_rgba(0,0,0,0.7)] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700/70">
+                <span className="text-sm font-semibold tracking-wide">
                   Angular Pharmaceuticals
                 </span>
                 <button
                   onClick={closeMobile}
+                  className="h-8 w-8 rounded-full border border-slate-600 flex items-center justify-center text-lg leading-none"
                   aria-label="Close navigation"
-                  className="h-8 w-8 inline-flex items-center justify-center rounded-md border border-sky-700"
                 >
                   ✕
                 </button>
               </div>
-              <nav className="mt-6 px-4 space-y-4 text-base font-medium">
-                <a
-                  href="#home"
-                  onClick={closeMobile}
-                  className="block hover:text-sky-200"
-                >
+              <nav className="mt-6 px-6 space-y-5 text-base font-medium">
+                <a href="#home" onClick={closeMobile} className="block">
                   Home
                 </a>
-                <a
-                  href="#about"
-                  onClick={closeMobile}
-                  className="block hover:text-sky-200"
-                >
+                <a href="#about" onClick={closeMobile} className="block">
                   About
                 </a>
-                <a
-                  href="#divisions"
-                  onClick={closeMobile}
-                  className="block hover:text-sky-200"
-                >
+                <a href="#divisions" onClick={closeMobile} className="block">
                   Divisions
                 </a>
-                <a
-                  href="#products"
-                  onClick={closeMobile}
-                  className="block hover:text-sky-200"
-                >
+                <a href="#products" onClick={closeMobile} className="block">
                   Products
                 </a>
-                <a
-                  href="#trust"
-                  onClick={closeMobile}
-                  className="block hover:text-sky-200"
-                >
+                <a href="#trust" onClick={closeMobile} className="block">
                   Doctors Trust Us
                 </a>
-                <a
-                  href="#contact"
-                  onClick={closeMobile}
-                  className="block hover:text-sky-200"
-                >
+                <a href="#contact" onClick={closeMobile} className="block">
                   Contact
                 </a>
               </nav>
@@ -205,61 +180,75 @@ return (
         {/* Hero Section */}
         <section
           id="home"
-          className="relative min-h-[560px] md:min-h-[700px] flex items-center bg-slate-900 text-white"
+          className="relative min-h-[580px] md:min-h-[720px] flex items-center bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/family-hero.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundImage:
+              "linear-gradient(120deg, rgba(15,23,42,0.80), rgba(8,47,73,0.7)), url('/family-hero.jpg')",
           }}
         >
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-sky-900/70" />
+          {/* subtle overlay vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/40 to-slate-900/5" />
 
-          {/* Content */}
-          <div className="relative max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-4">
-              <p className="tracking-[0.25em] text-xs font-semibold text-sky-200 uppercase">
+          <div className="relative max-w-6xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 items-center text-white">
+            {/* Left: text */}
+            <div className="space-y-6 md:space-y-7">
+              <p className="tracking-[0.25em] text-[11px] uppercase text-sky-200">
                 Angular Pharmaceuticals
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)]">
                 Trusted formulations for everyday clinical practice.
               </h2>
-              <p className="text-sm md:text-base text-sky-100 leading-6">
+              <p className="text-sm md:text-base text-sky-100/90 max-w-xl leading-6">
                 Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
                 segments with reliable and affordable formulations designed for
                 Indian patients and clinicians.
               </p>
-              <div className="flex flex-wrap gap-3">
+
+              {/* 3D buttons */}
+              <div className="flex flex-wrap gap-3 pt-1">
                 <a
                   href="#products"
-                  className="px-5 py-2 rounded-full bg-sky-500 text-white text-sm font-medium hover:bg-sky-400"
+                  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white text-sm font-semibold shadow-[0_14px_30px_rgba(56,189,248,0.6)] hover:from-sky-600 hover:to-cyan-500 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(30,64,175,0.75)] active:translate-y-0 transition-all duration-200"
                 >
                   View Products
                 </a>
                 <a
                   href="#verify"
-                  className="px-5 py-2 rounded-full border border-sky-300 text-sky-100 text-sm font-medium hover:bg-sky-800/40"
+                  className="px-5 py-2.5 rounded-full border border-sky-200/80 text-sky-50 text-sm font-semibold bg-white/10 shadow-[0_10px_25px_rgba(15,23,42,0.4)] backdrop-blur hover:bg-sky-50/15 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(15,23,42,0.7)] active:translate-y-0 transition-all duration-200"
                 >
                   Verify Product
                 </a>
               </div>
-              <div className="flex flex-wrap gap-4 text-[11px] text-sky-100 pt-2">
+
+              <div className="flex flex-wrap gap-4 text-[11px] text-sky-100/80 pt-1">
                 <span>Hyderabad-based • Telangana, INDIA</span>
                 <span>Focused therapy: Ortho · Gastro · Respiratory</span>
               </div>
             </div>
 
-            {/* Right side small info card */}
-            <div className="hidden md:flex justify-end">
-              <div className="bg-white/95 text-slate-900 rounded-3xl shadow-xl border border-sky-100 p-5 max-w-sm">
-                <h3 className="text-sm font-semibold text-sky-900 mb-1">
-                  Care • Commitment • Quality
-                </h3>
-                <p className="text-xs text-gray-600">
-                  WHO-GMP aligned partners with a focus on Ortho, Gastro and
-                  Respiratory care for everyday clinical practice, ensuring
-                  consistent quality and trust.
-                </p>
+            {/* Right: floating card */}
+            <div className="flex justify-end">
+              <div className="relative w-full max-w-sm">
+                <div className="absolute -inset-4 bg-sky-500/30 blur-3xl rounded-[40px] opacity-70" />
+                <div className="relative rounded-[28px] bg-white/95 shadow-[0_22px_60px_rgba(15,23,42,0.45)] border border-slate-100/80 p-5 space-y-3">
+                  <p className="text-[11px] font-semibold text-sky-700 uppercase tracking-[0.2em]">
+                    Care • Commitment • Quality
+                  </p>
+                  <p className="text-sm text-slate-700">
+                    WHO-GMP aligned partners with a focus on Ortho, Gastro and
+                    Respiratory care for everyday clinical practice, ensuring
+                    consistent quality and trust.
+                  </p>
+                  <div className="flex items-center gap-3 pt-1">
+                    <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-sky-500 to-cyan-400 shadow-[0_10px_22px_rgba(56,189,248,0.7)] flex items-center justify-center text-xs text-white font-bold">
+                      AP
+                    </div>
+                    <div className="text-xs text-slate-500">
+                      <p>Formulations designed for real-world Indian practice.</p>
+                      <p>Strong focus on doctor and patient confidence.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -286,20 +275,19 @@ return (
               </p>
             </div>
 
-            {/* Small info cards – year removed */}
             <div className="space-y-3">
+              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
+                <div className="text-xs text-gray-500">Operations hub</div>
+                <div className="font-semibold text-sky-800">
+                  Hyderabad • Bengaluru • Mumbai
+                </div>
+              </div>
               <div className="bg-slate-50 rounded-xl p-3 border text-sm">
                 <div className="text-xs text-gray-500">Core therapy areas</div>
                 <div className="font-semibold text-sky-800">
                   Ortho • Gastro • Respiratory
                 </div>
               </div>
-             <div className="bg-slate-50 rounded-xl p-3 border text-sm">
-  <div className="text-xs text-gray-500">Operations hub</div>
-  <div className="font-semibold text-sky-800">
-    Hyderabad • Bengaluru • Mumbai, INDIA
-  </div>
-</div>
             </div>
           </div>
         </section>
@@ -314,7 +302,7 @@ return (
               {divisions.map((d) => (
                 <div
                   key={d.title}
-                  className="bg-white rounded-xl shadow-sm border p-4 space-y-1"
+                  className="bg-white rounded-xl shadow-[0_12px_30px_rgba(148,163,184,0.35)] border border-slate-200 p-4 space-y-1"
                 >
                   <h3 className="text-sm font-semibold text-sky-800">
                     {d.title}
@@ -328,7 +316,7 @@ return (
           </div>
         </section>
 
-               {/* Products + Verify Section */}
+        {/* Products + Verify Section */}
         <section id="products" className="border-b bg-white">
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
             {/* Products */}
@@ -343,19 +331,15 @@ return (
                 />
               </div>
 
-              {/* 3D product cards */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {products.map((p, i) => (
                   <article
                     key={i}
-                    className="group bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col h-full
-                               transform transition-all duration-300
-                               hover:-translate-y-2 hover:-rotate-1 hover:shadow-xl hover:border-sky-200/80 hover:bg-sky-50/80"
+                    className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 shadow-[0_18px_45px_rgba(15,23,42,0.15)] px-4 py-5 flex flex-col h-full overflow-hidden transition-transform duration-300 ease-out hover:-translate-y-3 hover:shadow-[0_28px_70px_rgba(15,23,42,0.35)] hover:bg-white"
                   >
-                    <div
-                      className="h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3
-                                 transform transition-transform duration-300 group-hover:scale-105"
-                    >
+                    <div className="pointer-events-none absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-sky-300/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-inner mb-3">
                       {p.image ? (
                         <img
                           src={p.image}
@@ -368,7 +352,6 @@ return (
                         </span>
                       )}
                     </div>
-
                     <h3 className="font-semibold text-sm text-sky-900">
                       {p.name}
                     </h3>
@@ -378,12 +361,11 @@ return (
                     <div className="text-[11px] text-gray-500 mt-1">
                       Division: {p.division}
                     </div>
-
                     <div className="mt-3 flex gap-2 text-[11px]">
-                      <button className="px-3 py-1 border rounded-md bg-white/80 hover:bg-slate-50/80 transition">
+                      <button className="px-3 py-1 border rounded-md hover:bg-slate-50">
                         Details
                       </button>
-                      <button className="px-3 py-1 rounded-md bg-sky-700 text-white shadow-sm shadow-sky-500/40 hover:bg-sky-800 transition">
+                      <button className="px-3 py-1 bg-sky-700 text-white rounded-md hover:bg-sky-800">
                         Verify
                       </button>
                     </div>
@@ -394,7 +376,7 @@ return (
 
             {/* Verify + Contact summary */}
             <div className="space-y-4" id="verify">
-              <div className="bg-slate-50 rounded-2xl shadow-sm border p-4 space-y-2">
+              <div className="bg-slate-50 rounded-2xl shadow-[0_16px_40px_rgba(148,163,184,0.55)] border border-slate-200 p-4 space-y-2">
                 <h3 className="text-sm font-semibold text-sky-900">
                   Verify Product
                 </h3>
@@ -413,7 +395,7 @@ return (
 
               <div
                 id="contact-summary"
-                className="bg-slate-50 rounded-2xl shadow-sm border p-4 space-y-2"
+                className="bg-slate-50 rounded-2xl shadow-[0_12px_32px_rgba(148,163,184,0.55)] border border-slate-200 p-4 space-y-2"
               >
                 <h3 className="text-sm font-semibold text-sky-900">
                   Contact & Distribution
@@ -428,9 +410,8 @@ return (
                     angularpharmaceuticals@gmail.com
                   </p>
                   <p>
-                    <span className="font-medium">Location:</span>{" "}
-                    Pl. No 59, Boduppal, Medipally, Hyderabad 500076,
-                    Telangana, INDIA
+                    <span className="font-medium">Location:</span> Pl. No 59,
+                    Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA
                   </p>
                 </div>
               </div>
@@ -453,7 +434,7 @@ return (
               {trustPoints.map((point) => (
                 <div
                   key={point}
-                  className="flex items-start gap-2 bg-white rounded-xl border shadow-sm p-3"
+                  className="flex items-start gap-2 bg-white rounded-xl border shadow-[0_12px_36px_rgba(148,163,184,0.55)] p-3"
                 >
                   <span className="text-sky-700 text-lg mt-[2px]">✔</span>
                   <p className="text-xs leading-5">{point}</p>
@@ -484,9 +465,8 @@ return (
                   angularpharmaceuticals@gmail.com
                 </p>
                 <p>
-                  <span className="font-semibold">Location:</span>{" "}
-                  Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana,
-                  INDIA
+                  <span className="font-semibold">Location:</span> Pl. No 59,
+                  Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA
                 </p>
               </div>
 
@@ -498,7 +478,7 @@ return (
             </div>
 
             {/* Right side form */}
-            <form className="bg-slate-50 rounded-2xl shadow p-6 space-y-4">
+            <form className="bg-slate-50 rounded-2xl shadow-[0_16px_40px_rgba(148,163,184,0.55)] border border-slate-200 p-6 space-y-4">
               <input
                 className="w-full px-3 py-2 border rounded-md text-sm"
                 placeholder="Your Name"
