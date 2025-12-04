@@ -216,24 +216,24 @@ function App() {
             </button>
           </div>
 
-          {/* MOBILE MENU – glass style, white text */}
+          {/* MOBILE MENU – dusty lavender overlay, glass drawer */}
           {mobileOpen && (
             <div
-              className="fixed inset-0 z-40 bg-black/10"
+              className="fixed inset-0 z-40 bg-purple-300/40 backdrop-blur-sm"
               onClick={closeMobile}
             >
               <div
-                className="ml-auto h-full w-72 bg-white/5 backdrop-blur-lg text-white border-l border-white/25 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.3)]"
+                className="ml-auto h-full w-72 bg-white/10 backdrop-blur-xl text-white border-l border-purple-200 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.35)]"
                 style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex items-center justify-between px-4 py-3 border-b border-white/25">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-purple-200/70">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
                   </span>
                   <button
                     onClick={closeMobile}
-                    className="h-8 w-8 rounded-full border border-white/50 flex items-center justify-center text-lg leading-none"
+                    className="h-8 w-8 rounded-full border border-white/60 flex items-center justify-center text-lg leading-none"
                     aria-label="Close navigation"
                   >
                     ✕
@@ -323,7 +323,7 @@ function App() {
                   >
                     View Products
                   </a>
-                  <a
+                <a
                     href="#contact"
                     className="px-5 py-2.5 rounded-full border border-white/70 text-white text-sm font-semibold bg-transparent hover:bg-white/10 transition-colors"
                   >
