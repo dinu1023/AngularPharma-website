@@ -84,7 +84,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // scroll reveal for sections
+  // scroll reveal
   useEffect(() => {
     const elements = document.querySelectorAll(".js-animate");
     const observer = new IntersectionObserver(
@@ -101,7 +101,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // search filter
+  // product search filter
   const filteredProducts = products.filter((p) => {
     if (!searchTerm.trim()) return true;
     const t = searchTerm.toLowerCase();
@@ -140,9 +140,15 @@ function App() {
     }
   };
 
+  // scroll to products, optionally pre-fill searchTerm
+  const scrollToProducts = (term) => {
+    setSearchTerm(term || "");
+    const el = document.getElementById("products");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
-      {/* global smooth scroll + scroll reveal css */}
       <style>{`
         html { scroll-behavior: smooth; }
         @keyframes slideIn {
@@ -170,7 +176,7 @@ function App() {
                 alt="Angular Pharma logo"
                 className="h-10 w-10 rounded-full border border-sky-200 object-contain bg-white"
               />
-            <div>
+              <div>
                 <h1 className="text-lg md:text-xl font-extrabold text-sky-800 tracking-tight">
                   Angular Pharmaceuticals
                 </h1>
@@ -180,20 +186,45 @@ function App() {
               </div>
             </div>
 
-            {/* DESKTOP NAV */}
-            <nav className="hidden md:flex gap-6 text-sm text-gray-600 font-medium">
+            {/* DESKTOP NAV with products dropdown from array */}
+            <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600 font-medium">
               <a href="#hero" className="hover:text-sky-700 transition-colors">
                 Home
               </a>
               <a href="#about" className="hover:text-sky-700 transition-colors">
                 About Us
               </a>
-              <a
-                href="#products"
-                className="hover:text-sky-700 transition-colors"
-              >
-                Products
-              </a>
+
+              {/* PRODUCTS DROPDOWN */}
+              <div className="relative group">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1 hover:text-sky-700 transition-colors"
+                >
+                  <span>Products</span>
+                  <span className="text-[9px] mt-[1px]">▼</span>
+                </button>
+
+                <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-slate-100 py-2 text-sm text-slate-700 opacity-0 scale-95 origin-top-left pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-150 z-40 max-h-80 overflow-y-auto">
+                  <button
+                    className="block w-full text-left px-4 py-2 hover:bg-slate-50"
+                    onClick={() => scrollToProducts("")}
+                  >
+                    All Products
+                  </button>
+                  <div className="border-t border-slate-100 my-1" />
+                  {products.map((p) => (
+                    <button
+                      key={p.code}
+                      className="block w-full text-left px-4 py-2 hover:bg-slate-50"
+                      onClick={() => scrollToProducts(p.name)}
+                    >
+                      {p.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <a
                 href="#contact"
                 className="hover:text-sky-700 transition-colors"
@@ -202,7 +233,7 @@ function App() {
               </a>
             </nav>
 
-            {/* HAMBURGER */}
+            {/* MOBILE HAMBURGER */}
             <button
               className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white active:scale-[0.97] transition-transform"
               onClick={() => setMobileOpen(true)}
@@ -216,19 +247,17 @@ function App() {
             </button>
           </div>
 
-          {/* MOBILE MENU – full-screen transparent overlay like Orven */}
+          {/* MOBILE MENU */}
           {mobileOpen && (
             <div
               className="fixed inset-0 z-40 bg-[#111827]/80"
               onClick={closeMobile}
             >
-              {/* content wrapper so clicking on links doesn't close unless we want */}
               <div
                 className="relative h-full w-full text-white"
                 style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* top row: logo text + close button */}
                 <div className="flex items-center justify-between px-6 pt-4 pb-3 border-b border-white/10">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
@@ -242,7 +271,6 @@ function App() {
                   </button>
                 </div>
 
-                {/* nav links – left aligned, large, like Orven */}
                 <nav className="mt-8 px-6 space-y-6 text-lg font-medium">
                   <a
                     href="#hero"
@@ -279,7 +307,7 @@ function App() {
         </header>
 
         <main className="flex-1">
-          {/* HERO – full background like Orven */}
+          {/* HERO */}
           <section
             id="hero"
             className="relative border-b bg-slate-900 text-white overflow-hidden"
