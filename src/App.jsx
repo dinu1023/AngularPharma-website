@@ -71,7 +71,7 @@ function App() {
 
   const closeMobile = () => setMobileOpen(false);
 return (
-  <div className="min-h-screen bg-gradient-to-b from-sky-50 via-slate-50 to-sky-100 text-slate-900 flex flex-col">
+ <div className="min-h-screen bg-gradient-to-b from-sky-100 via-slate-50 to-sky-200 text-slate-900 flex flex-col">
         {/* Header / Navbar */}
       <header className="bg-white/95 backdrop-blur border-b sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
