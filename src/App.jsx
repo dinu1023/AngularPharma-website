@@ -146,7 +146,7 @@ function App() {
       <style>{`
         html { scroll-behavior: smooth; }
         @keyframes slideIn {
-          from { transform: translateX(30%); opacity: 0; }
+          from { transform: translateX(20%); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
         }
         .js-animate {
@@ -170,7 +170,7 @@ function App() {
                 alt="Angular Pharma logo"
                 className="h-10 w-10 rounded-full border border-sky-200 object-contain bg-white"
               />
-              <div>
+            <div>
                 <h1 className="text-lg md:text-xl font-extrabold text-sky-800 tracking-tight">
                   Angular Pharmaceuticals
                 </h1>
@@ -216,32 +216,34 @@ function App() {
             </button>
           </div>
 
-          {/* MOBILE MENU – Orven-style dark overlay + left drawer */}
+          {/* MOBILE MENU – full-screen transparent overlay like Orven */}
           {mobileOpen && (
             <div
               className="fixed inset-0 z-40 bg-[#111827]/80"
               onClick={closeMobile}
             >
-              {/* close button on top-right, like Orven */}
-              <button
-                onClick={closeMobile}
-                aria-label="Close navigation"
-                className="absolute top-4 right-4 h-9 w-9 rounded-full border border-white/60 flex items-center justify-center text-white text-lg"
-              >
-                ✕
-              </button>
-
+              {/* content wrapper so clicking on links doesn't close unless we want */}
               <div
-                className="h-full w-[70%] max-w-xs bg-[#191b3a] text-white flex flex-col shadow-[0_0_40px_rgba(0,0,0,0.75)]"
+                className="relative h-full w-full text-white"
                 style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="px-5 py-4 border-b border-white/10">
+                {/* top row: logo text + close button */}
+                <div className="flex items-center justify-between px-6 pt-4 pb-3 border-b border-white/10">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
                   </span>
+                  <button
+                    onClick={closeMobile}
+                    aria-label="Close navigation"
+                    className="h-9 w-9 rounded-full border border-white/60 flex items-center justify-center text-white text-lg"
+                  >
+                    ✕
+                  </button>
                 </div>
-                <nav className="mt-6 px-5 space-y-6 text-lg font-medium">
+
+                {/* nav links – left aligned, large, like Orven */}
+                <nav className="mt-8 px-6 space-y-6 text-lg font-medium">
                   <a
                     href="#hero"
                     onClick={closeMobile}
