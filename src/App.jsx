@@ -184,11 +184,11 @@ function App() {
         >
           {/* Background image */}
           <div className="absolute inset-0">
-            <img
-              src="/family-hero.jpg"
-              alt="Family receiving healthcare support"
-              className="w-full h-full object-cover"
-            />
+           <img
+  src="/hero-main.png.png"
+  alt="Family receiving healthcare support"
+  className="w-full h-full object-cover"
+/>
             {/* Gradient overlay similar style to Orven */}
             <div className="absolute inset-0 bg-gradient-to-r from-sky-900/85 via-sky-900/65 to-sky-900/10" />
           </div>
