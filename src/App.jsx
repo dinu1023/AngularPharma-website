@@ -216,55 +216,57 @@ function App() {
             </button>
           </div>
 
-          {/* MOBILE MENU – dusty lavender overlay, glass drawer */}
+          {/* MOBILE MENU – Orven-style dark overlay + left drawer */}
           {mobileOpen && (
             <div
-              className="fixed inset-0 z-40 bg-purple-300/40 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-[#111827]/80"
               onClick={closeMobile}
             >
+              {/* close button on top-right, like Orven */}
+              <button
+                onClick={closeMobile}
+                aria-label="Close navigation"
+                className="absolute top-4 right-4 h-9 w-9 rounded-full border border-white/60 flex items-center justify-center text-white text-lg"
+              >
+                ✕
+              </button>
+
               <div
-                className="ml-auto h-full w-72 bg-white/10 backdrop-blur-xl text-white border-l border-purple-200 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.35)]"
+                className="h-full w-[70%] max-w-xs bg-[#191b3a] text-white flex flex-col shadow-[0_0_40px_rgba(0,0,0,0.75)]"
                 style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex items-center justify-between px-4 py-3 border-b border-purple-200/70">
+                <div className="px-5 py-4 border-b border-white/10">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
                   </span>
-                  <button
-                    onClick={closeMobile}
-                    className="h-8 w-8 rounded-full border border-white/60 flex items-center justify-center text-lg leading-none"
-                    aria-label="Close navigation"
-                  >
-                    ✕
-                  </button>
                 </div>
-                <nav className="mt-6 px-6 space-y-5 text-base font-medium">
+                <nav className="mt-6 px-5 space-y-6 text-lg font-medium">
                   <a
                     href="#hero"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-white"
                   >
                     Home
                   </a>
                   <a
                     href="#about"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-white"
                   >
                     About Us
                   </a>
                   <a
                     href="#products"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-white"
                   >
                     Products
                   </a>
                   <a
                     href="#contact"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-white"
                   >
                     Contact Us
                   </a>
@@ -323,7 +325,7 @@ function App() {
                   >
                     View Products
                   </a>
-                <a
+                  <a
                     href="#contact"
                     className="px-5 py-2.5 rounded-full border border-white/70 text-white text-sm font-semibold bg-transparent hover:bg-white/10 transition-colors"
                   >
