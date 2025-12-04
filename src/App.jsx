@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const products = [
   {
@@ -71,8 +73,28 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
   const [verifyResult, setVerifyResult] = useState(null); // {status, message}
+  const [scrollY, setScrollY] = useState(0);
 
   const closeMobile = () => setMobileOpen(false);
+
+  // AOS init (scroll animations)
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-out-back",
+      once: true,
+      offset: 80,
+    });
+  }, []);
+
+  // Track scroll for hero parallax
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY || 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Filter products by search term (name, code, division)
   const filteredProducts = products.filter((p) => {
@@ -116,7 +138,13 @@ function App() {
   return (
     <>
       {/* global smooth scroll like Orven */}
-      <style>{`html { scroll-behavior: smooth; }`}</style>
+      <style>{`
+        html { scroll-behavior: smooth; }
+        @keyframes slideIn {
+          from { transform: translateX(30%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+      `}</style>
 
       <div className="min-h-screen bg-[#f5fbff] text-slate-900 flex flex-col">
         {/* HEADER – clean, no shadow */}
@@ -178,7 +206,8 @@ function App() {
               onClick={closeMobile}
             >
               <div
-                className="ml-auto h-full w-72 bg-white text-slate-900 border-l border-slate-200 flex flex-col animate-[slideIn_0.2s_ease-out]"
+                className="ml-auto h-full w-72 bg-white text-slate-900 border-l border-slate-200 flex flex-col"
+                style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200">
@@ -213,13 +242,21 @@ function App() {
         </header>
 
         <main className="flex-1">
-          {/* HERO – full background family image with gradient only */}
+          {/* HERO – full background family image with gradient + parallax */}
           <section
             id="hero"
             className="relative border-b bg-slate-900 text-white overflow-hidden"
           >
-            {/* Background image */}
-            <div className="absolute inset-0">
+            {/* Background image with subtle parallax */}
+            <div
+              className="absolute inset-0 will-change-transform"
+              style={{
+                transform: `translateY(${scrollY * 0.06}px) scale(${
+                  1 + scrollY * 0.00008
+                })`,
+                transition: "transform 0.05s linear",
+              }}
+            >
               <img
                 src="/hero-main.png.png"
                 alt="Family healthcare background"
@@ -229,7 +266,10 @@ function App() {
             </div>
 
             {/* Foreground content */}
-            <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
+            <div
+              className="relative max-w-6xl mx-auto px-4 py-20 md:py-28"
+              data-aos="zoom-out-up"
+            >
               <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-[11px] font-semibold tracking-[0.18em] uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Angular Pharmaceuticals
@@ -288,7 +328,10 @@ function App() {
           >
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
               {/* Left image card – border only */}
-              <div className="flex justify-center md:justify-start">
+              <div
+                className="flex justify-center md:justify-start"
+                data-aos="zoom-in-right"
+              >
                 <div className="rounded-[32px] bg-white border border-slate-200 overflow-hidden max-w-md w-full transition-transform duration-200 ease-out hover:-translate-y-1">
                   <img
                     src="/about-banner.jpg"
@@ -299,7 +342,7 @@ function App() {
               </div>
 
               {/* Right text */}
-              <div className="space-y-4">
+              <div className="space-y-4" data-aos="zoom-in-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
                   About Us
                 </h2>
@@ -331,14 +374,16 @@ function App() {
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
             <div className="max-w-6xl mx-auto px-4 py-10 space-y-5">
-              <h2 className="text-xl font-bold text-sky-900">
+              <h2 className="text-xl font-bold text-sky-900" data-aos="fade-up">
                 Therapeutic Divisions
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
-                {divisions.map((d) => (
+                {divisions.map((d, idx) => (
                   <div
                     key={d.title}
                     className="bg-white rounded-xl border border-slate-200 p-4 space-y-1 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300"
+                    data-aos="zoom-in-up"
+                    data-aos-delay={idx * 80}
                   >
                     <h3 className="text-sm font-semibold text-sky-800">
                       {d.title}
@@ -358,7 +403,10 @@ function App() {
               {/* Products */}
               <div className="md:col-span-3 space-y-4">
                 <div className="flex items-center justify-between gap-3">
-                  <h2 className="text-xl font-bold text-sky-900">
+                  <h2
+                    className="text-xl font-bold text-sky-900"
+                    data-aos="fade-right"
+                  >
                     Flagship Brands
                   </h2>
                   <input
@@ -370,7 +418,7 @@ function App() {
                 </div>
 
                 {/* Mobile search */}
-                <div className="md:hidden mb-2">
+                <div className="md:hidden mb-2" data-aos="fade-right">
                   <input
                     placeholder="Search brands..."
                     className="w-full px-3 py-2 border rounded-md text-xs focus:outline-none focus:ring-1 focus:ring-sky-500"
@@ -381,7 +429,10 @@ function App() {
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {filteredProducts.length === 0 ? (
-                    <p className="text-xs text-gray-500 col-span-full">
+                    <p
+                      className="text-xs text-gray-500 col-span-full"
+                      data-aos="fade-up"
+                    >
                       No products match “{searchTerm}”. Try a different name or
                       code.
                     </p>
@@ -390,8 +441,10 @@ function App() {
                       <article
                         key={i}
                         className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
+                        data-aos="zoom-in"
+                        data-aos-delay={i * 80}
                       >
-                        <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.02]">
+                        <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
                           {p.image ? (
                             <img
                               src={p.image}
@@ -441,7 +494,10 @@ function App() {
 
               {/* Verify + contact summary */}
               <div className="space-y-4" id="verify">
-                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
+                <div
+                  className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2"
+                  data-aos="fade-left"
+                >
                   <h3 className="text-sm font-semibold text-sky-900">
                     Verify Product
                   </h3>
@@ -474,7 +530,11 @@ function App() {
                   )}
                 </div>
 
-                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
+                <div
+                  className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2"
+                  data-aos="fade-left"
+                  data-aos-delay="120"
+                >
                   <h3 className="text-sm font-semibold text-sky-900">
                     Contact & Distribution
                   </h3>
@@ -503,19 +563,28 @@ function App() {
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
             <div className="max-w-6xl mx-auto px-4 py-10 space-y-4">
-              <h2 className="text-xl font-bold text-sky-900">
+              <h2
+                className="text-xl font-bold text-sky-900"
+                data-aos="fade-up"
+              >
                 Why doctors trust Angular Pharma
               </h2>
-              <p className="text-sm text-gray-600 max-w-3xl">
+              <p
+                className="text-sm text-gray-600 max-w-3xl"
+                data-aos="fade-up"
+                data-aos-delay="80"
+              >
                 Our objective is to support clinicians with dependable brands
                 that align with good clinical practice while remaining
                 affordable for patients.
               </p>
               <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
-                {trustPoints.map((point) => (
+                {trustPoints.map((point, idx) => (
                   <div
                     key={point}
                     className="flex items-start gap-2 bg-white rounded-xl border border-slate-200 p-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300"
+                    data-aos="zoom-in"
+                    data-aos-delay={idx * 80}
                   >
                     <span className="text-sky-700 text-lg mt-[2px]">✔</span>
                     <p className="text-xs leading-5">{point}</p>
@@ -531,7 +600,7 @@ function App() {
             className="bg-white py-12 border-t border-slate-200"
           >
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
-              <div className="space-y-4">
+              <div className="space-y-4" data-aos="fade-right">
                 <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
                   Contact Us
                 </h2>
@@ -560,7 +629,10 @@ function App() {
                 </p>
               </div>
 
-              <form className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300">
+              <form
+                className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300"
+                data-aos="fade-left"
+              >
                 <input
                   className="w-full px-3 py-2 border rounded-md text-sm"
                   placeholder="Your Name"
