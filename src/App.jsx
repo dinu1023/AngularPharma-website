@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const products = [
   {
@@ -73,6 +73,11 @@ function App() {
   const [verifyResult, setVerifyResult] = useState(null);
   const [scrollY, setScrollY] = useState(0);
 
+  const [productsMenuOpen, setProductsMenuOpen] = useState(false);
+  const productsMenuRef = useRef(null);
+
+  const [highlightCode, setHighlightCode] = useState(null);
+
   const closeMobile = () => setMobileOpen(false);
 
   // hero parallax
@@ -100,6 +105,21 @@ function App() {
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  // close Products menu on click outside
+  useEffect(() => {
+    if (!productsMenuOpen) return;
+    const handler = (e) => {
+      if (
+        productsMenuRef.current &&
+        !productsMenuRef.current.contains(e.target)
+      ) {
+        setProductsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [productsMenuOpen]);
 
   // product search filter
   const filteredProducts = products.filter((p) => {
@@ -140,11 +160,29 @@ function App() {
     }
   };
 
-  // scroll to products, optionally pre-fill searchTerm
-  const scrollToProducts = (term) => {
-    setSearchTerm(term || "");
+  // scroll to whole products section
+  const scrollToProducts = () => {
     const el = document.getElementById("products");
     if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // scroll to specific product card and highlight it
+  const scrollToProduct = (code) => {
+    setProductsMenuOpen(false);
+    setSearchTerm(""); // make sure product is visible
+    setHighlightCode(code);
+
+    setTimeout(() => {
+      const el = document.getElementById(`product-${code}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        scrollToProducts();
+      }
+    }, 80);
+
+    // remove highlight after 2s
+    setTimeout(() => setHighlightCode(null), 2000);
   };
 
   return (
@@ -186,7 +224,7 @@ function App() {
               </div>
             </div>
 
-            {/* DESKTOP NAV with products dropdown from array */}
+            {/* DESKTOP NAV with click Products menu */}
             <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600 font-medium">
               <a href="#hero" className="hover:text-sky-700 transition-colors">
                 Home
@@ -196,33 +234,43 @@ function App() {
               </a>
 
               {/* PRODUCTS DROPDOWN */}
-              <div className="relative group">
+              <div className="relative" ref={productsMenuRef}>
                 <button
                   type="button"
                   className="inline-flex items-center gap-1 hover:text-sky-700 transition-colors"
+                  onClick={() =>
+                    setProductsMenuOpen((prevOpen) => !prevOpen)
+                  }
                 >
                   <span>Products</span>
-                  <span className="text-[9px] mt-[1px]">▼</span>
+                  <span className="text-[9px] mt-[1px]">
+                    {productsMenuOpen ? "▲" : "▼"}
+                  </span>
                 </button>
 
-                <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-slate-100 py-2 text-sm text-slate-700 opacity-0 scale-95 origin-top-left pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-150 z-40 max-h-80 overflow-y-auto">
-                  <button
-                    className="block w-full text-left px-4 py-2 hover:bg-slate-50"
-                    onClick={() => scrollToProducts("")}
-                  >
-                    All Products
-                  </button>
-                  <div className="border-t border-slate-100 my-1" />
-                  {products.map((p) => (
+                {productsMenuOpen && (
+                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-slate-100 py-2 text-sm text-slate-700 z-40 max-h-80 overflow-y-auto">
                     <button
-                      key={p.code}
                       className="block w-full text-left px-4 py-2 hover:bg-slate-50"
-                      onClick={() => scrollToProducts(p.name)}
+                      onClick={() => {
+                        scrollToProducts();
+                        setProductsMenuOpen(false);
+                      }}
                     >
-                      {p.name}
+                      All Products
                     </button>
-                  ))}
-                </div>
+                    <div className="border-t border-slate-100 my-1" />
+                    {products.map((p) => (
+                      <button
+                        key={p.code}
+                        className="block w-full text-left px-4 py-2 hover:bg-slate-50"
+                        onClick={() => scrollToProduct(p.code)}
+                      >
+                        {p.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <a
@@ -485,7 +533,12 @@ function App() {
                     filteredProducts.map((p, i) => (
                       <article
                         key={i}
-                        className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
+                        id={`product-${p.code}`}
+                        className={`group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer ${
+                          highlightCode === p.code
+                            ? "ring-2 ring-sky-500"
+                            : ""
+                        }`}
                       >
                         <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
                           {p.image ? (
