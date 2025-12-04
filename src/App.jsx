@@ -73,7 +73,7 @@ function App() {
 return (
  <div className="min-h-screen bg-gradient-to-b from-sky-100 via-slate-50 to-sky-200 text-slate-900 flex flex-col">
         {/* Header / Navbar */}
-      <header className="bg-white/95 backdrop-blur border-b sticky top-0 z-30">
+     <header className="bg-white/90 backdrop-blur-md border-b border-slate-200/70 sticky top-0 z-30 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             {/* Logo */}
