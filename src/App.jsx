@@ -214,24 +214,24 @@ function App() {
             </button>
           </div>
 
-          {/* MOBILE MENU */}
+          {/* MOBILE MENU – fully transparent, black text */}
           {mobileOpen && (
             <div
-              className="fixed inset-0 z-40 bg-black/10"
+              className="fixed inset-0 z-40"
               onClick={closeMobile}
             >
               <div
-                className="ml-auto h-full w-72 bg-white/5 backdrop-blur-lg text-white border-l border-white/25 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.3)]"
+                className="ml-auto h-full w-72 bg-transparent text-slate-900 flex flex-col"
                 style={{ animation: "slideIn 0.25s ease-out" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex items-center justify-between px-4 py-3 border-b border-white/25">
+                <div className="flex items-center justify-between px-4 py-3">
                   <span className="text-sm font-semibold tracking-wide">
                     Angular Pharmaceuticals
                   </span>
                   <button
                     onClick={closeMobile}
-                    className="h-8 w-8 rounded-full border border-white/50 flex items-center justify-center text-lg leading-none"
+                    className="h-8 w-8 rounded-full border border-slate-400 flex items-center justify-center text-lg leading-none text-slate-700 bg-white/70"
                     aria-label="Close navigation"
                   >
                     ✕
@@ -241,28 +241,28 @@ function App() {
                   <a
                     href="#hero"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-slate-900 text-lg font-medium"
                   >
                     Home
                   </a>
                   <a
                     href="#about"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-slate-900 text-lg font-medium"
                   >
                     About Us
                   </a>
                   <a
                     href="#divisions"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-slate-900 text-lg font-medium"
                   >
                     Products / Divisions
                   </a>
                   <a
                     href="#contact"
                     onClick={closeMobile}
-                    className="block text-white text-lg font-medium"
+                    className="block text-slate-900 text-lg font-medium"
                   >
                     Contact Us
                   </a>
