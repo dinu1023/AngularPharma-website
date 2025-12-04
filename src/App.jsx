@@ -75,13 +75,30 @@ function App() {
 
   const closeMobile = () => setMobileOpen(false);
 
-  // smooth parallax-like effect for hero bg
+  // hero parallax
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // simple scroll reveal (Orven-like) using IntersectionObserver
+  useEffect(() => {
+    const elements = document.querySelectorAll(".js-animate");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   // search filter
@@ -125,12 +142,21 @@ function App() {
 
   return (
     <>
-      {/* global smooth scroll */}
+      {/* global smooth scroll + scroll reveal css */}
       <style>{`
         html { scroll-behavior: smooth; }
         @keyframes slideIn {
           from { transform: translateX(30%); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
+        }
+        .js-animate {
+          opacity: 0;
+          transform: translateY(26px);
+          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .js-animate.show {
+          opacity: 1;
+          transform: translateY(0);
         }
       `}</style>
 
@@ -230,7 +256,7 @@ function App() {
         </header>
 
         <main className="flex-1">
-          {/* HERO – full background + parallax */}
+          {/* HERO – full family image like Orven */}
           <section
             id="hero"
             className="relative border-b bg-slate-900 text-white overflow-hidden"
@@ -252,7 +278,7 @@ function App() {
               <div className="absolute inset-0 bg-gradient-to-r from-sky-900/95 via-sky-900/80 to-sky-900/20" />
             </div>
 
-            <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
+            <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28 js-animate">
               <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-[11px] font-semibold tracking-[0.18em] uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Angular Pharmaceuticals
@@ -310,7 +336,7 @@ function App() {
             className="bg-white border-b border-slate-200 py-12 md:py-16"
           >
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-              <div className="flex justify-center md:justify-start">
+              <div className="flex justify-center md:justify-start js-animate">
                 <div className="rounded-[32px] bg-white border border-slate-200 overflow-hidden max-w-md w-full transition-transform duration-200 ease-out hover:-translate-y-1">
                   <img
                     src="/about-banner.jpg"
@@ -320,7 +346,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4 js-animate">
                 <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
                   About Us
                 </h2>
@@ -351,7 +377,7 @@ function App() {
             id="divisions"
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
-            <div className="max-w-6xl mx-auto px-4 py-10 space-y-5">
+            <div className="max-w-6xl mx-auto px-4 py-10 space-y-5 js-animate">
               <h2 className="text-xl font-bold text-sky-900">
                 Therapeutic Divisions
               </h2>
@@ -376,7 +402,7 @@ function App() {
           {/* PRODUCTS + VERIFY */}
           <section id="products" className="border-b bg-white">
             <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
-              <div className="md:col-span-3 space-y-4">
+              <div className="md:col-span-3 space-y-4 js-animate">
                 <div className="flex items-center justify-between gap-3">
                   <h2 className="text-xl font-bold text-sky-900">
                     Flagship Brands
@@ -458,7 +484,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="space-y-4" id="verify">
+              <div className="space-y-4 js-animate" id="verify">
                 <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
                   <h3 className="text-sm font-semibold text-sky-900">
                     Verify Product
@@ -520,7 +546,7 @@ function App() {
             id="trust"
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
-            <div className="max-w-6xl mx-auto px-4 py-10 space-y-4">
+            <div className="max-w-6xl mx-auto px-4 py-10 space-y-4 js-animate">
               <h2 className="text-xl font-bold text-sky-900">
                 Why doctors trust Angular Pharma
               </h2>
@@ -549,7 +575,7 @@ function App() {
             className="bg-white py-12 border-t border-slate-200"
           >
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
-              <div className="space-y-4">
+              <div className="space-y-4 js-animate">
                 <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
                   Contact Us
                 </h2>
@@ -578,7 +604,7 @@ function App() {
                 </p>
               </div>
 
-              <form className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300">
+              <form className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300 js-animate">
                 <input
                   className="w-full px-3 py-2 border rounded-md text-sm"
                   placeholder="Your Name"
