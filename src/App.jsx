@@ -207,62 +207,80 @@ function App() {
       </header>
 
       <main className="flex-1">
-        {/* HERO – Orven-style: left text, right image card, light background */}
+        {/* HERO – FULL BACKGROUND IMAGE LIKE YOUR SCREENSHOT */}
         <section
           id="hero"
-          className="relative overflow-hidden bg-[#f0f9ff] border-b border-slate-200"
+          className="relative border-b bg-slate-900 text-white overflow-hidden"
         >
-          {/* curved shapes background */}
-          <div className="pointer-events-none absolute -left-40 -top-40 h-72 w-72 rounded-full bg-sky-100" />
-          <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-cyan-50" />
-          <div className="pointer-events-none absolute -bottom-32 left-1/3 h-56 w-[140%] rounded-[50%] bg-white border-t border-sky-100" />
+          {/* Background family image filling whole hero */}
+          <div className="absolute inset-0">
+            <img
+              src="/hero-main.png.png"
+              alt="Family healthcare background"
+              className="w-full h-full object-cover"
+            />
+            {/* Blue gradient from left to right, like your screenshot */}
+            <div className="absolute inset-0 bg-gradient-to-r from-sky-900/95 via-sky-900/80 to-sky-900/20" />
+          </div>
 
-          <div className="relative max-w-6xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
-            {/* Left text */}
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900 leading-tight">
-                Quality-driven pharmaceutical brands
-                <span className="block text-slate-700 text-xl md:text-2xl mt-2 font-semibold">
-                  designed for everyday clinical practice.
-                </span>
+          {/* Foreground content */}
+          <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
+            {/* Small pill label */}
+            <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-[11px] font-semibold tracking-[0.18em] uppercase">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              Angular Pharmaceuticals
+            </p>
+
+            {/* Heading + subtitle */}
+            <div className="mt-5 max-w-xl space-y-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+                Trusted formulations
+                <br />
+                for everyday clinical practice.
               </h2>
-              <p className="text-sm md:text-base text-slate-600 leading-6">
-                Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
-                therapies with reliable formulations for Indian patients and
-                clinicians. Our aim is to support doctors with brands they can
-                prescribe with confidence.
+
+              <p className="text-sm md:text-base text-slate-100/90 leading-6">
+                Focused on Ortho, Gastro and Respiratory segments with reliable
+                and affordable formulations designed for Indian patients and
+                clinicians.
               </p>
 
+              {/* Buttons */}
               <div className="flex flex-wrap gap-3 pt-2">
                 <a
                   href="#products"
-                  className="px-5 py-2.5 rounded-full bg-sky-700 text-white text-sm font-semibold shadow-[0_16px_40px_rgba(59,130,246,0.6)] hover:bg-sky-800"
+                  className="px-5 py-2.5 rounded-full bg-white text-sky-900 text-sm font-semibold shadow-[0_16px_40px_rgba(15,23,42,0.6)] hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
                 >
                   View Products
                 </a>
                 <a
                   href="#contact"
-                  className="px-5 py-2.5 rounded-full border border-sky-300 text-sky-800 text-sm font-semibold bg-white hover:bg-sky-50"
+                  className="px-5 py-2.5 rounded-full border border-white/60 text-white text-sm font-semibold bg-white/5 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
                 >
                   Contact Us
                 </a>
               </div>
-            </div>
 
-           {/* Right image card like Orven – CHANGED TO FULL COVER */}
-<div className="flex justify-center md:justify-end">
-  <div className="relative rounded-[32px] bg-white shadow-[0_24px_60px_rgba(148,163,184,0.55)] border border-slate-200 overflow-hidden max-w-md w-full h-[420px] md:h-[450px]">
-    <img
-      src="/hero-main.png.png"
-      alt="Healthcare family"
-      className="w-full h-full object-cover object-center"
-    />
-  </div>
-</div>
+              {/* Ortho / Gastro / Respiratory row like your earlier dark hero */}
+              <div className="grid grid-cols-3 gap-4 pt-6 text-xs text-slate-100/90">
+                <div>
+                  <div className="font-semibold">Ortho</div>
+                  <div>Pain & inflammation care</div>
+                </div>
+                <div>
+                  <div className="font-semibold">Gastro</div>
+                  <div>Acid peptic management</div>
+                </div>
+                <div>
+                  <div className="font-semibold">Respiratory</div>
+                  <div>Allergy & airway support</div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* ABOUT – similar layout to Orven screenshot: left image, right text */}
+        {/* ABOUT – same as before */}
         <section
           id="about"
           className="bg-white border-b border-slate-200 py-12 md:py-16"
@@ -333,12 +351,12 @@ function App() {
           </div>
         </section>
 
-        {/* PRODUCTS + VERIFY (kept similar, light theme) */}
+        {/* PRODUCTS + VERIFY */}
         <section id="products" className="border-b bg-white">
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
             {/* Products */}
             <div className="md:col-span-3 space-y-4">
-              <div className="flex items-center justify_between gap-3">
+              <div className="flex items-center justify-between gap-3">
                 <h2 className="text-xl font-bold text-sky-900">
                   Flagship Brands
                 </h2>
