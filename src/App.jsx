@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const products = [
   {
@@ -72,22 +70,12 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
-  const [verifyResult, setVerifyResult] = useState(null); // {status, message}
+  const [verifyResult, setVerifyResult] = useState(null);
   const [scrollY, setScrollY] = useState(0);
 
   const closeMobile = () => setMobileOpen(false);
 
-  // AOS init (scroll animations)
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: "ease-out-back",
-      once: true,
-      offset: 80,
-    });
-  }, []);
-
-  // Track scroll for hero parallax
+  // smooth parallax-like effect for hero bg
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
@@ -96,7 +84,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Filter products by search term (name, code, division)
+  // search filter
   const filteredProducts = products.filter((p) => {
     if (!searchTerm.trim()) return true;
     const t = searchTerm.toLowerCase();
@@ -137,7 +125,7 @@ function App() {
 
   return (
     <>
-      {/* global smooth scroll like Orven */}
+      {/* global smooth scroll */}
       <style>{`
         html { scroll-behavior: smooth; }
         @keyframes slideIn {
@@ -147,10 +135,9 @@ function App() {
       `}</style>
 
       <div className="min-h-screen bg-[#f5fbff] text-slate-900 flex flex-col">
-        {/* HEADER – clean, no shadow */}
+        {/* HEADER */}
         <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
           <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            {/* Logo + name */}
             <div className="flex items-center gap-3">
               <img
                 src="/logo.png"
@@ -167,25 +154,27 @@ function App() {
               </div>
             </div>
 
-            {/* Desktop nav */}
             <nav className="hidden md:flex gap-6 text-sm text-gray-600 font-medium">
-              {[
-                { href: "#hero", label: "Home" },
-                { href: "#about", label: "About Us" },
-                { href: "#divisions", label: "Products / Divisions" },
-                { href: "#contact", label: "Contact Us" },
-              ].map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-sky-700 transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              <a href="#hero" className="hover:text-sky-700 transition-colors">
+                Home
+              </a>
+              <a href="#about" className="hover:text-sky-700 transition-colors">
+                About Us
+              </a>
+              <a
+                href="#divisions"
+                className="hover:text-sky-700 transition-colors"
+              >
+                Products / Divisions
+              </a>
+              <a
+                href="#contact"
+                className="hover:text-sky-700 transition-colors"
+              >
+                Contact Us
+              </a>
             </nav>
 
-            {/* Mobile hamburger */}
             <button
               className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white active:scale-[0.97] transition-transform"
               onClick={() => setMobileOpen(true)}
@@ -199,7 +188,6 @@ function App() {
             </button>
           </div>
 
-          {/* Mobile nav overlay + slide panel */}
           {mobileOpen && (
             <div
               className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm"
@@ -242,12 +230,11 @@ function App() {
         </header>
 
         <main className="flex-1">
-          {/* HERO – full background family image with gradient + parallax */}
+          {/* HERO – full background + parallax */}
           <section
             id="hero"
             className="relative border-b bg-slate-900 text-white overflow-hidden"
           >
-            {/* Background image with subtle parallax */}
             <div
               className="absolute inset-0 will-change-transform"
               style={{
@@ -265,11 +252,7 @@ function App() {
               <div className="absolute inset-0 bg-gradient-to-r from-sky-900/95 via-sky-900/80 to-sky-900/20" />
             </div>
 
-            {/* Foreground content */}
-            <div
-              className="relative max-w-6xl mx-auto px-4 py-20 md:py-28"
-              data-aos="zoom-out-up"
-            >
+            <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
               <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-[11px] font-semibold tracking-[0.18em] uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Angular Pharmaceuticals
@@ -327,11 +310,7 @@ function App() {
             className="bg-white border-b border-slate-200 py-12 md:py-16"
           >
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-              {/* Left image card – border only */}
-              <div
-                className="flex justify-center md:justify-start"
-                data-aos="zoom-in-right"
-              >
+              <div className="flex justify-center md:justify-start">
                 <div className="rounded-[32px] bg-white border border-slate-200 overflow-hidden max-w-md w-full transition-transform duration-200 ease-out hover:-translate-y-1">
                   <img
                     src="/about-banner.jpg"
@@ -341,8 +320,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Right text */}
-              <div className="space-y-4" data-aos="zoom-in-left">
+              <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
                   About Us
                 </h2>
@@ -368,22 +346,20 @@ function App() {
             </div>
           </section>
 
-          {/* DIVISIONS – border-only cards with hover motion */}
+          {/* DIVISIONS */}
           <section
             id="divisions"
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
             <div className="max-w-6xl mx-auto px-4 py-10 space-y-5">
-              <h2 className="text-xl font-bold text-sky-900" data-aos="fade-up">
+              <h2 className="text-xl font-bold text-sky-900">
                 Therapeutic Divisions
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
-                {divisions.map((d, idx) => (
+                {divisions.map((d) => (
                   <div
                     key={d.title}
                     className="bg-white rounded-xl border border-slate-200 p-4 space-y-1 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300"
-                    data-aos="zoom-in-up"
-                    data-aos-delay={idx * 80}
                   >
                     <h3 className="text-sm font-semibold text-sky-800">
                       {d.title}
@@ -400,13 +376,9 @@ function App() {
           {/* PRODUCTS + VERIFY */}
           <section id="products" className="border-b bg-white">
             <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
-              {/* Products */}
               <div className="md:col-span-3 space-y-4">
                 <div className="flex items-center justify-between gap-3">
-                  <h2
-                    className="text-xl font-bold text-sky-900"
-                    data-aos="fade-right"
-                  >
+                  <h2 className="text-xl font-bold text-sky-900">
                     Flagship Brands
                   </h2>
                   <input
@@ -417,8 +389,7 @@ function App() {
                   />
                 </div>
 
-                {/* Mobile search */}
-                <div className="md:hidden mb-2" data-aos="fade-right">
+                <div className="md:hidden mb-2">
                   <input
                     placeholder="Search brands..."
                     className="w-full px-3 py-2 border rounded-md text-xs focus:outline-none focus:ring-1 focus:ring-sky-500"
@@ -429,10 +400,7 @@ function App() {
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {filteredProducts.length === 0 ? (
-                    <p
-                      className="text-xs text-gray-500 col-span-full"
-                      data-aos="fade-up"
-                    >
+                    <p className="text-xs text-gray-500 col-span-full">
                       No products match “{searchTerm}”. Try a different name or
                       code.
                     </p>
@@ -441,8 +409,6 @@ function App() {
                       <article
                         key={i}
                         className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
-                        data-aos="zoom-in"
-                        data-aos-delay={i * 80}
                       >
                         <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
                           {p.image ? (
@@ -492,12 +458,8 @@ function App() {
                 </div>
               </div>
 
-              {/* Verify + contact summary */}
               <div className="space-y-4" id="verify">
-                <div
-                  className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2"
-                  data-aos="fade-left"
-                >
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
                   <h3 className="text-sm font-semibold text-sky-900">
                     Verify Product
                   </h3>
@@ -530,11 +492,7 @@ function App() {
                   )}
                 </div>
 
-                <div
-                  className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2"
-                  data-aos="fade-left"
-                  data-aos-delay="120"
-                >
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
                   <h3 className="text-sm font-semibold text-sky-900">
                     Contact & Distribution
                   </h3>
@@ -563,28 +521,19 @@ function App() {
             className="border-b border-slate-200 bg-[#f5fbff]"
           >
             <div className="max-w-6xl mx-auto px-4 py-10 space-y-4">
-              <h2
-                className="text-xl font-bold text-sky-900"
-                data-aos="fade-up"
-              >
+              <h2 className="text-xl font-bold text-sky-900">
                 Why doctors trust Angular Pharma
               </h2>
-              <p
-                className="text-sm text-gray-600 max-w-3xl"
-                data-aos="fade-up"
-                data-aos-delay="80"
-              >
+              <p className="text-sm text-gray-600 max-w-3xl">
                 Our objective is to support clinicians with dependable brands
                 that align with good clinical practice while remaining
                 affordable for patients.
               </p>
               <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
-                {trustPoints.map((point, idx) => (
+                {trustPoints.map((point) => (
                   <div
                     key={point}
                     className="flex items-start gap-2 bg-white rounded-xl border border-slate-200 p-3 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300"
-                    data-aos="zoom-in"
-                    data-aos-delay={idx * 80}
                   >
                     <span className="text-sky-700 text-lg mt-[2px]">✔</span>
                     <p className="text-xs leading-5">{point}</p>
@@ -600,7 +549,7 @@ function App() {
             className="bg-white py-12 border-t border-slate-200"
           >
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
-              <div className="space-y-4" data-aos="fade-right">
+              <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
                   Contact Us
                 </h2>
@@ -629,10 +578,7 @@ function App() {
                 </p>
               </div>
 
-              <form
-                className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300"
-                data-aos="fade-left"
-              >
+              <form className="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-sky-300">
                 <input
                   className="w-full px-3 py-2 border rounded-md text-sm"
                   placeholder="Your Name"
@@ -662,7 +608,6 @@ function App() {
           </section>
         </main>
 
-        {/* FOOTER */}
         <footer className="bg-white border-t border-slate-200">
           <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-gray-500 flex justify-between flex-wrap gap-2">
             <span>© {new Date().getFullYear()} Angular Pharmaceuticals.</span>
