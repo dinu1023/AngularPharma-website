@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const products = [
   {
@@ -68,20 +68,9 @@ const trustPoints = [
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
   const [verifyResult, setVerifyResult] = useState(null); // {status, message}
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY || window.pageYOffset);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const closeMobile = () => setMobileOpen(false);
 
@@ -125,9 +114,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
-      {/* HEADER */}
-      <header className="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div className="min-h-screen bg-[#f5fbff] text-slate-900 flex flex-col">
+      {/* HEADER – white like Orven */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           {/* Logo + name */}
           <div className="flex items-center gap-3">
@@ -141,30 +130,24 @@ function App() {
                 Angular Pharmaceuticals
               </h1>
               <p className="text-[11px] text-gray-500">
-                Evidence-based formulations from Hyderabad, Telangana
+                Evidence-based formulations • Hyderabad, Telangana
               </p>
             </div>
           </div>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex gap-5 text-sm text-gray-600 font-medium">
-            <a href="#home" className="hover:text-sky-700">
+          <nav className="hidden md:flex gap-6 text-sm text-gray-600 font-medium">
+            <a href="#hero" className="hover:text-sky-700">
               Home
             </a>
             <a href="#about" className="hover:text-sky-700">
-              About
+              About Us
             </a>
             <a href="#divisions" className="hover:text-sky-700">
-              Divisions
-            </a>
-            <a href="#products" className="hover:text-sky-700">
-              Products
-            </a>
-            <a href="#trust" className="hover:text-sky-700">
-              Doctors Trust Us
+              Products / Divisions
             </a>
             <a href="#contact" className="hover:text-sky-700">
-              Contact
+              Contact Us
             </a>
           </nav>
 
@@ -189,39 +172,33 @@ function App() {
             onClick={closeMobile}
           >
             <div
-              className="ml-auto h-full w-72 bg-slate-900 text-white shadow-[0_0_40px_rgba(0,0,0,0.7)] flex flex-col"
+              className="ml-auto h-full w-72 bg-white text-slate-900 shadow-[0_0_40px_rgba(0,0,0,0.7)] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700/70">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200">
                 <span className="text-sm font-semibold tracking-wide">
                   Angular Pharmaceuticals
                 </span>
                 <button
                   onClick={closeMobile}
-                  className="h-8 w-8 rounded-full border border-slate-600 flex items-center justify-center text-lg leading-none"
+                  className="h-8 w-8 rounded-full border border-slate-300 flex items-center justify-center text-lg leading-none"
                   aria-label="Close navigation"
                 >
                   ✕
                 </button>
               </div>
               <nav className="mt-6 px-6 space-y-5 text-base font-medium">
-                <a href="#home" onClick={closeMobile} className="block">
+                <a href="#hero" onClick={closeMobile} className="block">
                   Home
                 </a>
                 <a href="#about" onClick={closeMobile} className="block">
-                  About
+                  About Us
                 </a>
                 <a href="#divisions" onClick={closeMobile} className="block">
-                  Divisions
-                </a>
-                <a href="#products" onClick={closeMobile} className="block">
-                  Products
-                </a>
-                <a href="#trust" onClick={closeMobile} className="block">
-                  Doctors Trust Us
+                  Products / Divisions
                 </a>
                 <a href="#contact" onClick={closeMobile} className="block">
-                  Contact
+                  Contact Us
                 </a>
               </nav>
             </div>
@@ -230,130 +207,110 @@ function App() {
       </header>
 
       <main className="flex-1">
-        {/* HERO – light, with soft parallax */}
-        <section id="home" className="relative border-b bg-slate-900 text-white">
-          {/* Background image */}
-          <div
-            className="absolute inset-0"
-            style={{
-              transform: `translateY(${scrollY * 0.05}px)`,
-              transition: "transform 0.1s linear",
-            }}
-          >
-            <img
-              src="/hero-main.png.png"
-              alt="Family receiving healthcare support"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-sky-900/85 via-sky-900/65 to-sky-900/10" />
-          </div>
+        {/* HERO – Orven-style: left text, right image card, light background */}
+        <section
+          id="hero"
+          className="relative overflow-hidden bg-[#f0f9ff] border-b border-slate-200"
+        >
+          {/* curved shapes background */}
+          <div className="pointer-events-none absolute -left-40 -top-40 h-72 w-72 rounded-full bg-sky-100" />
+          <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-cyan-50" />
+          <div className="pointer-events-none absolute -bottom-32 left-1/3 h-56 w-[140%] rounded-[50%] bg-white border-t border-sky-100" />
 
-          {/* Foreground content */}
-          <div className="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
-            <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-[11px] font-semibold tracking-[0.18em] uppercase">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              Angular Pharmaceuticals
-            </p>
-
-            <div className="mt-5 max-w-xl space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
-                Trusted formulations
-                <br />
-                for everyday clinical practice.
+          <div className="relative max-w-6xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+            {/* Left text */}
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900 leading-tight">
+                Quality-driven pharmaceutical brands
+                <span className="block text-slate-700 text-xl md:text-2xl mt-2 font-semibold">
+                  designed for everyday clinical practice.
+                </span>
               </h2>
-
-              <p className="text-sm md:text-base text-slate-100/90 leading-6">
-                Focused on Ortho, Gastro and Respiratory segments with reliable
-                and affordable formulations designed for Indian patients and
-                clinicians.
+              <p className="text-sm md:text-base text-slate-600 leading-6">
+                Angular Pharmaceuticals focuses on Ortho, Gastro and Respiratory
+                therapies with reliable formulations for Indian patients and
+                clinicians. Our aim is to support doctors with brands they can
+                prescribe with confidence.
               </p>
 
               <div className="flex flex-wrap gap-3 pt-2">
                 <a
                   href="#products"
-                  className="px-5 py-2.5 rounded-full bg-white text-sky-900 text-sm font-semibold shadow-[0_16px_40px_rgba(15,23,42,0.6)] hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                  className="px-5 py-2.5 rounded-full bg-sky-700 text-white text-sm font-semibold shadow-[0_16px_40px_rgba(59,130,246,0.6)] hover:bg-sky-800"
                 >
                   View Products
                 </a>
                 <a
                   href="#contact"
-                  className="px-5 py-2.5 rounded-full border border-white/60 text-white text-sm font-semibold bg-white/5 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                  className="px-5 py-2.5 rounded-full border border-sky-300 text-sky-800 text-sm font-semibold bg-white hover:bg-sky-50"
                 >
                   Contact Us
                 </a>
               </div>
+            </div>
 
-              <div className="grid grid-cols-3 gap-4 pt-4 text-xs text-slate-100/90">
-                <div>
-                  <div className="font-semibold">Ortho</div>
-                  <div>Pain & inflammation care</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Gastro</div>
-                  <div>Acid peptic management</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Respiratory</div>
-                  <div>Allergy & airway support</div>
-                </div>
+            {/* Right image card like Orven */}
+            <div className="flex justify-center md:justify-end">
+              <div className="relative rounded-[32px] bg-white shadow-[0_24px_60px_rgba(148,163,184,0.55)] border border-slate-200 overflow-hidden max-w-md w-full">
+                <img
+                  src="/hero-main.png.png"
+                  alt="Molecules and healthcare illustration"
+                  className="w-full h-[260px] md:h-[320px] object-cover"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Banner before About */}
-        <section className="border-b bg-transparent">
-          <div className="max-w-6xl mx-auto px-4 py-8">
-            <div className="rounded-2xl overflow-hidden shadow-[0_22px_55px_rgba(148,163,184,0.6)] border border-slate-200 bg-slate-200">
-              <img
-                src="/about-banner.jpg"
-                alt="Healthcare family support"
-                className="w-full h-[260px] md:h-[320px] object-cover"
-              />
+        {/* ABOUT – similar layout to Orven screenshot: left image, right text */}
+        <section
+          id="about"
+          className="bg-white border-b border-slate-200 py-12 md:py-16"
+        >
+          <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+            {/* Left image card */}
+            <div className="flex justify-center md:justify-start">
+              <div className="rounded-[32px] bg-white shadow-[0_22px_55px_rgba(148,163,184,0.6)] border border-slate-200 overflow-hidden max-w-md w-full">
+                <img
+                  src="/about-banner.jpg"
+                  alt="Scientific healthcare visual"
+                  className="w-full h-[260px] md:h-[320px] object-cover"
+                />
+              </div>
             </div>
-          </div>
-        </section>
 
-        {/* ABOUT */}
-        <section id="about" className="border-b bg-white">
-          <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2 space-y-3">
-              <h2 className="text-xl font-bold text-sky-900">
-                About Angular Pharmaceuticals
+            {/* Right text */}
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
+                About Us
               </h2>
-              <p className="text-sm text-gray-600 leading-6">
-                Angular Pharmaceuticals is an emerging pharmaceutical company
-                based in Hyderabad, Telangana. We work with WHO-GMP compliant
-                manufacturing partners to develop clinically relevant and
+              <p className="text-sm md:text-base text-slate-600 leading-6">
+                Angular Pharmaceuticals is an emerging healthcare company based
+                in Hyderabad, Telangana. We partner with WHO-GMP compliant
+                manufacturing units to deliver clinically relevant and
                 affordable formulations.
               </p>
-              <p className="text-sm text-gray-600 leading-6">
-                Our current focus is on Ortho, Gastro and Respiratory therapy
-                areas with plans to expand into nutrition and wellness. Each
-                brand is designed keeping in mind the needs of practising
-                clinicians and the realities of Indian patients.
+              <p className="text-sm md:text-base text-slate-600 leading-6">
+                Our current portfolio is focused on Orthopaedics, Gastroenterology
+                and Respiratory care. Each brand is conceptualised keeping in
+                mind real-world prescribing patterns and the needs of Indian
+                patients, with an emphasis on efficacy, safety and
+                patient-friendly pricing.
               </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
-                <div className="text-xs text-gray-500">Operations hub</div>
-                <div className="font-semibold text-sky-800">
-                  Hyderabad • Bengaluru • Mumbai
-                </div>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-3 border text-sm">
-                <div className="text-xs text-gray-500">Core therapy areas</div>
-                <div className="font-semibold text-sky-800">
-                  Ortho • Gastro • Respiratory
-                </div>
-              </div>
+              <p className="text-sm md:text-base text-slate-600 leading-6">
+                Over time, we aim to build a differentiated presence in
+                nutrition and wellness segments while maintaining our commitment
+                to quality, transparency and ethical promotion.
+              </p>
             </div>
           </div>
         </section>
 
         {/* DIVISIONS */}
-        <section id="divisions" className="border-b bg-slate-50">
+        <section
+          id="divisions"
+          className="border-b border-slate-200 bg-[#f5fbff]"
+        >
           <div className="max-w-6xl mx-auto px-4 py-10 space-y-5">
             <h2 className="text-xl font-bold text-sky-900">
               Therapeutic Divisions
@@ -376,7 +333,7 @@ function App() {
           </div>
         </section>
 
-        {/* PRODUCTS + VERIFY */}
+        {/* PRODUCTS + VERIFY (kept similar, light theme) */}
         <section id="products" className="border-b bg-white">
           <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
             {/* Products */}
@@ -500,10 +457,7 @@ function App() {
                 )}
               </div>
 
-              <div
-                id="contact-summary"
-                className="bg-slate-50 rounded-2xl shadow-[0_12px_32px_rgba(148,163,184,0.55)] border border-slate-200 p-4 space-y-2"
-              >
+              <div className="bg-slate-50 rounded-2xl shadow-[0_12px_32px_rgba(148,163,184,0.55)] border border-slate-200 p-4 space-y-2">
                 <h3 className="text-sm font-semibold text-sky-900">
                   Contact & Distribution
                 </h3>
@@ -527,7 +481,10 @@ function App() {
         </section>
 
         {/* TRUST */}
-        <section id="trust" className="border-b bg-slate-50">
+        <section
+          id="trust"
+          className="border-b border-slate-200 bg-[#f5fbff]"
+        >
           <div className="max-w-6xl mx-auto px-4 py-10 space-y-4">
             <h2 className="text-xl font-bold text-sky-900">
               Why doctors trust Angular Pharma
@@ -551,18 +508,17 @@ function App() {
           </div>
         </section>
 
-        {/* CONTACT */}
-        <section id="contact" className="bg-white border-t py-12">
+        {/* CONTACT – clean, light */}
+        <section id="contact" className="bg-white py-12 border-t border-slate-200">
           <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold text-sky-900">
-                Get in Touch
+                Contact Us
               </h2>
               <p className="text-sm text-gray-600 leading-6">
-                We work closely with hospitals, pharmacies, distributors and
-                medical institutions to ensure timely access to essential
-                formulations. Share your requirement and our team will connect
-                with you shortly.
+                We work with hospitals, pharmacies, distributors and medical
+                institutions to ensure timely access to essential formulations.
+                Share your requirement and our team will connect with you.
               </p>
 
               <div className="text-sm text-gray-700 space-y-1">
@@ -577,9 +533,9 @@ function App() {
               </div>
 
               <p className="text-xs text-gray-500">
-                Kindly mention your speciality / area (Ortho, Gastro,
-                Respiratory, etc.) and location so that we can route your
-                enquiry to the right team member.
+                Please mention your speciality (Ortho, Gastro, Respiratory,
+                etc.) and city, so we can route your enquiry to the relevant
+                team member.
               </p>
             </div>
 
@@ -614,7 +570,7 @@ function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t">
+      <footer className="bg-white border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-gray-500 flex justify-between flex-wrap gap-2">
           <span>© {new Date().getFullYear()} Angular Pharmaceuticals.</span>
           <span>Designed for Dinu.</span>
