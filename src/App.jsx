@@ -768,10 +768,7 @@ function App() {
       <p className="mt-2 text-sm text-gray-600">
         <strong>Phone:</strong> +91 99667 43442
       </p>
-      <p className="text-sm text-gray-600">
-        <strong>Email:</strong> angularpharmaceuticals@gmail.com
-      </p>
-
+     
       <div className="flex space-x-4 mt-4 text-sky-700">
         <a href="#"><i className="fab fa-twitter text-xl"></i></a>
         <a href="#"><i className="fab fa-facebook text-xl"></i></a>
