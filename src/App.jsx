@@ -83,7 +83,7 @@ function App() {
     isProductsPage = params.get("page") === "products";
   }
 
-  // hero parallax
+  // parallax for hero
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
@@ -92,7 +92,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // scroll reveal
+  // simple reveal animation
   useEffect(() => {
     const elements = document.querySelectorAll(".js-animate");
     const observer = new IntersectionObserver(
@@ -109,7 +109,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // close Products dropdown on outside click
+  // close products dropdown on outside click
   useEffect(() => {
     if (!productsMenuOpen) return;
     const handler = (e) => {
@@ -124,7 +124,7 @@ function App() {
     return () => document.removeEventListener("mousedown", handler);
   }, [productsMenuOpen]);
 
-  // scroll to product when arriving with ?page=products&code=...
+  // highlight product when coming from menu (?page=products&code=RG-001)
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
@@ -143,7 +143,7 @@ function App() {
     return () => clearTimeout(timeout);
   }, [isProductsPage]);
 
-  // product search filter
+  // filter products by search term
   const filteredProducts = products.filter((p) => {
     if (!searchTerm.trim()) return true;
     const t = searchTerm.toLowerCase();
@@ -177,6 +177,7 @@ function App() {
         {/* HEADER */}
         <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
           <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            {/* Logo + name */}
             <div className="flex items-center gap-3">
               <img
                 src="/logo.png"
@@ -193,16 +194,16 @@ function App() {
               </div>
             </div>
 
-            {/* DESKTOP NAV */}
+            {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600 font-medium">
-              <a href="/" className="hover:text-sky-700">
+              <a href="/#hero" className="hover:text-sky-700">
                 Home
               </a>
               <a href="/#about" className="hover:text-sky-700">
                 About Us
               </a>
 
-              {/* Products dropdown */}
+              {/* Products dropdown like Orven */}
               <div className="relative" ref={productsMenuRef}>
                 <button
                   type="button"
@@ -243,7 +244,7 @@ function App() {
               </a>
             </nav>
 
-            {/* MOBILE HAMBURGER */}
+            {/* Mobile hamburger */}
             <button
               className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white active:scale-[0.97] transition-transform"
               onClick={() => setMobileOpen(true)}
@@ -257,7 +258,7 @@ function App() {
             </button>
           </div>
 
-          {/* MOBILE NAV */}
+          {/* Mobile nav overlay */}
           {mobileOpen && (
             <div
               className="fixed inset-0 z-40 bg-[#111827]/80"
@@ -282,7 +283,7 @@ function App() {
                 </div>
 
                 <nav className="mt-8 px-6 space-y-6 text-lg font-medium">
-                  <a href="/" onClick={closeMobile} className="block">
+                  <a href="/#hero" onClick={closeMobile} className="block">
                     Home
                   </a>
                   <a href="/#about" onClick={closeMobile} className="block">
@@ -340,9 +341,9 @@ function App() {
                         or code.
                       </p>
                     ) : (
-                      filteredProducts.map((p, i) => (
+                      filteredProducts.map((p) => (
                         <article
-                          key={i}
+                          key={p.code}
                           id={`product-${p.code}`}
                           className={`group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer ${
                             highlightCode === p.code
@@ -531,7 +532,7 @@ function App() {
                 </div>
               </section>
 
-              {/* PRODUCTS SECTION ON HOME */}
+              {/* PRODUCTS PREVIEW ON HOME */}
               <section id="products" className="border-b bg-white">
                 <div className="max-w-6xl mx-auto px-4 py-10 space-y-4 js-animate">
                   <div className="flex items-center justify-between gap-3">
@@ -547,9 +548,9 @@ function App() {
                   </div>
 
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {products.map((p, i) => (
+                    {products.map((p) => (
                       <article
-                        key={i}
+                        key={p.code}
                         className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
                       >
                         <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
