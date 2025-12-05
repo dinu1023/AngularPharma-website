@@ -824,65 +824,49 @@ function App() {
         </main>
 
         {/* FOOTER */}
-       <footer
+     {/* FOOTER */}
+<footer
   id="footer"
-  className="bg-[#312e81] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
+  className="bg-[#1a1b6c] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
 >
   <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
-    
-    {/* COMPANY INFO */}
+
+    {/* About */}
     <div>
       <img
         src="/logo.png"
         alt="Angular Pharmaceuticals"
         className="h-14 mb-4"
       />
-      <p className="text-sm leading-relaxed">
+      <p className="text-sm leading-6">
         Angular Pharmaceuticals is based in Hyderabad, Telangana, providing
         affordable & clinically reliable pharmaceutical products trusted by
         healthcare professionals.
       </p>
     </div>
 
-    {/* USEFUL LINKS */}
+    {/* Useful Links */}
     <div>
-      <h3 className="font-semibold text-lg mb-4">Useful Links</h3>
+      <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
       <ul className="space-y-2 text-sm">
-        <li><a href="#hero" className="hover:underline">Home</a></li>
+        <li><a href="#home" className="hover:underline">Home</a></li>
         <li><a href="#about" className="hover:underline">About Us</a></li>
         <li><a href="#products" className="hover:underline">Products</a></li>
         <li><a href="#contact" className="hover:underline">Contact Us</a></li>
       </ul>
     </div>
 
-    {/* CONTACT INFO */}
+    {/* Contact */}
     <div>
-      <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
-      <p className="text-sm leading-relaxed">
-        Pl. No 59, Boduppal, Medipally, Hyderabad 500076,<br />
-        Telangana, INDIA
-      </p>
+      <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+      <p>Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA</p>
 
-      <p className="text-sm mt-3">
-        <strong>Email:</strong> angularpharmaceuticals@gmail.com
-      </p>
-
-      {/* WHATSAPP ICON */}
-      <div className="mt-4">
-        <a href="#contact" className="inline-block">
-          <img
-            src="/whatsapp.png"
-            alt="WhatsApp"
-            className="h-10 w-10 rounded-full"
-          />
-        </a>
-      </div>
+      <p className="mt-3">Email: angularpharmaceuticals@gmail.com</p>
     </div>
-
   </div>
 
   {/* COPYRIGHT */}
-  <div className="text-center text-sm mt-10 border-t border-white/20 pt-4">
+  <div className="mt-10 pt-4 border-t border-white/20 text-center text-sm">
     © Angular Pharmaceuticals.
   </div>
 </footer>
