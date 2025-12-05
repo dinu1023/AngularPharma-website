@@ -136,7 +136,7 @@ function App() {
 
     setHighlightCode(code);
     setTimeout(() => {
-      const el = document.getElementById(product-${code});
+      const el = document.getElementById(`product-${code}`);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
@@ -175,7 +175,7 @@ function App() {
     if (found) {
       setVerifyResult({
         status: "success",
-        message: ✔ ${found.name} (${found.code}) appears to be a valid Angular Pharmaceuticals brand.,
+        message: `✔ ${found.name} (${found.code}) appears to be a valid Angular Pharmaceuticals brand.`,
       });
     } else {
       setVerifyResult({
@@ -401,7 +401,7 @@ function App() {
                         filteredProducts.map((p, i) => (
                           <article
                             key={i}
-                            id={product-${p.code}}
+                            id={`product-${p.code}`}
                             className={`group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer ${
                               highlightCode === p.code
                                 ? "ring-2 ring-sky-500"
@@ -440,7 +440,7 @@ function App() {
                                   setVerifyCode(p.code);
                                   setVerifyResult({
                                     status: "success",
-                                    message: ✔ ${p.name} (${p.code}) appears to be a valid Angular Pharmaceuticals brand.,
+                                    message: `✔ ${p.name} (${p.code}) appears to be a valid Angular Pharmaceuticals brand.`,
                                   });
                                   document
                                     .getElementById("verify-products-page")
