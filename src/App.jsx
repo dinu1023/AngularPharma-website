@@ -76,14 +76,14 @@ function App() {
 
   const closeMobile = () => setMobileOpen(false);
 
-  // detect if we are on products page (/?page=products)
+  // Check if current URL is products page
   let isProductsPage = false;
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search);
     isProductsPage = params.get("page") === "products";
   }
 
-  // parallax for hero
+  // Parallax for hero
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
@@ -92,7 +92,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // simple reveal animation
+  // Simple reveal animation
   useEffect(() => {
     const elements = document.querySelectorAll(".js-animate");
     const observer = new IntersectionObserver(
@@ -109,7 +109,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // close products dropdown on outside click
+  // Close products dropdown on outside click
   useEffect(() => {
     if (!productsMenuOpen) return;
     const handler = (e) => {
@@ -124,7 +124,7 @@ function App() {
     return () => document.removeEventListener("mousedown", handler);
   }, [productsMenuOpen]);
 
-  // highlight product when coming from menu (?page=products&code=RG-001)
+  // Highlight product when coming from menu (?page=products&code=RG-001)
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
@@ -143,7 +143,7 @@ function App() {
     return () => clearTimeout(timeout);
   }, [isProductsPage]);
 
-  // filter products by search term
+  // Filter products by search term
   const filteredProducts = products.filter((p) => {
     if (!searchTerm.trim()) return true;
     const t = searchTerm.toLowerCase();
@@ -203,7 +203,7 @@ function App() {
                 About Us
               </a>
 
-              {/* Products dropdown like Orven */}
+              {/* Products dropdown */}
               <div className="relative" ref={productsMenuRef}>
                 <button
                   type="button"
@@ -309,9 +309,13 @@ function App() {
         <main className="flex-1">
           {isProductsPage ? (
             <>
-              {/* PRODUCTS PAGE */}
-              <section className="bg-white border-b border-slate-200 py-10">
-                <div className="max-w-6xl mx-auto px-4 space-y-3">
+              {/* PRODUCTS PAGE HEADER / HERO */}
+              <section className="relative overflow-hidden border-b bg-[#f0f7ff]">
+                <div className="pointer-events-none absolute -left-40 -top-40 h-72 w-72 rounded-full bg-sky-100/70" />
+                <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-cyan-50/80" />
+                <div className="pointer-events-none absolute -bottom-32 left-1/3 h-56 w-[140%] rounded-[50%] bg-white border-t border-sky-100" />
+
+                <div className="relative max-w-6xl mx-auto px-4 py-12 md:py-16 space-y-4">
                   <h1 className="text-2xl md:text-3xl font-bold text-sky-900">
                     Our Products
                   </h1>
@@ -324,7 +328,7 @@ function App() {
                   <div className="mt-4 max-w-md">
                     <input
                       placeholder="Search by name, code or division"
-                      className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+                      className="w-full px-3 py-2 border rounded-md text-sm bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -332,6 +336,7 @@ function App() {
                 </div>
               </section>
 
+              {/* PRODUCTS LIST */}
               <section className="bg-white py-10">
                 <div className="max-w-6xl mx-auto px-4">
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
