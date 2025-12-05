@@ -63,27 +63,30 @@ const trustPoints = [
   "WHO-GMP aligned manufacturing partners with strict quality systems.",
   "Scientifically chosen strengths and combinations for Indian clinical practice.",
   "Consistent quality of formulation and packing, batch after batch.",
-  "Transparent product communication with clear contact support.",
+  "Transparent product verification using printed code near QR and clear contact support.",
 ];
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [verifyCode, setVerifyCode] = useState("");
+  const [verifyResult, setVerifyResult] = useState(null);
   const [scrollY, setScrollY] = useState(0);
   const [highlightCode, setHighlightCode] = useState(null);
+
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const productsMenuRef = useRef(null);
 
   const closeMobile = () => setMobileOpen(false);
 
-  // Check if current URL is products page
+  // detect if we are on products page (/?page=products)
   let isProductsPage = false;
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search);
     isProductsPage = params.get("page") === "products";
   }
 
-  // Parallax for hero
+  // hero parallax
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY || 0);
@@ -92,7 +95,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Simple reveal animation
+  // scroll reveal
   useEffect(() => {
     const elements = document.querySelectorAll(".js-animate");
     const observer = new IntersectionObserver(
@@ -109,7 +112,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // Close products dropdown on outside click
+  // close Products dropdown on outside click
   useEffect(() => {
     if (!productsMenuOpen) return;
     const handler = (e) => {
@@ -124,7 +127,7 @@ function App() {
     return () => document.removeEventListener("mousedown", handler);
   }, [productsMenuOpen]);
 
-  // Highlight product when coming from menu (?page=products&code=RG-001)
+  // scroll to product when arriving with ?page=products&code=...
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
@@ -139,11 +142,12 @@ function App() {
       }
     }, 200);
 
+    // remove highlight after 2s
     const timeout = setTimeout(() => setHighlightCode(null), 2200);
     return () => clearTimeout(timeout);
   }, [isProductsPage]);
 
-  // Filter products by search term
+  // product search filter
   const filteredProducts = products.filter((p) => {
     if (!searchTerm.trim()) return true;
     const t = searchTerm.toLowerCase();
@@ -153,6 +157,34 @@ function App() {
       (p.division && p.division.toLowerCase().includes(t))
     );
   });
+
+  const handleVerify = () => {
+    const code = verifyCode.trim().toUpperCase();
+    if (!code) {
+      setVerifyResult({
+        status: "error",
+        message: "Please enter a product code.",
+      });
+      return;
+    }
+
+    const found = products.find(
+      (p) => p.code.toUpperCase() === code || p.name.toUpperCase() === code
+    );
+
+    if (found) {
+      setVerifyResult({
+        status: "success",
+        message: `✔ ${found.name} (${found.code}) appears to be a valid Angular Pharmaceuticals brand.`,
+      });
+    } else {
+      setVerifyResult({
+        status: "error",
+        message:
+          "✖ Code not found in our current flagship list. Please re-check the printed code or contact support.",
+      });
+    }
+  };
 
   return (
     <>
@@ -177,7 +209,6 @@ function App() {
         {/* HEADER */}
         <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
           <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            {/* Logo + name */}
             <div className="flex items-center gap-3">
               <img
                 src="/logo.png"
@@ -194,32 +225,41 @@ function App() {
               </div>
             </div>
 
-            {/* Desktop nav */}
+            {/* DESKTOP NAV with Products dropdown (text only, navigation) */}
             <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600 font-medium">
-              <a href="/#hero" className="hover:text-sky-700">
+              <a
+                href="/"
+                className="hover:text-sky-700 transition-colors"
+              >
                 Home
               </a>
-              <a href="/#about" className="hover:text-sky-700">
+              <a
+                href="/#about"
+                className="hover:text-sky-700 transition-colors"
+              >
                 About Us
               </a>
 
-              {/* Products dropdown */}
+              {/* PRODUCTS DROPDOWN */}
               <div className="relative" ref={productsMenuRef}>
                 <button
                   type="button"
-                  className="inline-flex items-center gap-1 hover:text-sky-700"
-                  onClick={() => setProductsMenuOpen((o) => !o)}
+                  className="inline-flex items-center gap-1 hover:text-sky-700 transition-colors"
+                  onClick={() =>
+                    setProductsMenuOpen((prevOpen) => !prevOpen)
+                  }
                 >
                   <span>Products</span>
                   <span className="text-[9px] mt-[1px]">
                     {productsMenuOpen ? "▲" : "▼"}
                   </span>
                 </button>
+
                 {productsMenuOpen && (
                   <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-slate-100 py-2 text-sm text-slate-700 z-40 max-h-80 overflow-y-auto">
                     <a
                       href="/?page=products"
-                      className="block px-4 py-2 hover:bg-slate-50"
+                      className="block w-full text-left px-4 py-2 hover:bg-slate-50"
                     >
                       All Products
                     </a>
@@ -230,7 +270,7 @@ function App() {
                         href={`/?page=products&code=${encodeURIComponent(
                           p.code
                         )}`}
-                        className="block px-4 py-2 hover:bg-slate-50"
+                        className="block w-full text-left px-4 py-2 hover:bg-slate-50"
                       >
                         {p.name}
                       </a>
@@ -239,12 +279,15 @@ function App() {
                 )}
               </div>
 
-              <a href="/#contact" className="hover:text-sky-700">
+              <a
+                href="/#contact"
+                className="hover:text-sky-700 transition-colors"
+              >
                 Contact Us
               </a>
             </nav>
 
-            {/* Mobile hamburger */}
+            {/* MOBILE HAMBURGER */}
             <button
               className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-sky-900 text-white active:scale-[0.97] transition-transform"
               onClick={() => setMobileOpen(true)}
@@ -258,7 +301,7 @@ function App() {
             </button>
           </div>
 
-          {/* Mobile nav overlay */}
+          {/* MOBILE MENU */}
           {mobileOpen && (
             <div
               className="fixed inset-0 z-40 bg-[#111827]/80"
@@ -283,20 +326,32 @@ function App() {
                 </div>
 
                 <nav className="mt-8 px-6 space-y-6 text-lg font-medium">
-                  <a href="/#hero" onClick={closeMobile} className="block">
+                  <a
+                    href="/"
+                    onClick={closeMobile}
+                    className="block text-white"
+                  >
                     Home
                   </a>
-                  <a href="/#about" onClick={closeMobile} className="block">
+                  <a
+                    href="/#about"
+                    onClick={closeMobile}
+                    className="block text-white"
+                  >
                     About Us
                   </a>
                   <a
                     href="/?page=products"
                     onClick={closeMobile}
-                    className="block"
+                    className="block text-white"
                   >
                     Products
                   </a>
-                  <a href="/#contact" onClick={closeMobile} className="block">
+                  <a
+                    href="/#contact"
+                    onClick={closeMobile}
+                    className="block text-white"
+                  >
                     Contact Us
                   </a>
                 </nav>
@@ -309,13 +364,9 @@ function App() {
         <main className="flex-1">
           {isProductsPage ? (
             <>
-              {/* PRODUCTS PAGE HEADER / HERO */}
-              <section className="relative overflow-hidden border-b bg-[#f0f7ff]">
-                <div className="pointer-events-none absolute -left-40 -top-40 h-72 w-72 rounded-full bg-sky-100/70" />
-                <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-cyan-50/80" />
-                <div className="pointer-events-none absolute -bottom-32 left-1/3 h-56 w-[140%] rounded-[50%] bg-white border-t border-sky-100" />
-
-                <div className="relative max-w-6xl mx-auto px-4 py-12 md:py-16 space-y-4">
+              {/* PRODUCTS PAGE */}
+              <section className="bg-white border-b border-slate-200 py-10">
+                <div className="max-w-6xl mx-auto px-4 space-y-3">
                   <h1 className="text-2xl md:text-3xl font-bold text-sky-900">
                     Our Products
                   </h1>
@@ -328,7 +379,7 @@ function App() {
                   <div className="mt-4 max-w-md">
                     <input
                       placeholder="Search by name, code or division"
-                      className="w-full px-3 py-2 border rounded-md text-sm bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+                      className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -336,56 +387,109 @@ function App() {
                 </div>
               </section>
 
-              {/* PRODUCTS LIST */}
               <section className="bg-white py-10">
-                <div className="max-w-6xl mx-auto px-4">
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {filteredProducts.length === 0 ? (
-                      <p className="text-xs text-gray-500 col-span-full">
-                        No products match “{searchTerm}”. Try a different name
-                        or code.
+                <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8">
+                  {/* Products grid full page */}
+                  <div className="md:col-span-3 space-y-4">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                      {filteredProducts.length === 0 ? (
+                        <p className="text-xs text-gray-500 col-span-full">
+                          No products match “{searchTerm}”. Try a different name
+                          or code.
+                        </p>
+                      ) : (
+                        filteredProducts.map((p, i) => (
+                          <article
+                            key={i}
+                            id={`product-${p.code}`}
+                            className={`group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer ${
+                              highlightCode === p.code
+                                ? "ring-2 ring-sky-500"
+                                : ""
+                            }`}
+                          >
+                            <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
+                              {p.image ? (
+                                <img
+                                  src={p.image}
+                                  alt={p.name}
+                                  className="h-full w-full object-contain"
+                                />
+                              ) : (
+                                <span className="text-gray-400 text-xs">
+                                  Product Image
+                                </span>
+                              )}
+                            </div>
+                            <h3 className="font-semibold text-sm text-sky-900">
+                              {p.name}
+                            </h3>
+                            <div className="text-xs text-gray-600 mt-1">
+                              Code: {p.code} • Pack: {p.pack}
+                            </div>
+                            <div className="text-[11px] text-gray-500 mt-1">
+                              Division: {p.division}
+                            </div>
+                            <div className="mt-3 flex gap-2 text-[11px]">
+                              <button className="px-3 py-1 border rounded-md hover:bg-slate-50 transition-colors">
+                                Details
+                              </button>
+                              <button
+                                className="px-3 py-1 bg-sky-700 text-white rounded-md hover:bg-sky-800 transition-colors"
+                                onClick={() => {
+                                  setVerifyCode(p.code);
+                                  setVerifyResult({
+                                    status: "success",
+                                    message: `✔ ${p.name} (${p.code}) appears to be a valid Angular Pharmaceuticals brand.`,
+                                  });
+                                  document
+                                    .getElementById("verify-products-page")
+                                    ?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                              >
+                                Verify
+                              </button>
+                            </div>
+                          </article>
+                        ))
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Verify card on products page */}
+                  <div className="space-y-4" id="verify-products-page">
+                    <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
+                      <h3 className="text-sm font-semibold text-sky-900">
+                        Verify Product
+                      </h3>
+                      <p className="text-xs text-gray-600">
+                        Enter the product code printed near the QR to check
+                        authenticity.
                       </p>
-                    ) : (
-                      filteredProducts.map((p) => (
-                        <article
-                          key={p.code}
-                          id={`product-${p.code}`}
-                          className={`group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer ${
-                            highlightCode === p.code
-                              ? "ring-2 ring-sky-500"
-                              : ""
+                      <input
+                        placeholder="Enter product code (e.g. RG-001)"
+                        className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+                        value={verifyCode}
+                        onChange={(e) => setVerifyCode(e.target.value)}
+                      />
+                      <button
+                        className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800 transition-colors"
+                        onClick={handleVerify}
+                      >
+                        Verify Now
+                      </button>
+                      {verifyResult && (
+                        <p
+                          className={`mt-2 text-[11px] ${
+                            verifyResult.status === "success"
+                              ? "text-emerald-600"
+                              : "text-red-500"
                           }`}
                         >
-                          <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
-                            {p.image ? (
-                              <img
-                                src={p.image}
-                                alt={p.name}
-                                className="h-full w-full object-contain"
-                              />
-                            ) : (
-                              <span className="text-gray-400 text-xs">
-                                Product Image
-                              </span>
-                            )}
-                          </div>
-                          <h3 className="font-semibold text-sm text-sky-900">
-                            {p.name}
-                          </h3>
-                          <div className="text-xs text-gray-600 mt-1">
-                            Code: {p.code} • Pack: {p.pack}
-                          </div>
-                          <div className="text-[11px] text-gray-500 mt-1">
-                            Division: {p.division}
-                          </div>
-                          <div className="mt-3 flex gap-2 text-[11px]">
-                            <button className="px-3 py-1 border rounded-md hover:bg-slate-50 transition-colors">
-                              Details
-                            </button>
-                          </div>
-                        </article>
-                      ))
-                    )}
+                          {verifyResult.message}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </section>
@@ -537,51 +641,88 @@ function App() {
                 </div>
               </section>
 
-              {/* PRODUCTS PREVIEW ON HOME */}
+              {/* PRODUCTS SECTION ON HOME (short view) */}
               <section id="products" className="border-b bg-white">
-                <div className="max-w-6xl mx-auto px-4 py-10 space-y-4 js-animate">
-                  <div className="flex items-center justify-between gap-3">
-                    <h2 className="text-xl font-bold text-sky-900">
-                      Flagship Brands
-                    </h2>
-                    <a
-                      href="/?page=products"
-                      className="text-xs text-sky-700 hover:underline"
-                    >
-                      View all products →
-                    </a>
+                <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+                  <div className="md:col-span-3 space-y-4 js-animate">
+                    <div className="flex items-center justify-between gap-3">
+                      <h2 className="text-xl font-bold text-sky-900">
+                        Flagship Brands
+                      </h2>
+                      <a
+                        href="/?page=products"
+                        className="text-xs text-sky-700 hover:underline"
+                      >
+                        View all products →
+                      </a>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                      {products.map((p, i) => (
+                        <article
+                          key={i}
+                          className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
+                        >
+                          <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
+                            {p.image ? (
+                              <img
+                                src={p.image}
+                                alt={p.name}
+                                className="h-full w-full object-contain"
+                              />
+                            ) : (
+                              <span className="text-gray-400 text-xs">
+                                Product Image
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="font-semibold text-sm text-sky-900">
+                            {p.name}
+                          </h3>
+                          <div className="text-xs text-gray-600 mt-1">
+                            Code: {p.code} • Pack: {p.pack}
+                          </div>
+                          <div className="text-[11px] text-gray-500 mt-1">
+                            Division: {p.division}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {products.map((p) => (
-                      <article
-                        key={p.code}
-                        className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
+                  <div className="space-y-4 js-animate" id="verify">
+                    <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
+                      <h3 className="text-sm font-semibold text-sky-900">
+                        Verify Product
+                      </h3>
+                      <p className="text-xs text-gray-600">
+                        Enter the product code printed near the QR to check
+                        authenticity.
+                      </p>
+                      <input
+                        placeholder="Enter product code (e.g. RG-001)"
+                        className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+                        value={verifyCode}
+                        onChange={(e) => setVerifyCode(e.target.value)}
+                      />
+                      <button
+                        className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800 transition-colors"
+                        onClick={handleVerify}
                       >
-                        <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
-                          {p.image ? (
-                            <img
-                              src={p.image}
-                              alt={p.name}
-                              className="h-full w-full object-contain"
-                            />
-                          ) : (
-                            <span className="text-gray-400 text-xs">
-                              Product Image
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="font-semibold text-sm text-sky-900">
-                          {p.name}
-                        </h3>
-                        <div className="text-xs text-gray-600 mt-1">
-                          Code: {p.code} • Pack: {p.pack}
-                        </div>
-                        <div className="text-[11px] text-gray-500 mt-1">
-                          Division: {p.division}
-                        </div>
-                      </article>
-                    ))}
+                        Verify Now
+                      </button>
+                      {verifyResult && (
+                        <p
+                          className={`mt-2 text-[11px] ${
+                            verifyResult.status === "success"
+                              ? "text-emerald-600"
+                              : "text-red-500"
+                          }`}
+                        >
+                          {verifyResult.message}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </section>
@@ -668,7 +809,7 @@ function App() {
                       className="w-full px-3 py-2 border rounded-md text-sm resize-none"
                       placeholder="Write your requirement or query here..."
                     ></textarea>
-                    <button className="bg-sky-700 hover:bg-sky-800 text-white w-full py-2 rounded-md text-sm font-medium">
+                    <button className="bg-sky-700 hover:bg-sky-800 text-white w-full py-2 rounded-md text-sm font-medium transition-colors">
                       Send Message
                     </button>
                     <p className="text-[11px] text-gray-400 text-center">
@@ -685,9 +826,9 @@ function App() {
         {/* FOOTER */}
         <footer
           id="footer"
-          className="bg-[#1a1b6c] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
+          className="bg-[#1e1b4b] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
         >
-          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
             {/* About */}
             <div>
               <img
@@ -702,27 +843,27 @@ function App() {
               </p>
             </div>
 
-            {/* Useful Links */}
+            {/* Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
+              <h4 className="font-semibold text-lg mb-4">Useful Links</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#hero" className="hover:underline">
+                  <a href="/" className="hover:text-sky-400">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="hover:underline">
+                  <a href="/#about" className="hover:text-sky-400">
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#products" className="hover:underline">
+                  <a href="/?page=products" className="hover:text-sky-400">
                     Products
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="hover:underline">
+                  <a href="/#contact" className="hover:text-sky-400">
                     Contact Us
                   </a>
                 </li>
@@ -731,20 +872,49 @@ function App() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-              <p>
+              <h4 className="font-semibold text-lg mb-4">Contact Us</h4>
+              <p className="text-sm leading-6">
                 Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana,
                 INDIA
               </p>
-              <p className="mt-3">
-                Email: angularpharmaceuticals@gmail.com
+              <p className="text-sm leading-6 mt-2">
+                <strong>Email:</strong> angularpharmaceuticals@gmail.com
               </p>
+
+              <div className="flex space-x-4 mt-4 text-sky-400">
+                <a href="#">
+                  <i className="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#">
+                  <i className="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#">
+                  <i className="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#">
+                  <i className="fab fa-linkedin text-xl"></i>
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="mt-10 pt-4 border-t border-white/20 text-center text-sm">
-            © Angular Pharmaceuticals.
+          <div className="text-center text-sm mt-10 border-t border-white/20 pt-4">
+            © {new Date().getFullYear()} Angular Pharmaceuticals — Designed for
+            Dinu.
           </div>
+
+          {/* WhatsApp icon only (design) */}
+          <div className="fixed bottom-6 left-4 bg-green-500 p-4 rounded-full shadow-xl z-50 opacity-90">
+            <i className="fab fa-whatsapp text-2xl text-white"></i>
+          </div>
+
+          {/* Scroll to Top */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-6 right-4 bg-sky-600 p-3 rounded-full shadow-xl text-white hover:bg-sky-700 hover:scale-110 transition-all z-50"
+          >
+            ↑
+          </button>
         </footer>
       </div>
     </>
