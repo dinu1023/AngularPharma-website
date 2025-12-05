@@ -69,8 +69,6 @@ const trustPoints = [
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [verifyCode, setVerifyCode] = useState("");
-  const [verifyResult, setVerifyResult] = useState(null);
   const [scrollY, setScrollY] = useState(0);
   const [highlightCode, setHighlightCode] = useState(null);
 
@@ -158,34 +156,6 @@ function App() {
     );
   });
 
-  const handleVerify = () => {
-    const code = verifyCode.trim().toUpperCase();
-    if (!code) {
-      setVerifyResult({
-        status: "error",
-        message: "Please enter a product code.",
-      });
-      return;
-    }
-
-    const found = products.find(
-      (p) => p.code.toUpperCase() === code || p.name.toUpperCase() === code
-    );
-
-    if (found) {
-      setVerifyResult({
-        status: "success",
-        message: `✔ ${found.name} (${found.code}) appears to be a valid Angular Pharmaceuticals brand.`,
-      });
-    } else {
-      setVerifyResult({
-        status: "error",
-        message:
-          "✖ Code not found in our current flagship list. Please re-check the printed code or contact support.",
-      });
-    }
-  };
-
   return (
     <>
       <style>{`
@@ -225,12 +195,9 @@ function App() {
               </div>
             </div>
 
-            {/* DESKTOP NAV with Products dropdown (text only, navigation) */}
+            {/* DESKTOP NAV with Products dropdown */}
             <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600 font-medium">
-              <a
-                href="/"
-                className="hover:text-sky-700 transition-colors"
-              >
+              <a href="/" className="hover:text-sky-700 transition-colors">
                 Home
               </a>
               <a
@@ -326,11 +293,7 @@ function App() {
                 </div>
 
                 <nav className="mt-8 px-6 space-y-6 text-lg font-medium">
-                  <a
-                    href="/"
-                    onClick={closeMobile}
-                    className="block text-white"
-                  >
+                  <a href="/" onClick={closeMobile} className="block text-white">
                     Home
                   </a>
                   <a
@@ -388,9 +351,9 @@ function App() {
               </section>
 
               <section className="bg-white py-10">
-                <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8">
+                <div className="max-w-6xl mx-auto px-4">
                   {/* Products grid full page */}
-                  <div className="md:col-span-3 space-y-4">
+                  <div className="space-y-4">
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                       {filteredProducts.length === 0 ? (
                         <p className="text-xs text-gray-500 col-span-full">
@@ -434,60 +397,9 @@ function App() {
                               <button className="px-3 py-1 border rounded-md hover:bg-slate-50 transition-colors">
                                 Details
                               </button>
-                              <button
-                                className="px-3 py-1 bg-sky-700 text-white rounded-md hover:bg-sky-800 transition-colors"
-                                onClick={() => {
-                                  setVerifyCode(p.code);
-                                  setVerifyResult({
-                                    status: "success",
-                                    message: `✔ ${p.name} (${p.code}) appears to be a valid Angular Pharmaceuticals brand.`,
-                                  });
-                                  document
-                                    .getElementById("verify-products-page")
-                                    ?.scrollIntoView({ behavior: "smooth" });
-                                }}
-                              >
-                                Verify
-                              </button>
                             </div>
                           </article>
                         ))
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Verify card on products page */}
-                  <div className="space-y-4" id="verify-products-page">
-                    <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <h3 className="text-sm font-semibold text-sky-900">
-                        Verify Product
-                      </h3>
-                      <p className="text-xs text-gray-600">
-                        Enter the product code printed near the QR to check
-                        authenticity.
-                      </p>
-                      <input
-                        placeholder="Enter product code (e.g. RG-001)"
-                        className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
-                        value={verifyCode}
-                        onChange={(e) => setVerifyCode(e.target.value)}
-                      />
-                      <button
-                        className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800 transition-colors"
-                        onClick={handleVerify}
-                      >
-                        Verify Now
-                      </button>
-                      {verifyResult && (
-                        <p
-                          className={`mt-2 text-[11px] ${
-                            verifyResult.status === "success"
-                              ? "text-emerald-600"
-                              : "text-red-500"
-                          }`}
-                        >
-                          {verifyResult.message}
-                        </p>
                       )}
                     </div>
                   </div>
@@ -643,86 +555,49 @@ function App() {
 
               {/* PRODUCTS SECTION ON HOME (short view) */}
               <section id="products" className="border-b bg-white">
-                <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
-                  <div className="md:col-span-3 space-y-4 js-animate">
-                    <div className="flex items-center justify-between gap-3">
-                      <h2 className="text-xl font-bold text-sky-900">
-                        Flagship Brands
-                      </h2>
-                      <a
-                        href="/?page=products"
-                        className="text-xs text-sky-700 hover:underline"
-                      >
-                        View all products →
-                      </a>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                      {products.map((p, i) => (
-                        <article
-                          key={i}
-                          className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
-                        >
-                          <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
-                            {p.image ? (
-                              <img
-                                src={p.image}
-                                alt={p.name}
-                                className="h-full w-full object-contain"
-                              />
-                            ) : (
-                              <span className="text-gray-400 text-xs">
-                                Product Image
-                              </span>
-                            )}
-                          </div>
-                          <h3 className="font-semibold text-sm text-sky-900">
-                            {p.name}
-                          </h3>
-                          <div className="text-xs text-gray-600 mt-1">
-                            Code: {p.code} • Pack: {p.pack}
-                          </div>
-                          <div className="text-[11px] text-gray-500 mt-1">
-                            Division: {p.division}
-                          </div>
-                        </article>
-                      ))}
-                    </div>
+                <div className="max-w-6xl mx-auto px-4 py-10 js-animate">
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <h2 className="text-xl font-bold text-sky-900">
+                      Flagship Brands
+                    </h2>
+                    <a
+                      href="/?page=products"
+                      className="text-xs text-sky-700 hover:underline"
+                    >
+                      View all products →
+                    </a>
                   </div>
 
-                  <div className="space-y-4 js-animate" id="verify">
-                    <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <h3 className="text-sm font-semibold text-sky-900">
-                        Verify Product
-                      </h3>
-                      <p className="text-xs text-gray-600">
-                        Enter the product code printed near the QR to check
-                        authenticity.
-                      </p>
-                      <input
-                        placeholder="Enter product code (e.g. RG-001)"
-                        className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
-                        value={verifyCode}
-                        onChange={(e) => setVerifyCode(e.target.value)}
-                      />
-                      <button
-                        className="w-full mt-2 px-3 py-2 rounded-md bg-sky-700 text-white text-sm font-medium hover:bg-sky-800 transition-colors"
-                        onClick={handleVerify}
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {products.map((p, i) => (
+                      <article
+                        key={i}
+                        className="group relative bg-slate-50/95 rounded-2xl border border-slate-200 px-4 py-5 flex flex-col h-full overflow-hidden hover:bg-white hover:border-sky-300 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer"
                       >
-                        Verify Now
-                      </button>
-                      {verifyResult && (
-                        <p
-                          className={`mt-2 text-[11px] ${
-                            verifyResult.status === "success"
-                              ? "text-emerald-600"
-                              : "text-red-500"
-                          }`}
-                        >
-                          {verifyResult.message}
-                        </p>
-                      )}
-                    </div>
+                        <div className="relative h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden mb-3 border border-slate-200/80 transition-transform duration-200 ease-out group-hover:scale-[1.03]">
+                          {p.image ? (
+                            <img
+                              src={p.image}
+                              alt={p.name}
+                              className="h-full w-full object-contain"
+                            />
+                          ) : (
+                            <span className="text-gray-400 text-xs">
+                              Product Image
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-semibold text-sm text-sky-900">
+                          {p.name}
+                        </h3>
+                        <div className="text-xs text-gray-600 mt-1">
+                          Code: {p.code} • Pack: {p.pack}
+                        </div>
+                        <div className="text-[11px] text-gray-500 mt-1">
+                          Division: {p.division}
+                        </div>
+                      </article>
+                    ))}
                   </div>
                 </div>
               </section>
@@ -824,52 +699,70 @@ function App() {
         </main>
 
         {/* FOOTER */}
-        {/* FOOTER */}
-<footer
-  id="footer"
-  className="bg-[#1a1b6c] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
->
-  <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <footer
+          id="footer"
+          className="bg-[#1a1b6c] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
+        >
+          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* About */}
+            <div>
+              <img
+                src="/logo.png"
+                alt="Angular Pharmaceuticals"
+                className="h-14 mb-4"
+              />
+              <p className="text-sm leading-6">
+                Angular Pharmaceuticals is based in Hyderabad, Telangana,
+                providing affordable & clinically reliable pharmaceutical
+                products trusted by healthcare professionals.
+              </p>
+            </div>
 
-    {/* About */}
-    <div>
-      <img
-        src="/logo.png"
-        alt="Angular Pharmaceuticals"
-        className="h-14 mb-4"
-      />
-      <p className="text-sm leading-6">
-        Angular Pharmaceuticals is based in Hyderabad, Telangana, providing
-        affordable & clinically reliable pharmaceutical products trusted by
-        healthcare professionals.
-      </p>
-    </div>
+            {/* Useful Links */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="#hero" className="hover:underline">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" className="hover:underline">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#products" className="hover:underline">
+                    Products
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="hover:underline">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-    {/* Useful Links */}
-    <div>
-      <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
-      <ul className="space-y-2 text-sm">
-        <li><a href="#home" className="hover:underline">Home</a></li>
-        <li><a href="#about" className="hover:underline">About Us</a></li>
-        <li><a href="#products" className="hover:underline">Products</a></li>
-        <li><a href="#contact" className="hover:underline">Contact Us</a></li>
-      </ul>
-    </div>
+            {/* Contact */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+              <p>
+                Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana,
+                INDIA
+              </p>
+              <p className="mt-3">
+                Email: angularpharmaceuticals@gmail.com
+              </p>
+            </div>
+          </div>
 
-    {/* Contact */}
-    <div>
-      <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-      <p>Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA</p>
-
-      <p className="mt-3">Email: angularpharmaceuticals@gmail.com</p>
-    </div>
-  </div>
-
-  {/* COPYRIGHT */}
-  <div className="mt-10 pt-4 border-t border-white/20 text-center text-sm">
-    © Angular Pharmaceuticals.
-  </div>
-</footer>
+          {/* COPYRIGHT */}
+          <div className="mt-10 pt-4 border-t border-white/20 text-center text-sm">
+            © Angular Pharmaceuticals.
+          </div>
+        </footer>
       </div>
     </>
   );
