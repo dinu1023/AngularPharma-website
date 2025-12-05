@@ -824,98 +824,52 @@ function App() {
         </main>
 
         {/* FOOTER */}
-        <footer
-          id="footer"
-          className="bg-[#1e1b4b] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
-        >
-          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
-            {/* About */}
-            <div>
-              <img
-                src="/logo.png"
-                alt="Angular Pharmaceuticals"
-                className="h-14 mb-4"
-              />
-              <p className="text-sm leading-6">
-                Angular Pharmaceuticals is based in Hyderabad, Telangana,
-                providing affordable & clinically reliable pharmaceutical
-                products trusted by healthcare professionals.
-              </p>
-            </div>
+        {/* FOOTER */}
+<footer
+  id="footer"
+  className="bg-[#1a1b6c] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
+>
+  <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
 
-            {/* Links */}
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Useful Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/" className="hover:text-sky-400">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/#about" className="hover:text-sky-400">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="/?page=products" className="hover:text-sky-400">
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a href="/#contact" className="hover:text-sky-400">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
+    {/* About */}
+    <div>
+      <img
+        src="/logo.png"
+        alt="Angular Pharmaceuticals"
+        className="h-14 mb-4"
+      />
+      <p className="text-sm leading-6">
+        Angular Pharmaceuticals is based in Hyderabad, Telangana, providing
+        affordable & clinically reliable pharmaceutical products trusted by
+        healthcare professionals.
+      </p>
+    </div>
 
-            {/* Contact */}
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Contact Us</h4>
-              <p className="text-sm leading-6">
-                Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana,
-                INDIA
-              </p>
-              <p className="text-sm leading-6 mt-2">
-                <strong>Email:</strong> angularpharmaceuticals@gmail.com
-              </p>
+    {/* Useful Links */}
+    <div>
+      <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
+      <ul className="space-y-2 text-sm">
+        <li><a href="#home" className="hover:underline">Home</a></li>
+        <li><a href="#about" className="hover:underline">About Us</a></li>
+        <li><a href="#products" className="hover:underline">Products</a></li>
+        <li><a href="#contact" className="hover:underline">Contact Us</a></li>
+      </ul>
+    </div>
 
-              <div className="flex space-x-4 mt-4 text-sky-400">
-                <a href="#">
-                  <i className="fab fa-twitter text-xl"></i>
-                </a>
-                <a href="#">
-                  <i className="fab fa-facebook text-xl"></i>
-                </a>
-                <a href="#">
-                  <i className="fab fa-instagram text-xl"></i>
-                </a>
-                <a href="#">
-                  <i className="fab fa-linkedin text-xl"></i>
-                </a>
-              </div>
-            </div>
-          </div>
+    {/* Contact */}
+    <div>
+      <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+      <p>Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA</p>
 
-          <div className="text-center text-sm mt-10 border-t border-white/20 pt-4">
-            © {new Date().getFullYear()} Angular Pharmaceuticals — Designed for
-            Dinu.
-          </div>
+      <p className="mt-3">Email: angularpharmaceuticals@gmail.com</p>
+    </div>
+  </div>
 
-          {/* WhatsApp icon only (design) */}
-          <div className="fixed bottom-6 left-4 bg-green-500 p-4 rounded-full shadow-xl z-50 opacity-90">
-            <i className="fab fa-whatsapp text-2xl text-white"></i>
-          </div>
-
-          {/* Scroll to Top */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-6 right-4 bg-sky-600 p-3 rounded-full shadow-xl text-white hover:bg-sky-700 hover:scale-110 transition-all z-50"
-          >
-            ↑
-          </button>
-        </footer>
+  {/* COPYRIGHT */}
+  <div className="mt-10 pt-4 border-t border-white/20 text-center text-sm">
+    © Angular Pharmaceuticals.
+  </div>
+</footer>
       </div>
     </>
   );
