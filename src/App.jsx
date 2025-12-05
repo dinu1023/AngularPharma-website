@@ -738,38 +738,42 @@ function App() {
           </section>
         </main>
 
-        <footer className="bg-slate-50 border-t border-slate-200 mt-16">
-  <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
+    <footer id="footer" className="bg-[#1e1b4b] text-white mt-20 pt-12 pb-6 relative overflow-hidden">
+
+  <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
     
+    {/* About Section */}
     <div>
       <img src="/logo.png" alt="Angular Pharmaceuticals" className="h-14 mb-4" />
-      <p className="text-sm text-gray-600 leading-6">
-        Angular Pharmaceuticals is based in Hyderabad, Telangana,
-        providing affordable & clinically reliable pharmaceutical products
-        trusted by healthcare professionals.
+      <p className="text-sm leading-6">
+        Angular Pharmaceuticals is based in Hyderabad, Telangana, providing affordable & clinically
+        reliable pharmaceutical products trusted by healthcare professionals.
       </p>
     </div>
 
+    {/* Useful Links */}
     <div>
-      <h4 className="font-semibold text-slate-800 mb-4">Useful Links</h4>
-      <ul className="space-y-2 text-sm text-gray-600">
-        <li><a href="#hero" className="hover:text-sky-600">Home</a></li>
-        <li><a href="#about" className="hover:text-sky-600">About Us</a></li>
-        <li><a href="#products" className="hover:text-sky-600">Products</a></li>
-        <li><a href="#contact" className="hover:text-sky-600">Contact Us</a></li>
+      <h4 className="font-semibold text-lg mb-4">Useful Links</h4>
+      <ul className="space-y-2 text-sm">
+        <li><a href="#hero" className="hover:text-sky-400">Home</a></li>
+        <li><a href="#about" className="hover:text-sky-400">About Us</a></li>
+        <li><a href="#products" className="hover:text-sky-400">Products</a></li>
+        <li><a href="#contact" className="hover:text-sky-400">Contact Us</a></li>
       </ul>
     </div>
 
+    {/* Contact Section */}
     <div>
-      <h4 className="font-semibold text-slate-800 mb-4">Contact Us</h4>
-      <p className="text-sm text-gray-600">
+      <h4 className="font-semibold text-lg mb-4">Contact Us</h4>
+      <p className="text-sm leading-6">
         Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA
       </p>
-      <p className="mt-2 text-sm text-gray-600">
-        <strong>Phone:</strong> +91 99667 43442
+
+      <p className="text-sm leading-6 mt-2">
+        <strong>Email:</strong> angularpharmaceuticals@gmail.com
       </p>
-     
-      <div className="flex space-x-4 mt-4 text-sky-700">
+
+      <div className="flex space-x-4 mt-4 text-sky-400">
         <a href="#"><i className="fab fa-twitter text-xl"></i></a>
         <a href="#"><i className="fab fa-facebook text-xl"></i></a>
         <a href="#"><i className="fab fa-instagram text-xl"></i></a>
@@ -779,9 +783,24 @@ function App() {
 
   </div>
 
-  <div className="bg-slate-100 py-3 text-center text-sm text-gray-600">
+  {/* COPYRIGHT */}
+  <div className="text-center text-sm mt-10 border-t border-white/20 pt-4">
     © {new Date().getFullYear()} Angular Pharmaceuticals — Designed for Dinu.
   </div>
+
+  {/* WhatsApp Icon Only (no link, no number) */}
+  <div className="fixed bottom-6 left-4 bg-green-500 p-4 rounded-full shadow-xl z-50 opacity-90">
+    <i className="fab fa-whatsapp text-2xl text-white"></i>
+  </div>
+
+  {/* Scroll to Top Button */}
+  <button
+    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+    className="fixed bottom-6 right-4 bg-sky-600 p-3 rounded-full shadow-xl text-white hover:bg-sky-700 hover:scale-110 transition-all z-50"
+  >
+    ↑
+  </button>
+
 </footer>
       </div>
     </>
