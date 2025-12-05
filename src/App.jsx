@@ -738,12 +738,54 @@ function App() {
           </section>
         </main>
 
-        <footer className="bg-white border-t border-slate-200">
-          <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-gray-500 flex justify-between flex-wrap gap-2">
-            <span>© {new Date().getFullYear()} Angular Pharmaceuticals.</span>
-            <span>Designed for Dinu.</span>
-          </div>
-        </footer>
+        <footer className="bg-slate-50 border-t border-slate-200 mt-16">
+  <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
+    
+    <div>
+      <img src="/logo.png" alt="Angular Pharmaceuticals" className="h-14 mb-4" />
+      <p className="text-sm text-gray-600 leading-6">
+        Angular Pharmaceuticals is based in Hyderabad, Telangana,
+        providing affordable & clinically reliable pharmaceutical products
+        trusted by healthcare professionals.
+      </p>
+    </div>
+
+    <div>
+      <h4 className="font-semibold text-slate-800 mb-4">Useful Links</h4>
+      <ul className="space-y-2 text-sm text-gray-600">
+        <li><a href="#hero" className="hover:text-sky-600">Home</a></li>
+        <li><a href="#about" className="hover:text-sky-600">About Us</a></li>
+        <li><a href="#products" className="hover:text-sky-600">Products</a></li>
+        <li><a href="#contact" className="hover:text-sky-600">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 className="font-semibold text-slate-800 mb-4">Contact Us</h4>
+      <p className="text-sm text-gray-600">
+        Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana, INDIA
+      </p>
+      <p className="mt-2 text-sm text-gray-600">
+        <strong>Phone:</strong> +91 99667 43442
+      </p>
+      <p className="text-sm text-gray-600">
+        <strong>Email:</strong> angularpharmaceuticals@gmail.com
+      </p>
+
+      <div className="flex space-x-4 mt-4 text-sky-700">
+        <a href="#"><i className="fab fa-twitter text-xl"></i></a>
+        <a href="#"><i className="fab fa-facebook text-xl"></i></a>
+        <a href="#"><i className="fab fa-instagram text-xl"></i></a>
+        <a href="#"><i className="fab fa-linkedin text-xl"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div className="bg-slate-100 py-3 text-center text-sm text-gray-600">
+    © {new Date().getFullYear()} Angular Pharmaceuticals — Designed for Dinu.
+  </div>
+</footer>
       </div>
     </>
   );
