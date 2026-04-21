@@ -765,70 +765,110 @@ function App() {
           )}
         </main>
 
-        {/* FOOTER */}
-        <footer
-          id="footer"
-          className="bg-[#1a1b6c] text-white mt-20 pt-12 pb-6 relative overflow-hidden"
-        >
-          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* About */}
-            <div>
-              <img
-                src="/logo.png"
-                alt="Angular Pharmaceuticals"
-                className="h-14 mb-4"
-              />
-              <p className="text-sm leading-6">
-                Angular Pharmaceuticals is based in Hyderabad, Telangana,
-                providing affordable & clinically reliable pharmaceutical
-                products trusted by healthcare professionals.
-              </p>
-            </div>
+      <footer className="bg-gradient-to-r from-slate-900 to-slate-800 text-white mt-16">
 
-            {/* Useful Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#hero" className="hover:underline">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#about" className="hover:underline">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#products" className="hover:underline">
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="hover:underline">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
+  <div className="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-10">
 
-            {/* Contact */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-              <p>
-                Pl. No 59, Boduppal, Medipally, Hyderabad 500076, Telangana,
-                INDIA
-              </p>
+    {/* LOGO SECTION */}
 
-              <p className="mt-3">Email: angularpharmaceuticals@gmail.com</p>
-            </div>
-          </div>
+    <div>
 
-          {/* COPYRIGHT */}
-          <div className="mt-10 pt-4 border-t border-white/20 text-center text-sm">
-            © Angular Pharmaceuticals.
-          </div>
-        </footer>
+      <div className="flex items-center gap-3">
+
+        <img
+          src="/logo.png"
+          alt="Angular Pharma"
+          className="h-12 w-auto object-contain"
+        />
+
+        <h2 className="text-lg font-semibold tracking-wide">
+          ANGULAR PHARMACEUTICALS
+        </h2>
+
+      </div>
+
+      <p className="text-sm text-slate-300 mt-4 leading-relaxed">
+        Trusted pharmaceutical company providing high quality and affordable medicines across multiple therapeutic segments.
+      </p>
+
+    </div>
+
+
+    {/* LINKS */}
+
+    <div>
+
+      <h3 className="font-semibold mb-4 text-white">
+        QUICK LINKS
+      </h3>
+
+      <ul className="space-y-2 text-sm text-slate-300">
+
+        <li>
+          <a href="#" className="hover:text-white transition">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="#products" className="hover:text-white transition">
+            Products
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact" className="hover:text-white transition">
+            Contact Us
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    {/* CONTACT */}
+
+    <div>
+
+      <h3 className="font-semibold mb-4 text-white">
+        CONTACT
+      </h3>
+
+      <p className="text-sm text-slate-300">
+        Angular Pharmaceuticals
+      </p>
+
+      <p className="text-sm text-slate-300">
+        Hyderabad, Telangana
+      </p>
+
+      <p className="text-sm text-slate-300 mt-2">
+        Email:
+      </p>
+
+      <p className="text-sm text-slate-200">
+        angularpharmaceuticals@gmail.com
+      </p>
+
+    </div>
+
+  </div>
+
+
+  {/* bottom */}
+
+  <div className="border-t border-slate-700">
+
+    <div className="max-w-6xl mx-auto px-4 py-4 text-center text-sm text-slate-400">
+
+      © {new Date().getFullYear()} Angular Pharmaceuticals. All Rights Reserved.
+
+    </div>
+
+  </div>
+
+</footer>
       </div>
     </>
   );
